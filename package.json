@@ -1,6 +1,7 @@
 {
 	"name": "scrollephant",
 	"version": "0.0.1",
+	"description": "Create scrollable full-screen/full-page websites.",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
