@@ -6,8 +6,6 @@ module.exports = {
         { files: "*.svelte", options: { parser: "svelte" } },
         { files: "*.md", options: { tabWidth: 2 } },
     ],
-    plugins: [
-        require("prettier-plugin-svelte"),
-    ],
+    plugins: [require("prettier-plugin-svelte")],
     pluginSearchDirs: ["."],
 }
