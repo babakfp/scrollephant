@@ -17,4 +17,7 @@
         width: 100vw;
         width: 100dvw;
     }
+    :global(.scrollephant[data-direction="horizontal"]) .scrollephant-section {
+        flex-shrink: 0;
+    }
 </style>
