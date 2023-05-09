@@ -7,7 +7,7 @@ export default {
     kit: {
         adapter: adapter(),
         alias: {
-            scrollephant: "src/package/index.js",
+            scrollephant: "src/package/index.ts",
         },
     },
 }
