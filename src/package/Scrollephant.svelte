@@ -9,17 +9,31 @@
 
     function handleMousewheel(e: WheelEvent) {
         if (isMovingForward(e)) {
-            if (activeSectionNumber < $numberOfSections) {
+            if (canMoveForward()) {
                 activeSectionNumber += 1
             }
         } else {
-            if (activeSectionNumber > 1) {
+            if (canMoveBackward()) {
                 activeSectionNumber -= 1
             }
         }
 
         console.log("$numberOfSections:", $numberOfSections)
         console.log("activeSectionNumber:", activeSectionNumber)
+    }
+
+    function canMoveForward() {
+        if (activeSectionNumber < $numberOfSections) {
+            return true
+        }
+        return false
+    }
+
+    function canMoveBackward() {
+        if (activeSectionNumber > 1) {
+            return true
+        }
+        return false
     }
 
     function isMovingForward(e: WheelEvent) {
