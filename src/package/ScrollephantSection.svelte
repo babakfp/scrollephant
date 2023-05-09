@@ -3,7 +3,7 @@
     import type { Writable } from "svelte/store"
 
     const numberOfSections: Writable<number> = getContext("numberOfSections")
-    numberOfSections.update((v: number) => ++v)
+    $numberOfSections += 1
 </script>
 
 <div class="scrollephant-section">
