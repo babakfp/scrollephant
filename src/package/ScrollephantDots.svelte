@@ -12,7 +12,7 @@
     <ol>
         {#each Array($numberOfSections) as _, i}
             <li data-current={i === $activeSectionNumber - 1}>
-                <button>
+                <button on:click={() => ($activeSectionNumber = i + 1)}>
                     <div />
                 </button>
             </li>
