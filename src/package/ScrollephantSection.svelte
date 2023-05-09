@@ -1,3 +1,10 @@
+<script lang="ts">
+    import { getContext } from "svelte"
+
+    const numberOfSections = getContext("numberOfSections")
+    numberOfSections.update((v: number) => ++v)
+</script>
+
 <div class="scrollephant-section">
     <slot />
 </div>
