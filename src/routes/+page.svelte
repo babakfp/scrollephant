@@ -24,13 +24,13 @@
         color: white;
         font-size: 4rem;
     }
-    .section-inner:nth-child(1) {
+    :global(.scrollephant-section):nth-child(1) .section-inner {
         background: blueviolet;
     }
-    .section-inner:nth-child(2) {
+    :global(.scrollephant-section):nth-child(2) .section-inner {
         background: brown;
     }
-    .section-inner:nth-child(3) {
+    :global(.scrollephant-section):nth-child(3) .section-inner {
         background: cyan;
     }
 </style>
