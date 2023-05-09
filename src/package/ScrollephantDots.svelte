@@ -47,10 +47,16 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: calc(var(--scrollephant-dot-size) + 1.5rem);
-        height: calc(var(--scrollephant-dot-size) + 0.5rem);
-        padding-right: 0.5rem;
+        width: calc(var(--scrollephant-dot-size) + 1rem);
+        height: calc(var(--scrollephant-dot-size) + 0.25rem);
         cursor: pointer;
+    }
+    @media (min-width: 640px) {
+        .scrollephant-dots button {
+            width: calc(var(--scrollephant-dot-size) + 1.5rem);
+            height: calc(var(--scrollephant-dot-size) + 0.5rem);
+            padding-right: 0.5rem;
+        }
     }
     .scrollephant-dots button:hover div {
         width: var(--scrollephant-dot-action-hover-size);
@@ -66,12 +72,5 @@
     .scrollephant-dots li[data-current="true"] button div {
         width: var(--scrollephant-dot-action-active-size);
         height: var(--scrollephant-dot-action-active-size);
-    }
-    @media (max-width: 640px) {
-        .scrollephant-dots button {
-            width: calc(var(--scrollephant-dot-size) + 1rem);
-            height: calc(var(--scrollephant-dot-size) + 0.25rem);
-            padding-right: 0;
-        }
     }
 </style>
