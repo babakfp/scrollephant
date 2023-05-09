@@ -14,17 +14,18 @@
     }
 
     function handleMousewheel(e: WheelEvent) {
-        console.log(isMovingForward(e))
-
         if (isMovingForward(e)) {
-            if (activeSectionNumber <= $numberOfSections) {
+            if (activeSectionNumber < $numberOfSections) {
                 activeSectionNumber += 1
             }
         } else {
-            if (activeSectionNumber >= $numberOfSections) {
+            if (activeSectionNumber > 1) {
                 activeSectionNumber -= 1
             }
         }
+
+        console.log("$numberOfSections:", $numberOfSections)
+        console.log("activeSectionNumber:", activeSectionNumber)
     }
 </script>
 
