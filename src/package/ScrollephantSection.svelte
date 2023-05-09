@@ -11,11 +11,9 @@
 </div>
 
 <style>
-    :global(.scrollephant[data-direction="vertical"]) .scrollephant-section {
+    .scrollephant-section {
         height: 100vh;
         height: 100dvh;
-    }
-    :global(.scrollephant[data-direction="horizontal"]) .scrollephant-section {
         width: 100vw;
         width: 100dvw;
     }
