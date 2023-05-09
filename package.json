@@ -29,9 +29,6 @@
         "typescript": "5.0.4",
         "vite": "4.3.5"
     },
-    "keywords": [
-        "fullpage"
-    ],
     "exports": {
         ".": {
             "types": "./dist/index.d.ts",
@@ -45,5 +42,8 @@
     ],
     "svelte": "./dist/index.js",
     "types": "./dist/index.d.ts",
-    "type": "module"
+    "type": "module",
+    "keywords": [
+        "fullpage"
+    ]
 }
