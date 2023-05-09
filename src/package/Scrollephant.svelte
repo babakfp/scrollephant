@@ -4,6 +4,7 @@
 
     export let direction: "vertical" | "horizontal" = "vertical"
     export let activeSectionNumber = 1
+    export let delay = 0
 
     let windowInnerHeight: number
     let windowInnerWidth: number
@@ -11,6 +12,13 @@
     const numberOfSections = setContext("numberOfSections", writable(0))
 
     function handleMousewheel(e: WheelEvent) {
+        move(e)
+
+        console.log("$numberOfSections:", $numberOfSections)
+        console.log("activeSectionNumber:", activeSectionNumber)
+    }
+
+    function move(e: WheelEvent) {
         if (isMovingForward(e)) {
             if (canMoveForward()) {
                 activeSectionNumber += 1
@@ -20,9 +28,6 @@
                 activeSectionNumber -= 1
             }
         }
-
-        console.log("$numberOfSections:", $numberOfSections)
-        console.log("activeSectionNumber:", activeSectionNumber)
     }
 
     function canMoveForward() {
