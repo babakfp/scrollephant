@@ -4,7 +4,6 @@
 
     export let direction: "vertical" | "horizontal" = "vertical"
     export let activeSectionNumber = 1
-    export let delay = 0
 
     let windowInnerHeight: number
     let windowInnerWidth: number
