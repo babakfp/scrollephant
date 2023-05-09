@@ -57,7 +57,6 @@
         height: var(--scrollephant-dot-action-hover-size);
     }
     .scrollephant-dots button div {
-        content: "";
         width: var(--scrollephant-dot-action-size);
         height: var(--scrollephant-dot-action-size);
         background: white;
