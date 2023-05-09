@@ -56,7 +56,7 @@
     data-direction={direction}
     style:--scrollephant-translate-y="-{(activeSectionNumber - 1) *
         windowInnerHeight}px"
-    style:--scrollephant-translate-x="{(activeSectionNumber - 1) *
+    style:--scrollephant-translate-x="-{(activeSectionNumber - 1) *
         windowInnerWidth}px"
     on:wheel|preventDefault={handleMousewheel}
 >
