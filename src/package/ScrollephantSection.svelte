@@ -1,7 +1,8 @@
 <script lang="ts">
     import { getContext } from "svelte"
+    import type { Writable } from "svelte/store"
 
-    const numberOfSections = getContext("numberOfSections")
+    const numberOfSections: Writable<number> = getContext("numberOfSections")
     numberOfSections.update((v: number) => ++v)
 </script>
 
