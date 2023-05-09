@@ -21,6 +21,11 @@
 </Scrollephant>
 
 <style>
+    :global(body) {
+        margin: 0;
+        overflow: hidden;
+    }
+
     .section-inner {
         display: flex;
         align-items: center;
