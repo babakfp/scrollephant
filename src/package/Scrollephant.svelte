@@ -5,6 +5,9 @@
     export let direction: "vertical" | "horizontal" = "vertical"
     export let activeSectionNumber = 1
 
+    let windowInnerHeight: number
+    let windowInnerWidth: number
+
     const numberOfSections = setContext("numberOfSections", writable(0))
 
     function handleMousewheel(e: WheelEvent) {
@@ -43,10 +46,19 @@
     }
 </script>
 
+<svelte:window
+    bind:innerHeight={windowInnerHeight}
+    bind:innerWidth={windowInnerWidth}
+/>
+
 <div
     class="scrollephant"
     data-direction={direction}
-    on:wheel={handleMousewheel}
+    style:--scrollephant-translate-y="-{(activeSectionNumber - 1) *
+        windowInnerHeight}px"
+    style:--scrollephant-translate-x="{(activeSectionNumber - 1) *
+        windowInnerWidth}px"
+    on:wheel|preventDefault={handleMousewheel}
 >
     <slot />
 </div>
