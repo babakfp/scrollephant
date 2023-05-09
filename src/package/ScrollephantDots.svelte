@@ -3,12 +3,15 @@
     import type { Writable } from "svelte/store"
 
     const numberOfSections: Writable<number> = getContext("numberOfSections")
+    const activeSectionNumber: Writable<number> = getContext(
+        "activeSectionNumber"
+    )
 </script>
 
 <nav class="scrollephant-dots">
     <ol>
         {#each Array($numberOfSections) as _, i}
-            <li data-current={i === 1}>
+            <li data-current={i === $activeSectionNumber - 1}>
                 <button>
                     <div />
                 </button>

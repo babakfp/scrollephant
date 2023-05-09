@@ -3,41 +3,41 @@
     import { writable } from "svelte/store"
 
     export let direction: "vertical" | "horizontal" = "vertical"
-    export let activeSectionNumber = 1
 
     let windowInnerHeight: number
     let windowInnerWidth: number
 
     const numberOfSections = setContext("numberOfSections", writable(0))
+    const activeSectionNumber = setContext("activeSectionNumber", writable(1))
 
     function handleMousewheel(e: WheelEvent) {
         move(e)
 
         console.log("$numberOfSections:", $numberOfSections)
-        console.log("activeSectionNumber:", activeSectionNumber)
+        console.log("$activeSectionNumber:", $activeSectionNumber)
     }
 
     function move(e: WheelEvent) {
         if (isMovingForward(e)) {
             if (canMoveForward()) {
-                activeSectionNumber += 1
+                $activeSectionNumber += 1
             }
         } else {
             if (canMoveBackward()) {
-                activeSectionNumber -= 1
+                $activeSectionNumber -= 1
             }
         }
     }
 
     function canMoveForward() {
-        if (activeSectionNumber < $numberOfSections) {
+        if ($activeSectionNumber < $numberOfSections) {
             return true
         }
         return false
     }
 
     function canMoveBackward() {
-        if (activeSectionNumber > 1) {
+        if ($activeSectionNumber > 1) {
             return true
         }
         return false
@@ -58,9 +58,9 @@
 <div
     class="scrollephant"
     data-direction={direction}
-    style:--scrollephant-translate-y="-{(activeSectionNumber - 1) *
+    style:--scrollephant-translate-y="-{($activeSectionNumber - 1) *
         windowInnerHeight}px"
-    style:--scrollephant-translate-x="-{(activeSectionNumber - 1) *
+    style:--scrollephant-translate-x="-{($activeSectionNumber - 1) *
         windowInnerWidth}px"
     on:wheel|preventDefault={handleMousewheel}
 >
