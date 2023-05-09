@@ -7,12 +7,6 @@
 
     const numberOfSections = setContext("numberOfSections", writable(0))
 
-    function isMovingForward(e: WheelEvent) {
-        if (e.deltaY > 0) return true
-        if (e.deltaY < 0) return false
-        throw Error("Invalid. Moving nowhere!")
-    }
-
     function handleMousewheel(e: WheelEvent) {
         if (isMovingForward(e)) {
             if (activeSectionNumber < $numberOfSections) {
@@ -26,6 +20,12 @@
 
         console.log("$numberOfSections:", $numberOfSections)
         console.log("activeSectionNumber:", activeSectionNumber)
+    }
+
+    function isMovingForward(e: WheelEvent) {
+        if (e.deltaY > 0) return true
+        if (e.deltaY < 0) return false
+        throw Error("Invalid. Moving nowhere!")
     }
 </script>
 
