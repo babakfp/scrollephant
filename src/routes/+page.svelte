@@ -1,17 +1,23 @@
 <script lang="ts">
-    import { Scrollephant, ScrollephantSection } from "scrollephant"
+    import {
+        Scrollephant,
+        ScrollephantWrapper,
+        ScrollephantSection,
+    } from "scrollephant"
 </script>
 
 <Scrollephant>
-    <ScrollephantSection>
-        <div class="section-inner">1</div>
-    </ScrollephantSection>
-    <ScrollephantSection>
-        <div class="section-inner">2</div>
-    </ScrollephantSection>
-    <ScrollephantSection>
-        <div class="section-inner">3</div>
-    </ScrollephantSection>
+    <ScrollephantWrapper>
+        <ScrollephantSection>
+            <div class="section-inner">1</div>
+        </ScrollephantSection>
+        <ScrollephantSection>
+            <div class="section-inner">2</div>
+        </ScrollephantSection>
+        <ScrollephantSection>
+            <div class="section-inner">3</div>
+        </ScrollephantSection>
+    </ScrollephantWrapper>
 </Scrollephant>
 
 <style>
