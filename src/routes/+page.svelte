@@ -3,6 +3,7 @@
         Scrollephant,
         ScrollephantWrapper,
         ScrollephantSection,
+        ScrollephantDots,
     } from "scrollephant"
 </script>
 
@@ -18,6 +19,8 @@
             <div class="section-inner">3</div>
         </ScrollephantSection>
     </ScrollephantWrapper>
+
+    <ScrollephantDots />
 </Scrollephant>
 
 <style>
