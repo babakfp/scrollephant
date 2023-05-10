@@ -79,6 +79,7 @@
     .scrollephant {
         --scrollephant-duration: 800ms;
         --scrollephant-timing-function: ease-out;
+        overflow: hidden;
 
         &[data-direction="vertical"] {
             --scrollephant-translate-y: 0;
