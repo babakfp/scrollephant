@@ -58,10 +58,12 @@
 <div
     class="scrollephant"
     data-direction={direction}
-    style:--scrollephant-translate-y="-{($activeSectionNumber - 1) *
-        windowInnerHeight}px"
-    style:--scrollephant-translate-x="-{($activeSectionNumber - 1) *
-        windowInnerWidth}px"
+    style:--scrollephant-translate-y={direction === "vertical"
+        ? `-${($activeSectionNumber - 1) * windowInnerHeight}px`
+        : 0}
+    style:--scrollephant-translate-x={direction === "horizontal"
+        ? `-${($activeSectionNumber - 1) * windowInnerWidth}px`
+        : 0}
     on:wheel|preventDefault={handleMousewheel}
 >
     <slot />
