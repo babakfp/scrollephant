@@ -3,8 +3,8 @@
     import { writable } from "svelte/store"
 
     export let direction: "vertical" | "horizontal" = "vertical"
-    export let loopFromTop = false
-    export let loopFromBottom = false
+    export let loopFromStart = false
+    export let loopFromEnd = false
 
     let windowInnerHeight: number
     let windowInnerWidth: number
@@ -23,13 +23,13 @@
         if (isMovingForward(e)) {
             if (canMoveForward()) {
                 $activeSectionNumber += 1
-            } else if (loopFromBottom) {
+            } else if (loopFromEnd) {
                 $activeSectionNumber = 1
             }
         } else {
             if (canMoveBackward()) {
                 $activeSectionNumber -= 1
-            } else if (loopFromTop) {
+            } else if (loopFromStart) {
                 $activeSectionNumber = $numberOfSections
             }
         }
