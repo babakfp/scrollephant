@@ -4,11 +4,31 @@
  * @inspiration https://github.com/john-doherty/swiped-events. v1.1.7 - 10 May 2023
  */
 
+import type { ActionReturn } from "svelte/action"
+
+interface Attributes {
+    "on:swipe": (e: SwipeEvent) => void
+}
+
+export interface SwipeEvent {
+    bubbles: boolean
+    cancelable: boolean
+    detail: {
+        direction: "up" | "right" | "down" | "left"
+        touchType: "direct" | "stylus" | "indirect" | undefined
+        xStart: number
+        xEnd: number
+        yStart: number
+        yEnd: number
+    }
+    [key: string]: any
+}
+
 interface ExtendedTouch extends Touch {
     touchType?: string
 }
 
-export default (element: HTMLElement) => {
+export default (element: HTMLElement): ActionReturn<any, Attributes> => {
     // Setup goes here
     let touchStartTarget: EventTarget
     let touchStartTime: number | null

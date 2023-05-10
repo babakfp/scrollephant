@@ -2,6 +2,7 @@
     import { setContext } from "svelte"
     import { writable } from "svelte/store"
     import swipe from "./swipe.js"
+    import type { SwipeEvent } from "./swipe.js"
 
     export let direction: "vertical" | "horizontal" = "vertical"
     export let loopFromStart = false
@@ -13,7 +14,7 @@
     const numberOfSections = setContext("numberOfSections", writable(0))
     const activeSectionNumber = setContext("activeSectionNumber", writable(1))
 
-    function handleSwipe(e: any) {
+    function handleSwipe(e: SwipeEvent) {
         if (direction === "vertical") {
             if (e.detail.direction === "up") {
                 moveForward()
