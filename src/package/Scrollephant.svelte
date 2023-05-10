@@ -71,11 +71,12 @@
     .scrollephant {
         --scrollephant-duration: 800ms;
         --scrollephant-timing-function: ease-out;
-    }
-    .scrollephant[data-direction="vertical"] {
-        --scrollephant-translate-y: 0;
-    }
-    .scrollephant[data-direction="horizontal"] {
-        --scrollephant-translate-x: 0;
+
+        &[data-direction="vertical"] {
+            --scrollephant-translate-y: 0;
+        }
+        &[data-direction="horizontal"] {
+            --scrollephant-translate-x: 0;
+        }
     }
 </style>
