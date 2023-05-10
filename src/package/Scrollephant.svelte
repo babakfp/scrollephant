@@ -42,10 +42,13 @@
     }
 
     function move(e: WheelEvent) {
-        if (isMovingForward(e)) {
-            moveForward()
-        } else {
-            moveBackward()
+        switch (isMovingForward(e)) {
+            case true:
+                moveForward()
+                break
+            case false:
+                moveBackward()
+                break
         }
     }
 
@@ -82,7 +85,9 @@
     function isMovingForward(e: WheelEvent) {
         if (e.deltaY > 0) return true
         if (e.deltaY < 0) return false
-        throw Error("Invalid. Moving nowhere!")
+
+        // (0) - Moving nowhere! Happens on touch pads.
+        return null
     }
 </script>
 
