@@ -41,7 +41,7 @@ export default (element: HTMLElement): ActionReturn<any, Attributes> => {
 
     // Records current location on touchstart event
     function handleTouchStart(e: TouchEvent) {
-        // If the element has data-swipe-ignore="true" we stop listening for swipe events
+        // We stop listening for swipe events
         if (
             element.getAttribute("data-swipe-events") === "none" ||
             getComputedStyle(element).touchAction === "none"
