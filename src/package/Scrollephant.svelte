@@ -1,8 +1,7 @@
 <script lang="ts">
     import { setContext } from "svelte"
     import { writable } from "svelte/store"
-    import swipe from "./swipe.js"
-    import type { SwipeEvent } from "./swipe.js"
+    import { swipe, type SwipeEvent } from "./swipe.js"
 
     export let direction: "vertical" | "horizontal" = "vertical"
     export let loopFromStart = false

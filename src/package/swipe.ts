@@ -26,7 +26,7 @@ interface ExtendedTouch extends Touch {
     touchType?: string
 }
 
-export default (element: HTMLElement): ActionReturn<any, Attributes> => {
+export function swipe(element: HTMLElement): ActionReturn<any, Attributes> {
     // Setup goes here
     let touchStartTarget: EventTarget
     let touchStartTime: number | null
