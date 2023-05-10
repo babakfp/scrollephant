@@ -1,7 +1,8 @@
 <script lang="ts">
     import { setContext } from "svelte"
     import { writable } from "svelte/store"
-    import swipe from "./swipe"
+    import swipe from "./swipe.js"
+    import type { SwipeEvent } from "./swipe.js"
 
     export let direction: "vertical" | "horizontal" = "vertical"
     export let loopFromStart = false
@@ -12,6 +13,26 @@
 
     const numberOfSections = setContext("numberOfSections", writable(0))
     const activeSectionNumber = setContext("activeSectionNumber", writable(1))
+
+    function handleSwipe(e: SwipeEvent) {
+        if (direction === "vertical") {
+            if (e.detail.direction === "up") {
+                moveForward()
+            }
+            if (e.detail.direction === "down") {
+                moveBackward()
+            }
+        }
+
+        if (direction === "horizontal") {
+            if (e.detail.direction === "left") {
+                moveForward()
+            }
+            if (e.detail.direction === "right") {
+                moveBackward()
+            }
+        }
+    }
 
     function handleMousewheel(e: WheelEvent) {
         move(e)
@@ -81,25 +102,7 @@
         : 0}
     on:wheel|preventDefault={handleMousewheel}
     use:swipe
-    on:swipe={e => {
-        if (direction === "vertical") {
-            if (e.detail.direction === "up") {
-                moveForward()
-            }
-            if (e.detail.direction === "down") {
-                moveBackward()
-            }
-        }
-
-        if (direction === "horizontal") {
-            if (e.detail.direction === "left") {
-                moveForward()
-            }
-            if (e.detail.direction === "right") {
-                moveBackward()
-            }
-        }
-    }}
+    on:swipe={handleSwipe}
 >
     <slot />
 </div>
