@@ -9,6 +9,7 @@
         transition-duration: var(--scrollephant-duration);
         transition-timing-function: var(--scrollephant-timing-function);
     }
+
     :global(.scrollephant[data-direction="vertical"]) .scrollephant-wrapper {
         flex-direction: column;
         transform: translateY(var(--scrollephant-translate-y));

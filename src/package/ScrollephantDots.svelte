@@ -39,6 +39,7 @@
             list-style: none;
             margin: 0;
         }
+
         & button {
             border: none;
             background: transparent;
