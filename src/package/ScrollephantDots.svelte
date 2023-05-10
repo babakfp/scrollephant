@@ -57,6 +57,10 @@
                 padding-right: 0.5rem;
             }
 
+            @media (min-width: 1280px) {
+                padding-right: 1rem;
+            }
+
             & div {
                 width: var(--scrollephant-dot-action-size);
                 height: var(--scrollephant-dot-action-size);
