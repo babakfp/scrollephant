@@ -1,6 +1,8 @@
 <script lang="ts">
-    import { setContext } from "svelte"
+    import { setContext, onMount } from "svelte"
     import { writable } from "svelte/store"
+
+    onMount(() => import("swiped-events"))
 
     export let direction: "vertical" | "horizontal" = "vertical"
     export let loopFromStart = false
@@ -21,17 +23,25 @@
 
     function move(e: WheelEvent) {
         if (isMovingForward(e)) {
-            if (canMoveForward()) {
-                $activeSectionNumber += 1
-            } else if (loopFromEnd) {
-                $activeSectionNumber = 1
-            }
+            moveForward()
         } else {
-            if (canMoveBackward()) {
-                $activeSectionNumber -= 1
-            } else if (loopFromStart) {
-                $activeSectionNumber = $numberOfSections
-            }
+            moveBackward()
+        }
+    }
+
+    function moveForward() {
+        if (canMoveForward()) {
+            $activeSectionNumber += 1
+        } else if (loopFromEnd) {
+            $activeSectionNumber = 1
+        }
+    }
+
+    function moveBackward() {
+        if (canMoveBackward()) {
+            $activeSectionNumber -= 1
+        } else if (loopFromStart) {
+            $activeSectionNumber = $numberOfSections
         }
     }
 
@@ -71,6 +81,25 @@
         ? `-${($activeSectionNumber - 1) * windowInnerWidth}px`
         : 0}
     on:wheel|preventDefault={handleMousewheel}
+    on:swiped={e => {
+        if (direction === "vertical") {
+            if (e.detail.dir === "up") {
+                moveForward()
+            }
+            if (e.detail.dir === "down") {
+                moveBackward()
+            }
+        }
+
+        if (direction === "horizontal") {
+            if (e.detail.dir === "left") {
+                moveForward()
+            }
+            if (e.detail.dir === "right") {
+                moveBackward()
+            }
+        }
+    }}
 >
     <slot />
 </div>
