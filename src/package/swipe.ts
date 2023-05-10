@@ -35,6 +35,14 @@ export function swipe(
     element: HTMLElement,
     options?: Options
 ): ActionReturn<undefined, Attributes> {
+    const mergedOptions = {
+        ...{
+            thresholdSize: 20,
+            thresholdUnit: "px",
+        },
+        ...options,
+    }
+
     // Setup goes here
     let touchStartTarget: EventTarget
     let touchStartTime: number | null
@@ -77,8 +85,7 @@ export function swipe(
         // If the user released on a different target, cancel!
         if (e.target !== touchStartTarget) return
 
-        let swipeThreshold = options?.thresholdSize || 20
-        const swipeUnit = options?.thresholdUnit || "px"
+        let thresholdSize = mergedOptions.thresholdSize
         const swipeTimeout = Number(
             getClosestAttribute(
                 touchStartTarget as HTMLElement,
@@ -90,21 +97,21 @@ export function swipe(
         let swipeDirection = ""
         const changedTouches = e.changedTouches || e.touches || []
 
-        if (swipeUnit === "vh") {
-            swipeThreshold = Math.round(
-                (swipeThreshold / 100) * document.documentElement.clientHeight
+        if (mergedOptions.thresholdUnit === "vh") {
+            thresholdSize = Math.round(
+                (thresholdSize / 100) * document.documentElement.clientHeight
             ) // get percentage of viewport height in pixels
         }
-        if (swipeUnit === "vw") {
-            swipeThreshold = Math.round(
-                (swipeThreshold / 100) * document.documentElement.clientWidth
+        if (mergedOptions.thresholdUnit === "vw") {
+            thresholdSize = Math.round(
+                (thresholdSize / 100) * document.documentElement.clientWidth
             ) // get percentage of viewport height in pixels
         }
 
         if (Math.abs(clientXDifference) > Math.abs(clientYDifference)) {
             // most significant
             if (
-                Math.abs(clientXDifference) > swipeThreshold &&
+                Math.abs(clientXDifference) > thresholdSize &&
                 timeDifference < swipeTimeout
             ) {
                 if (clientXDifference > 0) {
@@ -114,7 +121,7 @@ export function swipe(
                 }
             }
         } else if (
-            Math.abs(clientYDifference) > swipeThreshold &&
+            Math.abs(clientYDifference) > thresholdSize &&
             timeDifference < swipeTimeout
         ) {
             if (clientYDifference > 0) {
