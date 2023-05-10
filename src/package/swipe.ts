@@ -10,9 +10,8 @@ interface Attributes {
     "on:swipe": (e: SwipeEvent) => void
 }
 
-export interface SwipeEvent {
-    bubbles: boolean
-    cancelable: boolean
+export interface SwipeEvent extends Event {
+    target: EventTarget
     detail: {
         direction: "up" | "right" | "down" | "left"
         touchType: "direct" | "stylus" | "indirect" | undefined
@@ -21,7 +20,6 @@ export interface SwipeEvent {
         yStart: number
         yEnd: number
     }
-    [key: string]: any
 }
 
 interface ExtendedTouch extends Touch {
