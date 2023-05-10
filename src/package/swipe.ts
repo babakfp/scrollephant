@@ -69,30 +69,25 @@ export default (element: HTMLElement): ActionReturn<any, Attributes> => {
         // If the user released on a different target, cancel!
         if (e.target !== touchStartTarget) return
 
-        let swipeThreshold = parseInt(
-            getNearestAttribute(
-                // NOTE: I'm not if using `as HTMLElement` is the correct solution!
+        let swipeThreshold = Number(
+            getClosestAttribute(
                 touchStartTarget as HTMLElement,
                 "data-swipe-threshold",
-                "20"
-            ),
-            10
-        ) // default 20 units
-        const swipeUnit = getNearestAttribute(
-            // NOTE: I'm not if using `as HTMLElement` is the correct solution!
+                20
+            )
+        )
+        const swipeUnit = getClosestAttribute(
             touchStartTarget as HTMLElement,
             "data-swipe-unit",
             "px"
-        ) // default px
-        const swipeTimeout = parseInt(
-            getNearestAttribute(
-                // NOTE: I'm not if using `as HTMLElement` is the correct solution!
+        )
+        const swipeTimeout = Number(
+            getClosestAttribute(
                 touchStartTarget as HTMLElement,
                 "data-swipe-timeout",
-                "500"
-            ),
-            10
-        ) // default 500ms
+                500
+            )
+        )
         const timeDifference = Date.now() - touchStartTime!
         let swipeDirection = ""
         const changedTouches = e.changedTouches || e.touches || []
@@ -157,20 +152,20 @@ export default (element: HTMLElement): ActionReturn<any, Attributes> => {
     }
 
     // Gets attribute off HTML element or nearest parent
-    function getNearestAttribute(
-        element: HTMLElement,
+    function getClosestAttribute(
+        targetElement: HTMLElement,
         attributeName: string,
         defaultValue: string | number
-    ): any {
-        // Walk up the dom tree looking for attributeName
-        while (element && element !== document.documentElement) {
-            const attributeValue = element.getAttribute(attributeName)
-            if (attributeValue) {
-                return attributeValue
-            }
+    ): string | number {
+        const closestElement = targetElement.closest(`[${attributeName}]`)
 
-            element = element.parentElement!
+        if (!closestElement || closestElement === document.documentElement) {
+            return defaultValue
         }
+
+        const AttributeValue = closestElement?.getAttribute(attributeName)
+
+        if (AttributeValue) return AttributeValue
 
         return defaultValue
     }
