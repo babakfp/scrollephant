@@ -25,9 +25,6 @@
 <style>
     .scrollephant-dots {
         position: fixed;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
         user-select: none;
         -webkit-user-drag: none;
 
@@ -35,8 +32,6 @@
             margin: 0;
             padding: 0;
             list-style: none;
-
-            display: grid;
         }
 
         & li {
@@ -48,7 +43,6 @@
             background: transparent;
             padding: 0;
 
-            padding: 0.25rem 1rem;
             cursor: pointer;
 
             & div {
@@ -70,6 +64,33 @@
 
         & li[data-current="true"] button div {
             transform: scale(0.75);
+        }
+    }
+
+    :global(.scrollephant[data-direction="vertical"]) .scrollephant-dots {
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+
+        & ol {
+            display: grid;
+        }
+
+        & button {
+            padding: 0.25rem 1rem;
+        }
+    }
+    :global(.scrollephant[data-direction="horizontal"]) .scrollephant-dots {
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+
+        & ol {
+            display: flex;
+        }
+
+        & button {
+            padding: 1rem 0.25rem;
         }
     }
 </style>
