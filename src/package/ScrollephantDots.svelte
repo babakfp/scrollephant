@@ -13,7 +13,9 @@
         {#each Array($numberOfSections) as _, i}
             <li data-current={i === $activeSectionNumber - 1}>
                 <button on:click={() => ($activeSectionNumber = i + 1)}>
-                    <div />
+                    <div>
+                        <div />
+                    </div>
                 </button>
             </li>
         {/each}
@@ -30,9 +32,15 @@
         -webkit-user-drag: none;
 
         & ol {
-            display: grid;
-            list-style: none;
             margin: 0;
+            padding: 0;
+            list-style: none;
+
+            display: grid;
+        }
+
+        & li {
+            display: flex;
         }
 
         & button {
@@ -40,40 +48,28 @@
             background: transparent;
             padding: 0;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 2rem;
-            height: 1.25rem;
+            padding: 0.25rem 1rem;
             cursor: pointer;
 
-            @media (min-width: 640px) {
-                width: 2.5rem;
-                height: 1.5rem;
-                padding-right: 0.5rem;
-            }
-
-            @media (min-width: 1280px) {
-                padding-right: 1rem;
-            }
-
             & div {
-                width: 0.25rem;
-                height: 0.25rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 1rem;
+                height: 1rem;
                 background: white;
                 border-radius: 99px;
-                transition: 100ms ease-in-out;
+                transition: 100ms ease-out;
+                transform: scale(0.25);
             }
 
             &:hover div {
-                width: 0.5rem;
-                height: 0.5rem;
+                transform: scale(0.5);
             }
         }
 
         & li[data-current="true"] button div {
-            width: 0.75rem;
-            height: 0.75rem;
+            transform: scale(0.75);
         }
     }
 </style>
