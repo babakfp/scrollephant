@@ -1,8 +1,7 @@
 <script lang="ts">
-    import { setContext, onMount } from "svelte"
+    import { setContext } from "svelte"
     import { writable } from "svelte/store"
-
-    onMount(() => import("swiped-events"))
+    import swipe from "./swipe"
 
     export let direction: "vertical" | "horizontal" = "vertical"
     export let loopFromStart = false
@@ -81,21 +80,22 @@
         ? `-${($activeSectionNumber - 1) * windowInnerWidth}px`
         : 0}
     on:wheel|preventDefault={handleMousewheel}
-    on:swiped={e => {
+    use:swipe
+    on:swipe={e => {
         if (direction === "vertical") {
-            if (e.detail.dir === "up") {
+            if (e.detail.direction === "up") {
                 moveForward()
             }
-            if (e.detail.dir === "down") {
+            if (e.detail.direction === "down") {
                 moveBackward()
             }
         }
 
         if (direction === "horizontal") {
-            if (e.detail.dir === "left") {
+            if (e.detail.direction === "left") {
                 moveForward()
             }
-            if (e.detail.dir === "right") {
+            if (e.detail.direction === "right") {
                 moveBackward()
             }
         }
