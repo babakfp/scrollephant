@@ -29,6 +29,7 @@ interface ExtendedTouch extends Touch {
 interface Options {
     thresholdSize?: number
     thresholdUnit?: "px" | "vw" | "vh"
+    timeout?: number
 }
 
 export function swipe(
@@ -39,6 +40,7 @@ export function swipe(
         ...{
             thresholdSize: 20,
             thresholdUnit: "px",
+            timeout: 500,
         },
         ...options,
     }
@@ -86,13 +88,6 @@ export function swipe(
         if (e.target !== touchStartTarget) return
 
         let thresholdSize = mergedOptions.thresholdSize
-        const swipeTimeout = Number(
-            getClosestAttribute(
-                touchStartTarget as HTMLElement,
-                "data-swipe-timeout",
-                500
-            )
-        )
         const timeDifference = Date.now() - touchStartTime!
         let swipeDirection = ""
         const changedTouches = e.changedTouches || e.touches || []
@@ -112,7 +107,7 @@ export function swipe(
             // most significant
             if (
                 Math.abs(clientXDifference) > thresholdSize &&
-                timeDifference < swipeTimeout
+                timeDifference < mergedOptions.timeout
             ) {
                 if (clientXDifference > 0) {
                     swipeDirection = "left"
@@ -122,7 +117,7 @@ export function swipe(
             }
         } else if (
             Math.abs(clientYDifference) > thresholdSize &&
-            timeDifference < swipeTimeout
+            timeDifference < mergedOptions.timeout
         ) {
             if (clientYDifference > 0) {
                 swipeDirection = "up"
@@ -154,25 +149,6 @@ export function swipe(
         touchStartClientX = null
         touchStartClientY = null
         touchStartTime = null
-    }
-
-    // Gets attribute off HTML element or nearest parent
-    function getClosestAttribute(
-        targetElement: HTMLElement,
-        attributeName: string,
-        defaultValue: string | number
-    ): string | number {
-        const closestElement = targetElement.closest(`[${attributeName}]`)
-
-        if (!closestElement || closestElement === document.documentElement) {
-            return defaultValue
-        }
-
-        const AttributeValue = closestElement?.getAttribute(attributeName)
-
-        if (AttributeValue) return AttributeValue
-
-        return defaultValue
     }
 
     return {
