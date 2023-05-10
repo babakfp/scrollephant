@@ -27,7 +27,8 @@ interface ExtendedTouch extends Touch {
 }
 
 interface Options {
-    thresholdSize: number
+    thresholdSize?: number
+    thresholdUnit?: "px" | "vw" | "vh"
 }
 
 export function swipe(
@@ -77,11 +78,7 @@ export function swipe(
         if (e.target !== touchStartTarget) return
 
         let swipeThreshold = options?.thresholdSize || 20
-        const swipeUnit = getClosestAttribute(
-            touchStartTarget as HTMLElement,
-            "data-swipe-unit",
-            "px"
-        )
+        const swipeUnit = options?.thresholdUnit || "px"
         const swipeTimeout = Number(
             getClosestAttribute(
                 touchStartTarget as HTMLElement,
