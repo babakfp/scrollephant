@@ -22,11 +22,6 @@
 
 <style>
     .scrollephant-dots {
-        --scrollephant-dot-size: 1rem;
-        --scrollephant-dot-action-size: 0.25rem;
-        --scrollephant-dot-action-hover-size: 0.5rem;
-        --scrollephant-dot-action-active-size: 0.75rem;
-
         position: fixed;
         right: 0;
         top: 50%;
@@ -48,13 +43,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: calc(var(--scrollephant-dot-size) + 1rem);
-            height: calc(var(--scrollephant-dot-size) + 0.25rem);
+            width: 2rem;
+            height: 1.25rem;
             cursor: pointer;
 
             @media (min-width: 640px) {
-                width: calc(var(--scrollephant-dot-size) + 1.5rem);
-                height: calc(var(--scrollephant-dot-size) + 0.5rem);
+                width: 2.5rem;
+                height: 1.5rem;
                 padding-right: 0.5rem;
             }
 
@@ -63,22 +58,22 @@
             }
 
             & div {
-                width: var(--scrollephant-dot-action-size);
-                height: var(--scrollephant-dot-action-size);
+                width: 0.25rem;
+                height: 0.25rem;
                 background: white;
                 border-radius: 99px;
                 transition: 100ms ease-in-out;
             }
 
             &:hover div {
-                width: var(--scrollephant-dot-action-hover-size);
-                height: var(--scrollephant-dot-action-hover-size);
+                width: 0.5rem;
+                height: 0.5rem;
             }
         }
 
         & li[data-current="true"] button div {
-            width: var(--scrollephant-dot-action-active-size);
-            height: var(--scrollephant-dot-action-active-size);
+            width: 0.75rem;
+            height: 0.75rem;
         }
     }
 </style>
