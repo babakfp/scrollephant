@@ -26,8 +26,13 @@ interface ExtendedTouch extends Touch {
     touchType?: string
 }
 
+interface Options {
+    thresholdSize: number
+}
+
 export function swipe(
-    element: HTMLElement
+    element: HTMLElement,
+    options?: Options
 ): ActionReturn<undefined, Attributes> {
     // Setup goes here
     let touchStartTarget: EventTarget
@@ -71,13 +76,7 @@ export function swipe(
         // If the user released on a different target, cancel!
         if (e.target !== touchStartTarget) return
 
-        let swipeThreshold = Number(
-            getClosestAttribute(
-                touchStartTarget as HTMLElement,
-                "data-swipe-threshold",
-                20
-            )
-        )
+        let swipeThreshold = options?.thresholdSize || 20
         const swipeUnit = getClosestAttribute(
             touchStartTarget as HTMLElement,
             "data-swipe-unit",
