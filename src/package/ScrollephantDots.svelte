@@ -57,7 +57,7 @@
                 height: 1rem;
                 background: white;
                 border-radius: 99px;
-                transition: 100ms ease-out;
+                transition: 800ms ease-out;
                 transform: scale(0.25);
             }
 
