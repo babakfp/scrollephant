@@ -8,9 +8,6 @@
     export let loopFromStart = false
     export let loopFromEnd = false
 
-    let windowInnerHeight: number
-    let windowInnerWidth: number
-
     const sections = setContext("sections", writable<Section[] | []>([]))
     const activeSectionNumber = setContext("activeSectionNumber", writable(1))
 
@@ -101,11 +98,6 @@
         return e.deltaY < 0
     }
 </script>
-
-<svelte:window
-    bind:innerHeight={windowInnerHeight}
-    bind:innerWidth={windowInnerWidth}
-/>
 
 <div
     class="scrollephant"
