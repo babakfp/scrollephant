@@ -4,12 +4,11 @@
     import type { Section } from "./types.js"
 
     export let autoHeight = false
-
-    let id: number
-    let element: HTMLElement
+    export let label = ""
 
     const sections: Writable<Section[] | []> = getContext("sections")
-    id = $sections.length
+
+    let element: HTMLElement
 
     onMount(() => {
         sections.update(currentValue => {
@@ -17,7 +16,7 @@
                 ...currentValue,
                 {
                     ref: element,
-                    label: `Section ${id}`,
+                    label,
                 },
             ]
         })

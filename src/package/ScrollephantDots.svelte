@@ -12,17 +12,15 @@
 
 <nav class="scrollephant-dots">
     <ol>
-        {#each Array($sections.length) as _, i}
+        {#each $sections as section, i}
             <li data-current={i === $activeSectionNumber - 1}>
                 <button on:click={() => ($activeSectionNumber = i + 1)}>
-                    <div>
-                        <div />
-                    </div>
+                    <div />
                 </button>
 
-                <ScrollephantTooltip
-                    content={$sections[$activeSectionNumber - 1].label}
-                />
+                {#if section.label}
+                    <ScrollephantTooltip content={section.label} />
+                {/if}
             </li>
         {/each}
     </ol>

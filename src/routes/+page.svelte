@@ -9,13 +9,13 @@
 
 <Scrollephant>
     <ScrollephantWrapper>
-        <ScrollephantSection>
+        <ScrollephantSection label="Section 1">
             <div class="section-inner">1</div>
         </ScrollephantSection>
-        <ScrollephantSection>
+        <ScrollephantSection label="Section 2">
             <div class="section-inner">2</div>
         </ScrollephantSection>
-        <ScrollephantSection>
+        <ScrollephantSection label="Section 3">
             <div class="section-inner">3</div>
         </ScrollephantSection>
     </ScrollephantWrapper>
