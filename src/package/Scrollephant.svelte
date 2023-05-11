@@ -23,6 +23,7 @@
         } else if (direction === "horizontal") {
             translateX = 0
         }
+
         for (let i = 0; i < $activeSectionNumber - 1; i++) {
             if (direction === "vertical") {
                 translateY +=
