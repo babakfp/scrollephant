@@ -1,12 +1,12 @@
 <script lang="ts">
     import { onMount, getContext } from "svelte"
     import type { Writable } from "svelte/store"
-    import type { Section } from "./types.js"
+    import type { Sections } from "./types.js"
 
     export let autoHeight = false
     export let label = ""
 
-    const sections: Writable<Section[] | []> = getContext("sections")
+    const sections: Writable<Sections> = getContext("sections")
 
     let element: HTMLElement
 

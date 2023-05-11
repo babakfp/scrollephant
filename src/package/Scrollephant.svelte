@@ -1,14 +1,14 @@
 <script lang="ts">
     import { setContext } from "svelte"
     import { writable } from "svelte/store"
-    import type { Section } from "./types.js"
+    import type { Sections } from "./types.js"
     import { swipe, type SwipeEvent } from "./swipe.js"
 
     export let direction: "vertical" | "horizontal" = "vertical"
     export let loopFromStart = false
     export let loopFromEnd = false
 
-    const sections = setContext("sections", writable<Section[] | []>([]))
+    const sections = setContext("sections", writable<Sections>([]))
     const activeSectionNumber = setContext("activeSectionNumber", writable(1))
 
     let translateY = 0
