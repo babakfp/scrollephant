@@ -39,16 +39,14 @@
         }
 
         & li {
-            display: flex;
-
             position: relative;
+            display: flex;
         }
 
         & button {
             border: none;
             background: transparent;
             padding: 0;
-
             cursor: pointer;
 
             & div {
