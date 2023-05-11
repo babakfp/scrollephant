@@ -1,24 +1,46 @@
 <script lang="ts">
-    import { getContext } from "svelte"
+    import { onMount, getContext } from "svelte"
     import type { Writable } from "svelte/store"
+    import type { Section } from "./types.js"
 
-    const numberOfSections: Writable<number> = getContext("numberOfSections")
-    $numberOfSections += 1
+    export let autoHeight = false
+
+    let id: number
+    let element: HTMLElement
+
+    const sections: Writable<Section[] | []> = getContext("sections")
+    id = $sections.length
+
+    onMount(() => {
+        sections.update(currentValue => {
+            return [
+                ...currentValue,
+                {
+                    ref: element,
+                    label: `Section ${id}`,
+                },
+            ]
+        })
+    })
 </script>
 
-<div class="scrollephant-section">
+<div
+    class="scrollephant-section"
+    class:scrollephant-section--auto-height={autoHeight}
+    bind:this={element}
+>
     <slot />
 </div>
 
 <style>
-    .scrollephant-section {
+    .scrollephant-section:not(.scrollephant-section--auto-height) {
         height: 100vh;
         height: 100dvh;
-        width: 100vw;
-        width: 100dvw;
     }
 
     :global(.scrollephant[data-direction="horizontal"]) .scrollephant-section {
+        width: 100vw;
+        width: 100dvw;
         flex-shrink: 0;
     }
 </style>

@@ -1,8 +1,10 @@
 <script lang="ts">
     import { getContext } from "svelte"
     import type { Writable } from "svelte/store"
+    import type { Section } from "./types.js"
+    import ScrollephantTooltip from "./ScrollephantTooltip.svelte"
 
-    const numberOfSections: Writable<number> = getContext("numberOfSections")
+    const sections: Writable<Section[] | []> = getContext("sections")
     const activeSectionNumber: Writable<number> = getContext(
         "activeSectionNumber"
     )
@@ -10,13 +12,17 @@
 
 <nav class="scrollephant-dots">
     <ol>
-        {#each Array($numberOfSections) as _, i}
+        {#each Array($sections.length) as _, i}
             <li data-current={i === $activeSectionNumber - 1}>
                 <button on:click={() => ($activeSectionNumber = i + 1)}>
                     <div>
                         <div />
                     </div>
                 </button>
+
+                <ScrollephantTooltip
+                    content={$sections[$activeSectionNumber - 1].label}
+                />
             </li>
         {/each}
     </ol>
@@ -36,6 +42,8 @@
 
         & li {
             display: flex;
+
+            position: relative;
         }
 
         & button {
@@ -77,7 +85,7 @@
         }
 
         & button {
-            padding: 0.25rem 1rem;
+            padding: 0.25rem 1rem 0.25rem 0.25rem;
         }
     }
     :global(.scrollephant[data-direction="horizontal"]) .scrollephant-dots {
@@ -90,7 +98,7 @@
         }
 
         & button {
-            padding: 1rem 0.25rem;
+            padding: 0.25rem 0.25rem 1rem 0.25rem;
         }
     }
 </style>
