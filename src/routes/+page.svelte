@@ -39,12 +39,12 @@
         font-size: 4rem;
     }
     :global(.scrollephant-section):nth-child(1) .section-inner {
-        background: blueviolet;
+        background: #ff5f45;
     }
     :global(.scrollephant-section):nth-child(2) .section-inner {
-        background: brown;
+        background: #0798ec;
     }
     :global(.scrollephant-section):nth-child(3) .section-inner {
-        background: cyan;
+        background: #fec401;
     }
 </style>
