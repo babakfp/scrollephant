@@ -1,7 +1,7 @@
 /**
  * @name: Svelte Swipe
  * @version: 0.0.1
- * @inspiration https://github.com/john-doherty/swiped-events. v1.1.7 - 10 May 2023
+ * @inspiration https://github.com/john-doherty/swiped-events. v1.1.7 - 10 May 2023 - Total issues: 15 - Total PRs: 20
  */
 
 import type { ActionReturn } from "svelte/action"
