@@ -113,7 +113,7 @@
 
 <style>
     .scrollephant {
-        --scrollephant-duration: 800ms;
+        --scrollephant-duration: 700ms;
         --scrollephant-timing-function: ease-out;
         overflow: hidden;
 
