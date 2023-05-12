@@ -9,8 +9,8 @@
 
 <Scrollephant>
     <ScrollephantWrapper>
-        <ScrollephantSection label="Section 1">
-            <div class="section-inner">1</div>
+        <ScrollephantSection label="Section 1" autoHeight={true}>
+            <div class="section-inner">Auto Height</div>
         </ScrollephantSection>
         <ScrollephantSection label="Section 2">
             <div class="section-inner">2</div>
