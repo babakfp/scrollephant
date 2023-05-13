@@ -61,6 +61,7 @@
             background: transparent;
             padding: 0;
             cursor: pointer;
+            display: flex;
             transition: calc(var(--scrollephant-duration) / 2) ease-out;
 
             &[data-scrollephant-disabled="true"] {
