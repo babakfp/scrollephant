@@ -71,7 +71,7 @@
         }
 
         & svg {
-            width: 1.25em;
+            width: 1rem;
             color: white;
         }
     }
