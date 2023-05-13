@@ -55,11 +55,6 @@
 <style>
     .scrollephant-buttons {
         position: fixed;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        display: grid;
-        align-content: space-between;
 
         & button {
             border: none;
@@ -82,27 +77,41 @@
     }
 
     :global(.scrollephant[data-scrollephant-direction="vertical"])
-        .scrollephant-buttons
-        button {
-        padding: 1rem 1rem 1rem 0.25rem;
+        .scrollephant-buttons {
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display: grid;
+        align-content: space-between;
 
-        &.scrollephant-buttons-prev {
-            padding-bottom: 0.5rem;
-        }
-        &.scrollephant-buttons-next {
-            padding-top: 0.5rem;
+        & button {
+            padding: 1.5rem 1rem 1.5rem 0.25rem;
+
+            &.scrollephant-buttons-prev {
+                padding-bottom: 0.5rem;
+            }
+            &.scrollephant-buttons-next {
+                padding-top: 0.5rem;
+            }
         }
     }
     :global(.scrollephant[data-scrollephant-direction="horizontal"])
-        .scrollephant-buttons
-        button {
-        padding: 0.25rem 1rem 1rem 1rem;
+        .scrollephant-buttons {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
 
-        &.scrollephant-buttons-prev {
-            padding-right: 0.5rem;
-        }
-        &.scrollephant-buttons-next {
-            padding-left: 0.5rem;
+        & button {
+            padding: 0.25rem 1.5rem 1rem 1.5rem;
+
+            &.scrollephant-buttons-prev {
+                padding-right: 0.5rem;
+            }
+            &.scrollephant-buttons-next {
+                padding-left: 0.5rem;
+            }
         }
     }
 </style>
