@@ -34,7 +34,8 @@
 
     /* RTL */
     :global(
-            .scrollephant[data-scrollephant-rtl="true"][data-scrollephant-direction="vertical"]
+            html[dir="rtl"]
+                .scrollephant[data-scrollephant-direction="vertical"]
         )
         div {
         right: initial;

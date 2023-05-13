@@ -1,16 +1,23 @@
 <script lang="ts">
-    import { setContext } from "svelte"
+    import { onMount, setContext } from "svelte"
     import { writable } from "svelte/store"
     import type { Sections } from "./types.js"
     import { swipe, type SwipeEvent } from "./swipe.js"
 
-    export let rtl = false
     export let direction: "vertical" | "horizontal" = "vertical"
     export let loopFromStart = false
     export let loopFromEnd = false
 
     const sections = setContext("sections", writable<Sections>([]))
     const activeSectionNumber = setContext("activeSectionNumber", writable(1))
+
+    let rtl = false
+
+    onMount(() => {
+        if (document.dir === "rtl") {
+            rtl = true
+        }
+    })
 
     let translateY = 0
     let translateX = 0
@@ -102,7 +109,6 @@
 
 <div
     class="scrollephant"
-    data-scrollephant-rtl={rtl}
     data-scrollephant-direction={direction}
     style:--scrollephant-translate-y="-{translateY}px"
     style:--scrollephant-translate-x="{!rtl ? "-" : ""}{translateX}px"

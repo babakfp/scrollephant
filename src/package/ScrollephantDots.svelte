@@ -103,7 +103,8 @@
 
     /* RTL */
     :global(
-            .scrollephant[data-scrollephant-rtl="true"][data-scrollephant-direction="vertical"]
+            html[dir="rtl"]
+                .scrollephant[data-scrollephant-direction="vertical"]
         )
         .scrollephant-dots {
         right: initial;
