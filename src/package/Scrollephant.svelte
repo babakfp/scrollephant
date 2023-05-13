@@ -61,9 +61,9 @@
     }
 
     function handleMousewheel(e: WheelEvent) {
-        if (isMovingForward(e)) {
+        if (isWheelingForward(e)) {
             moveForward()
-        } else if (isMovingBackward(e)) {
+        } else if (isWheelingBackward(e)) {
             moveBackward()
         }
     }
@@ -98,11 +98,11 @@
         return false
     }
 
-    function isMovingForward(e: WheelEvent) {
+    function isWheelingForward(e: WheelEvent) {
         return e.deltaY > 0
     }
 
-    function isMovingBackward(e: WheelEvent) {
+    function isWheelingBackward(e: WheelEvent) {
         return e.deltaY < 0
     }
 </script>
