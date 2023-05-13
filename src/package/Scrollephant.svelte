@@ -8,6 +8,9 @@
     export let loopFromStart = false
     export let loopFromEnd = false
 
+    setContext("loopFromStart", loopFromStart)
+    setContext("loopFromEnd", loopFromEnd)
+
     const sections = setContext("sections", writable<Sections>([]))
     const activeSectionNumber = setContext("activeSectionNumber", writable(1))
 
