@@ -1,9 +1,26 @@
+<script lang="ts">
+    import { getContext } from "svelte"
+    import type { Writable } from "svelte/store"
+    import type { Sections } from "./types.js"
+
+    const sections: Writable<Sections> = getContext("sections")
+    const activeSectionNumber: Writable<number> = getContext(
+        "activeSectionNumber"
+    )
+</script>
+
 <nav class="scrollephant-buttons">
-    <button class="scrollephant-buttons-prev">
+    <button
+        class="scrollephant-buttons-prev"
+        data-scrollephant-disabled={$activeSectionNumber === 1}
+    >
         <!-- prettier-ignore -->
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75 12 3m0 0 3.75 3.75M12 3v18"/></svg>
     </button>
-    <button class="scrollephant-buttons-next">
+    <button
+        class="scrollephant-buttons-next"
+        data-scrollephant-disabled={$activeSectionNumber === $sections.length}
+    >
         <!-- prettier-ignore -->
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25 12 21m0 0-3.75-3.75M12 21V3"/></svg>
     </button>
@@ -26,7 +43,8 @@
             padding: 1rem 1rem 1rem 0.25rem;
 
             &[data-scrollephant-disabled="true"] {
-                opacity: 50;
+                opacity: 0;
+                visibility: hidden;
                 pointer-events: none;
             }
         }
