@@ -4,6 +4,7 @@
         ScrollephantWrapper,
         ScrollephantSection,
         ScrollephantDots,
+        ScrollephantButtons,
     } from "scrollephant"
 </script>
 
@@ -21,4 +22,5 @@
     </ScrollephantWrapper>
 
     <ScrollephantDots />
+    <ScrollephantButtons />
 </Scrollephant>
