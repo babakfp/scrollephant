@@ -57,7 +57,7 @@
                 height: 1rem;
                 background: white;
                 border-radius: 99px;
-                transition: 700ms ease-out;
+                transition: calc(var(--scrollephant-duration) / 2) ease-out;
                 transform: scale(0.25);
             }
 
