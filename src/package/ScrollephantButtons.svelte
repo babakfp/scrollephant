@@ -2,6 +2,7 @@
     import { getContext } from "svelte"
     import type { Writable } from "svelte/store"
     import type { Sections } from "./types.js"
+    import { moveForward, moveBackward } from "./utils.js"
 
     const sections: Writable<Sections> = getContext("sections")
     const activeSectionNumber: Writable<number> = getContext(
@@ -12,29 +13,19 @@
 
     $: canMoveForward = $activeSectionNumber < $sections.length
     $: canMoveBackward = $activeSectionNumber > 1
-
-    function moveForward() {
-        if (canMoveForward) {
-            $activeSectionNumber += 1
-        } else if (loopFromEnd) {
-            $activeSectionNumber = 1
-        }
-    }
-
-    function moveBackward() {
-        if (canMoveBackward) {
-            $activeSectionNumber -= 1
-        } else if (loopFromStart) {
-            $activeSectionNumber = $sections.length
-        }
-    }
 </script>
 
 <nav class="scrollephant-buttons">
     <button
         class="scrollephant-buttons-prev"
         data-scrollephant-disabled={!(canMoveBackward || loopFromStart)}
-        on:click={moveBackward}
+        on:click={() =>
+            moveBackward(
+                canMoveBackward,
+                activeSectionNumber,
+                sections,
+                loopFromStart
+            )}
     >
         <!-- prettier-ignore -->
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75 12 3m0 0 3.75 3.75M12 3v18"/></svg>
@@ -42,7 +33,8 @@
     <button
         class="scrollephant-buttons-next"
         data-scrollephant-disabled={!(canMoveForward || loopFromEnd)}
-        on:click={moveForward}
+        on:click={() =>
+            moveForward(canMoveForward, activeSectionNumber, loopFromEnd)}
     >
         <!-- prettier-ignore -->
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25 12 21m0 0-3.75-3.75M12 21V3"/></svg>

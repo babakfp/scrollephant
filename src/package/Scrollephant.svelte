@@ -3,6 +3,7 @@
     import { writable } from "svelte/store"
     import type { Sections } from "./types.js"
     import { swipe, type SwipeEvent } from "./swipe.js"
+    import { moveForward, moveBackward } from "./utils.js"
 
     export let direction: "vertical" | "horizontal" = "vertical"
     export let loopFromStart = false
@@ -46,44 +47,43 @@
     function handleSwipe(e: SwipeEvent) {
         if (direction === "vertical") {
             if (e.detail.direction === "up") {
-                moveForward()
+                moveForward(canMoveForward(), activeSectionNumber, loopFromEnd)
             }
             if (e.detail.direction === "down") {
-                moveBackward()
+                moveBackward(
+                    canMoveBackward(),
+                    activeSectionNumber,
+                    sections,
+                    loopFromStart
+                )
             }
         }
 
         if (direction === "horizontal") {
             if (e.detail.direction === "left") {
-                moveForward()
+                moveForward(canMoveForward(), activeSectionNumber, loopFromEnd)
             }
             if (e.detail.direction === "right") {
-                moveBackward()
+                moveBackward(
+                    canMoveBackward(),
+                    activeSectionNumber,
+                    sections,
+                    loopFromStart
+                )
             }
         }
     }
 
     function handleMousewheel(e: WheelEvent) {
         if (isWheelingForward(e)) {
-            moveForward()
+            moveForward(canMoveForward(), activeSectionNumber, loopFromEnd)
         } else if (isWheelingBackward(e)) {
-            moveBackward()
-        }
-    }
-
-    function moveForward() {
-        if (canMoveForward()) {
-            $activeSectionNumber += 1
-        } else if (loopFromEnd) {
-            $activeSectionNumber = 1
-        }
-    }
-
-    function moveBackward() {
-        if (canMoveBackward()) {
-            $activeSectionNumber -= 1
-        } else if (loopFromStart) {
-            $activeSectionNumber = $sections.length
+            moveBackward(
+                canMoveBackward(),
+                activeSectionNumber,
+                sections,
+                loopFromStart
+            )
         }
     }
 
