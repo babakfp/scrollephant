@@ -66,7 +66,6 @@
             background: transparent;
             padding: 0;
             cursor: pointer;
-            padding: 1rem 1rem 1rem 0.25rem;
             transition: calc(var(--scrollephant-duration) / 2) ease-out;
 
             &[data-scrollephant-disabled="true"] {
@@ -82,10 +81,28 @@
         }
     }
 
-    .scrollephant-buttons-prev {
-        padding-bottom: 0.5rem;
+    :global(.scrollephant[data-scrollephant-direction="vertical"])
+        .scrollephant-buttons
+        button {
+        padding: 1rem 1rem 1rem 0.25rem;
+
+        &.scrollephant-buttons-prev {
+            padding-bottom: 0.5rem;
+        }
+        &.scrollephant-buttons-next {
+            padding-top: 0.5rem;
+        }
     }
-    .scrollephant-buttons-next {
-        padding-top: 0.5rem;
+    :global(.scrollephant[data-scrollephant-direction="horizontal"])
+        .scrollephant-buttons
+        button {
+        padding: 0.25rem 1rem 1rem 1rem;
+
+        &.scrollephant-buttons-prev {
+            padding-right: 0.5rem;
+        }
+        &.scrollephant-buttons-next {
+            padding-left: 0.5rem;
+        }
     }
 </style>
