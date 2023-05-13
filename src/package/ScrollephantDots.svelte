@@ -100,4 +100,18 @@
             padding: 0.25rem 0.25rem 1rem 0.25rem;
         }
     }
+
+    /* RTL */
+    :global(
+            .scrollephant[data-scrollephant-rtl="true"][data-scrollephant-direction="vertical"]
+        )
+        .scrollephant-dots {
+        right: initial;
+        left: 0;
+
+        & button {
+            padding-right: 0.25rem;
+            padding-left: 1rem;
+        }
+    }
 </style>

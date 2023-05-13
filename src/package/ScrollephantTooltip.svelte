@@ -31,4 +31,14 @@
         left: 50%;
         transform: translateX(-50%) translateY(-0.75rem);
     }
+
+    /* RTL */
+    :global(
+            .scrollephant[data-scrollephant-rtl="true"][data-scrollephant-direction="vertical"]
+        )
+        div {
+        right: initial;
+        left: 100%;
+        transform: translateX(0.75rem) translateY(-50%);
+    }
 </style>

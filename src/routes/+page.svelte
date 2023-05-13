@@ -7,7 +7,7 @@
     } from "scrollephant"
 </script>
 
-<Scrollephant>
+<Scrollephant rtl={true}>
     <ScrollephantWrapper>
         <ScrollephantSection label="Section 1">
             <div class="section-inner">1</div>

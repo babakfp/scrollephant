@@ -4,6 +4,7 @@
     import type { Sections } from "./types.js"
     import { swipe, type SwipeEvent } from "./swipe.js"
 
+    export let rtl = false
     export let direction: "vertical" | "horizontal" = "vertical"
     export let loopFromStart = false
     export let loopFromEnd = false
@@ -101,9 +102,10 @@
 
 <div
     class="scrollephant"
+    data-scrollephant-rtl={rtl}
     data-scrollephant-direction={direction}
     style:--scrollephant-translate-y="-{translateY}px"
-    style:--scrollephant-translate-x="-{translateX}px"
+    style:--scrollephant-translate-x="{!rtl ? "-" : ""}{translateX}px"
     on:wheel|preventDefault={handleMousewheel}
     use:swipe
     on:swipe={handleSwipe}
