@@ -21,6 +21,6 @@
         </ScrollephantSection>
     </ScrollephantWrapper>
 
-    <ScrollephantDots />
     <ScrollephantButtons />
+    <ScrollephantDots />
 </Scrollephant>
