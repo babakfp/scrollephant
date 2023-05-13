@@ -4,6 +4,7 @@
     import type { Sections } from "./types.js"
     import { moveForward, moveBackward } from "./utils.js"
 
+    const direction: "vertical" | "horizontal" = getContext("direction")
     const sections: Writable<Sections> = getContext("sections")
     const activeSectionNumber: Writable<number> = getContext(
         "activeSectionNumber"
@@ -27,8 +28,13 @@
                 loopFromStart
             )}
     >
-        <!-- prettier-ignore -->
-        <svg class="scrollephant-buttons-prev-up" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75 12 3m0 0 3.75 3.75M12 3v18"/></svg>
+        {#if direction === "vertical"}
+            <!-- prettier-ignore -->
+            <svg class="scrollephant-buttons-prev-up" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75 12 3m0 0 3.75 3.75M12 3v18"/></svg>
+        {:else}
+            <!-- prettier-ignore -->
+            <svg class="scrollephant-buttons-prev-left" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"/></svg>
+        {/if}
     </button>
     <button
         class="scrollephant-buttons-next"
@@ -36,8 +42,13 @@
         on:click={() =>
             moveForward(canMoveForward, activeSectionNumber, loopFromEnd)}
     >
-        <!-- prettier-ignore -->
-        <svg class="scrollephant-buttons-prev-down" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25 12 21m0 0-3.75-3.75M12 21V3"/></svg>
+        {#if direction === "vertical"}
+            <!-- prettier-ignore -->
+            <svg class="scrollephant-buttons-prev-down" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25 12 21m0 0-3.75-3.75M12 21V3"/></svg>
+        {:else}
+            <!-- prettier-ignore -->
+            <svg class="scrollephant-buttons-prev-right" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"/></svg>
+        {/if}
     </button>
 </nav>
 

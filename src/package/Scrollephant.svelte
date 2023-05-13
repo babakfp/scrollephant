@@ -9,6 +9,7 @@
     export let loopFromStart = false
     export let loopFromEnd = false
 
+    setContext("direction", direction)
     setContext("loopFromStart", loopFromStart)
     setContext("loopFromEnd", loopFromEnd)
 
