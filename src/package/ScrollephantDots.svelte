@@ -72,7 +72,7 @@
     }
 
     :global(.scrollephant[data-direction="vertical"]) .scrollephant-dots {
-        right: 0;
+        inset-inline-end: 0;
         top: 50%;
         transform: translateY(-50%);
 
@@ -81,9 +81,11 @@
         }
 
         & button {
-            padding: 0.25rem 1rem 0.25rem 0.25rem;
+            padding: 0.25rem;
+            padding-inline-end: 1rem;
         }
     }
+
     :global(.scrollephant[data-direction="horizontal"]) .scrollephant-dots {
         bottom: 0;
         left: 50%;
