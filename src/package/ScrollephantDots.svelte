@@ -13,7 +13,7 @@
 <nav class="scrollephant-dots">
     <ol>
         {#each $sections as section, i}
-            <li data-current={i === $activeSectionNumber - 1}>
+            <li data-scrollephant-current={i === $activeSectionNumber - 1}>
                 <button on:click={() => ($activeSectionNumber = i + 1)}>
                     <div />
                 </button>
@@ -66,12 +66,13 @@
             }
         }
 
-        & li[data-current="true"] button div {
+        & li[data-scrollephant-current="true"] button div {
             transform: scale(0.75);
         }
     }
 
-    :global(.scrollephant[data-direction="vertical"]) .scrollephant-dots {
+    :global(.scrollephant[data-scrollephant-direction="vertical"])
+        .scrollephant-dots {
         right: 0;
         top: 50%;
         transform: translateY(-50%);
@@ -85,7 +86,8 @@
         }
     }
 
-    :global(.scrollephant[data-direction="horizontal"]) .scrollephant-dots {
+    :global(.scrollephant[data-scrollephant-direction="horizontal"])
+        .scrollephant-dots {
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);

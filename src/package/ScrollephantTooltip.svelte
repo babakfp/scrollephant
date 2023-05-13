@@ -21,12 +21,12 @@
         opacity: 1;
     }
 
-    :global(.scrollephant[data-direction="vertical"]) div {
+    :global(.scrollephant[data-scrollephant-direction="vertical"]) div {
         right: 100%;
         top: 50%;
         transform: translateX(-0.75rem) translateY(-50%);
     }
-    :global(.scrollephant[data-direction="horizontal"]) div {
+    :global(.scrollephant[data-scrollephant-direction="horizontal"]) div {
         bottom: 100%;
         left: 50%;
         transform: translateX(-50%) translateY(-0.75rem);

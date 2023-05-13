@@ -101,7 +101,7 @@
 
 <div
     class="scrollephant"
-    data-direction={direction}
+    data-scrollephant-direction={direction}
     style:--scrollephant-translate-y="-{translateY}px"
     style:--scrollephant-translate-x="-{translateX}px"
     on:wheel|preventDefault={handleMousewheel}
@@ -117,10 +117,10 @@
         --scrollephant-timing-function: ease-out;
         overflow: hidden;
 
-        &[data-direction="vertical"] {
+        &[data-scrollephant-direction="vertical"] {
             --scrollephant-translate-y: 0;
         }
-        &[data-direction="horizontal"] {
+        &[data-scrollephant-direction="horizontal"] {
             --scrollephant-translate-x: 0;
         }
     }
