@@ -21,6 +21,7 @@
         background: transparent;
         padding: 0;
         cursor: pointer;
+        padding: 0.25rem;
     }
 
     button div {
@@ -44,11 +45,11 @@
     }
 
     :global(.scrollephant[data-scrollephant-direction="vertical"]) button {
-        padding: 0.25rem 1rem 0.25rem 0.25rem;
+        padding-right: 1rem;
     }
 
     :global(.scrollephant[data-scrollephant-direction="horizontal"]) button {
-        padding: 0.25rem 0.25rem 1rem 0.25rem;
+        padding-bottom: 1rem;
     }
 
     /* RTL */
