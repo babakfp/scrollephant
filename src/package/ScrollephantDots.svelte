@@ -5,6 +5,7 @@
     import ScrollephantTooltip from "./ScrollephantTooltip.svelte"
     import ScrollephantButtonNext from "./ScrollephantButtonNext.svelte"
     import ScrollephantButtonPrev from "./ScrollephantButtonPrev.svelte"
+    import ScrollephantDot from "./ScrollephantDot.svelte"
 
     const sections: Writable<Sections> = getContext("sections")
     const activeSectionNumber: Writable<number> = getContext(
@@ -17,15 +18,14 @@
 
     <ol>
         {#each $sections as section, i}
-            <li data-scrollephant-current={i === $activeSectionNumber - 1}>
-                <button on:click={() => ($activeSectionNumber = i + 1)}>
-                    <div />
-                </button>
-
+            <ScrollephantDot
+                isCurrent={i === $activeSectionNumber - 1}
+                on:click={() => ($activeSectionNumber = i + 1)}
+            >
                 {#if section.label}
                     <ScrollephantTooltip content={section.label} />
                 {/if}
-            </li>
+            </ScrollephantDot>
         {/each}
     </ol>
 
@@ -45,38 +45,6 @@
         list-style: none;
     }
 
-    li {
-        position: relative;
-        display: flex;
-    }
-
-    button {
-        border: none;
-        background: transparent;
-        padding: 0;
-        cursor: pointer;
-    }
-
-    button div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 1rem;
-        height: 1rem;
-        background: white;
-        border-radius: 99px;
-        transition: calc(var(--scrollephant-duration) / 2) ease-out;
-        transform: scale(0.25);
-    }
-
-    button:hover div {
-        transform: scale(0.5);
-    }
-
-    li[data-scrollephant-current="true"] button div {
-        transform: scale(0.75);
-    }
-
     :global(.scrollephant[data-scrollephant-direction="vertical"])
         .scrollephant-dots {
         right: 0;
@@ -86,10 +54,6 @@
 
     :global(.scrollephant[data-scrollephant-direction="vertical"]) ol {
         display: grid;
-    }
-
-    :global(.scrollephant[data-scrollephant-direction="vertical"]) button {
-        padding: 0.25rem 1rem 0.25rem 0.25rem;
     }
 
     :global(.scrollephant[data-scrollephant-direction="horizontal"])
@@ -103,10 +67,6 @@
         display: flex;
     }
 
-    :global(.scrollephant[data-scrollephant-direction="horizontal"]) button {
-        padding: 0.25rem 0.25rem 1rem 0.25rem;
-    }
-
     /* RTL */
     :global(
             html[dir="rtl"]
@@ -115,14 +75,5 @@
         .scrollephant-dots {
         right: initial;
         left: 0;
-    }
-
-    :global(
-            html[dir="rtl"]
-                .scrollephant[data-scrollephant-direction="vertical"]
-        )
-        button {
-        padding-right: 0.25rem;
-        padding-left: 1rem;
     }
 </style>
