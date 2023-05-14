@@ -9,7 +9,7 @@
     export let direction: "vertical" | "horizontal" = "vertical"
     export let loopFromStart = false
     export let loopFromEnd = false
-    export let limitedMovement = true
+    export let unlimitedMovement = false
 
     setContext("mode", mode)
     setContext("direction", direction)
@@ -99,14 +99,14 @@
     }
 
     function handleMousewheel(e: WheelEvent) {
-        if (limitedMovement) {
+        if (!unlimitedMovement) {
             if ($isMoving) return
         }
 
         if (isWheelingForward(e)) {
             moveForward(canMoveForward(), activeSectionNumber, loopFromEnd)
 
-            if (limitedMovement) {
+            if (!unlimitedMovement) {
                 $isMoving = true
             }
         } else if (isWheelingBackward(e)) {
@@ -117,12 +117,12 @@
                 loopFromStart
             )
 
-            if (limitedMovement) {
+            if (!unlimitedMovement) {
                 $isMoving = true
             }
         }
 
-        if (limitedMovement) {
+        if (!unlimitedMovement) {
             setTimeout(() => {
                 $isMoving = false
             }, duration)
