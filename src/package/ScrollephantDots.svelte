@@ -3,6 +3,7 @@
     import type { Writable } from "svelte/store"
     import type { Sections } from "./types.js"
     import ScrollephantDotsContainer from "./ScrollephantDotsContainer.svelte"
+    import ScrollephantDotsWrapper from "./ScrollephantDotsWrapper.svelte"
     import ScrollephantDot from "./ScrollephantDot.svelte"
     import ScrollephantTooltip from "./ScrollephantTooltip.svelte"
     import ScrollephantButtonNext from "./ScrollephantButtonNext.svelte"
@@ -17,7 +18,7 @@
 <ScrollephantDotsContainer>
     <ScrollephantButtonPrev />
 
-    <ol>
+    <ScrollephantDotsWrapper>
         {#each $sections as section, i}
             <ScrollephantDot
                 isCurrent={i === $activeSectionNumber - 1}
@@ -28,23 +29,7 @@
                 {/if}
             </ScrollephantDot>
         {/each}
-    </ol>
+    </ScrollephantDotsWrapper>
 
     <ScrollephantButtonNext />
 </ScrollephantDotsContainer>
-
-<style>
-    ol {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-    }
-
-    :global(.scrollephant[data-scrollephant-direction="vertical"]) ol {
-        display: grid;
-    }
-
-    :global(.scrollephant[data-scrollephant-direction="horizontal"]) ol {
-        display: flex;
-    }
-</style>
