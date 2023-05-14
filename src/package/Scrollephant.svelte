@@ -77,15 +77,17 @@
             return
         }
 
-        if (
+        const isSwipeForward =
             (direction === "vertical" && e.detail.direction === "up") ||
             (direction === "horizontal" && e.detail.direction === "left")
-        ) {
-            moveForward()
-        } else if (
+
+        const isSwipeBackward =
             (direction === "vertical" && e.detail.direction === "down") ||
             (direction === "horizontal" && e.detail.direction === "right")
-        ) {
+
+        if (isSwipeForward) {
+            moveForward()
+        } else if (isSwipeBackward) {
             moveBackward()
         }
 
