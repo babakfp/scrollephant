@@ -30,20 +30,32 @@
     let translateX = 0
 
     $: {
-        if (direction === "vertical") {
-            translateY = 0
-        } else if (direction === "horizontal") {
-            translateX = 0
+        const { y, x } = getYX($activeSectionNumber)
+        translateY = y
+        translateX = x
+    }
+
+    function onWindowResize() {
+        const { y, x } = getYX($activeSectionNumber)
+        translateY = y
+        translateX = x
+    }
+
+    function getYX(activeSectionNumber: number) {
+        let y = 0
+        let x = 0
+
+        for (let i = 0; i < activeSectionNumber - 1; i++) {
+            if (direction === "vertical") {
+                y += $sections[activeSectionNumber - (i + 2)]?.ref.clientHeight
+            } else if (direction === "horizontal") {
+                x += $sections[activeSectionNumber - (i + 2)]?.ref.clientWidth
+            }
         }
 
-        for (let i = 0; i < $activeSectionNumber - 1; i++) {
-            if (direction === "vertical") {
-                translateY +=
-                    $sections[$activeSectionNumber - (i + 2)]?.ref.clientHeight
-            } else if (direction === "horizontal") {
-                translateX +=
-                    $sections[$activeSectionNumber - (i + 2)]?.ref.clientWidth
-            }
+        return {
+            y,
+            x,
         }
     }
 
@@ -112,6 +124,8 @@
         return e.deltaY < 0
     }
 </script>
+
+<svelte:window on:resize={onWindowResize} />
 
 <div
     class="scrollephant"
