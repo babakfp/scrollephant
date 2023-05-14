@@ -3,7 +3,6 @@
     import { writable } from "svelte/store"
     import type { Props, Sections } from "./types.js"
     import { swipe, type SwipeEvent } from "./swipe.js"
-    import { moveForward, moveBackward } from "./utils.js"
 
     export let movement: Props["movement"] = "scroll"
     export let direction: Props["direction"] = "vertical"
@@ -74,21 +73,26 @@
     }
 
     function handleSwipe(e: SwipeEvent) {
+        if (restrictMovement && $isMoving) {
+            return
+        }
+
         if (
             (direction === "vertical" && e.detail.direction === "up") ||
             (direction === "horizontal" && e.detail.direction === "left")
         ) {
-            moveForward(canMoveToNext(), activeSectionNumber, loopDown)
-
-            return
-        }
-        if (
+            moveForward()
+        } else if (
             (direction === "vertical" && e.detail.direction === "down") ||
             (direction === "horizontal" && e.detail.direction === "right")
         ) {
-            moveBackward(canMoveToPrev(), activeSectionNumber, sections, loopUp)
+            moveBackward()
+        }
 
-            return
+        if (restrictMovement && $isMoving) {
+            setTimeout(() => {
+                $isMoving = false
+            }, duration)
         }
     }
 
@@ -98,43 +102,51 @@
         }
 
         if (isWheelingForward(e)) {
-            if (canMoveToNext()) {
-                if (restrictMovement) {
-                    moveToNext()
-                    $isMoving = true
-                } else {
-                    moveToNext()
-                }
-            } else if (loopDown) {
-                if (restrictMovement) {
-                    jumpToFirst()
-                    $isMoving = true
-                } else {
-                    jumpToFirst()
-                }
-            }
+            moveForward()
         } else if (isWheelingBackward(e)) {
-            if (canMoveToPrev()) {
-                if (restrictMovement) {
-                    moveToPrev()
-                    $isMoving = true
-                } else {
-                    moveToPrev()
-                }
-            } else if (loopUp) {
-                if (restrictMovement) {
-                    jumpToLast()
-                    $isMoving = true
-                } else {
-                    jumpToLast()
-                }
-            }
+            moveBackward()
         }
 
         if (restrictMovement && $isMoving) {
             setTimeout(() => {
                 $isMoving = false
             }, duration)
+        }
+    }
+
+    function moveForward() {
+        if (canMoveToNext()) {
+            if (restrictMovement) {
+                moveToNext()
+                $isMoving = true
+            } else {
+                moveToNext()
+            }
+        } else if (loopDown) {
+            if (restrictMovement) {
+                jumpToFirst()
+                $isMoving = true
+            } else {
+                jumpToFirst()
+            }
+        }
+    }
+
+    function moveBackward() {
+        if (canMoveToPrev()) {
+            if (restrictMovement) {
+                moveToPrev()
+                $isMoving = true
+            } else {
+                moveToPrev()
+            }
+        } else if (loopUp) {
+            if (restrictMovement) {
+                jumpToLast()
+                $isMoving = true
+            } else {
+                jumpToLast()
+            }
         }
     }
 
