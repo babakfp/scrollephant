@@ -4,6 +4,7 @@
     :global(body) {
         margin: 0;
         overflow: hidden;
+        font-family: JetBrains Mono;
     }
 
     :global(.scrollephant-section-inner) {
