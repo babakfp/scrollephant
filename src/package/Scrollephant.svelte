@@ -5,10 +5,12 @@
     import { swipe, type SwipeEvent } from "./swipe.js"
     import { moveForward, moveBackward } from "./utils.js"
 
+    export let mode: "scroll" | "fade" = "scroll"
     export let direction: "vertical" | "horizontal" = "vertical"
     export let loopFromStart = false
     export let loopFromEnd = false
 
+    setContext("mode", mode)
     setContext("direction", direction)
     setContext("loopFromStart", loopFromStart)
     setContext("loopFromEnd", loopFromEnd)
@@ -113,9 +115,12 @@
 
 <div
     class="scrollephant"
+    data-scrollephant-mode={mode}
     data-scrollephant-direction={direction}
-    style:--scrollephant-translate-y="-{translateY}px"
-    style:--scrollephant-translate-x="{!rtl ? "-" : ""}{translateX}px"
+    style:--scrollephant-translate-y="-{mode === "scroll" ? translateY : 0}px"
+    style:--scrollephant-translate-x="{!rtl ? "-" : ""}{mode === "scroll"
+        ? translateX
+        : 0}px"
     on:wheel|preventDefault={handleMousewheel}
     use:swipe
     on:swipe={handleSwipe}

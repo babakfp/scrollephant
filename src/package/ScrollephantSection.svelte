@@ -1,14 +1,18 @@
 <script lang="ts">
     import { onMount, getContext } from "svelte"
-    import type { Writable } from "svelte/store"
+    import { type Writable, get } from "svelte/store"
     import type { Sections } from "./types.js"
 
     export let autoHeight = false
     export let label = ""
 
     const sections: Writable<Sections> = getContext("sections")
+    const activeSectionNumber: Writable<number> = getContext(
+        "activeSectionNumber"
+    )
 
     let element: HTMLElement
+    let indexPlusOne: number
 
     onMount(() => {
         sections.update(currentValue => {
@@ -20,12 +24,14 @@
                 },
             ]
         })
+        indexPlusOne = get(sections).length
     })
 </script>
 
 <div
     class="scrollephant-section"
     class:scrollephant-section--auto-height={autoHeight}
+    class:scrollephant-section-current={$activeSectionNumber === indexPlusOne}
     bind:this={element}
 >
     <slot />
@@ -42,5 +48,21 @@
         width: 100vw;
         width: 100dvw;
         flex-shrink: 0;
+    }
+
+    :global(.scrollephant[data-scrollephant-mode="fade"])
+        .scrollephant-section {
+        position: absolute;
+        inset: 0;
+        transition: var(--scrollephant-duration) ease-in;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        &.scrollephant-section-current {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+        }
     }
 </style>
