@@ -20,7 +20,7 @@
         transform: translateX(var(--scrollephant-translate-x));
     }
 
-    :global(.scrollephant[data-scrollephant-mode="fade"])
+    :global(.scrollephant[data-scrollephant-movement="fade"])
         .scrollephant-wrapper {
         position: relative;
         display: block;

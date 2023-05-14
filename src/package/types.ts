@@ -1,5 +1,5 @@
 export interface Props {
-    mode: "scroll" | "fade"
+    movement: "scroll" | "fade"
     direction: "vertical" | "horizontal"
     loopUp: boolean
     loopDown: boolean

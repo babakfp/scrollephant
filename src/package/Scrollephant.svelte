@@ -5,7 +5,7 @@
     import { swipe, type SwipeEvent } from "./swipe.js"
     import { moveForward, moveBackward } from "./utils.js"
 
-    export let mode: Props["mode"] = "scroll"
+    export let movement: Props["movement"] = "scroll"
     export let direction: Props["direction"] = "vertical"
     export let loopUp: Props["loopUp"] = false
     export let loopDown: Props["loopDown"] = false
@@ -155,10 +155,12 @@
 
 <div
     class="scrollephant"
-    data-scrollephant-mode={mode}
+    data-scrollephant-movement={movement}
     data-scrollephant-direction={direction}
-    style:--scrollephant-translate-y="-{mode === "scroll" ? translateY : 0}px"
-    style:--scrollephant-translate-x="{!rtl ? "-" : ""}{mode === "scroll"
+    style:--scrollephant-translate-y="-{movement === "scroll"
+        ? translateY
+        : 0}px"
+    style:--scrollephant-translate-x="{!rtl ? "-" : ""}{movement === "scroll"
         ? translateX
         : 0}px"
     on:wheel|preventDefault={handleMousewheel}

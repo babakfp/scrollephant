@@ -8,7 +8,7 @@
     } from "scrollephant"
 </script>
 
-<Scrollephant mode="fade">
+<Scrollephant movement="fade">
     <ScrollephantWrapper>
         <ScrollephantSection label="Section 1">
             <div class="section-inner">1</div>

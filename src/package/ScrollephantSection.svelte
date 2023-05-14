@@ -63,7 +63,7 @@
         height: 100%;
     }
 
-    :global(.scrollephant[data-scrollephant-mode="fade"]) {
+    :global(.scrollephant[data-scrollephant-movement="fade"]) {
         & .scrollephant-section {
             position: absolute;
             inset: 0;
