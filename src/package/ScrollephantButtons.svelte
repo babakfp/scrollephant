@@ -9,8 +9,8 @@
     const activeSectionNumber: Writable<number> = getContext(
         "activeSectionNumber"
     )
-    const loopUp: boolean = getContext("loopUp")
-    const loopDown: boolean = getContext("loopDown")
+    const loopUp: Props["loopUp"] = getContext("loopUp")
+    const loopDown: Props["loopDown"] = getContext("loopDown")
 
     $: canMoveForward = $activeSectionNumber < $sections.length
     $: canMoveBackward = $activeSectionNumber > 1

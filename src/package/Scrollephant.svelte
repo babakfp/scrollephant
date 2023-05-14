@@ -7,11 +7,10 @@
 
     export let mode: Props["mode"] = "scroll"
     export let direction: Props["direction"] = "vertical"
-    export let loopUp = false
-    export let loopDown = false
-    export let unlimitedMovement = false
+    export let loopUp: Props["loopUp"] = false
+    export let loopDown: Props["loopDown"] = false
+    export let unlimitedMovement: Props["unlimitedMovement"] = false
 
-    setContext("mode", mode)
     setContext("direction", direction)
     setContext("loopUp", loopUp)
     setContext("loopDown", loopDown)

@@ -1,6 +1,9 @@
 export interface Props {
     mode: "scroll" | "fade"
     direction: "vertical" | "horizontal"
+    loopUp: boolean
+    loopDown: boolean
+    unlimitedMovement: boolean
 }
 
 export type Sections = Section[] | []
