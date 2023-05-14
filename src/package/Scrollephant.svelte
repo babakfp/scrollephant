@@ -7,14 +7,14 @@
 
     export let mode: Props["mode"] = "scroll"
     export let direction: Props["direction"] = "vertical"
-    export let loopFromStart = false
-    export let loopFromEnd = false
+    export let loopUp = false
+    export let loopDown = false
     export let unlimitedMovement = false
 
     setContext("mode", mode)
     setContext("direction", direction)
-    setContext("loopFromStart", loopFromStart)
-    setContext("loopFromEnd", loopFromEnd)
+    setContext("loopUp", loopUp)
+    setContext("loopDown", loopDown)
 
     const sections = setContext("sections", writable<Sections>([]))
     const activeSectionNumber = setContext("activeSectionNumber", writable(1))
@@ -79,7 +79,7 @@
             (direction === "vertical" && e.detail.direction === "up") ||
             (direction === "horizontal" && e.detail.direction === "left")
         ) {
-            moveForward(canMoveForward(), activeSectionNumber, loopFromEnd)
+            moveForward(canMoveForward(), activeSectionNumber, loopDown)
 
             return
         }
@@ -91,7 +91,7 @@
                 canMoveBackward(),
                 activeSectionNumber,
                 sections,
-                loopFromStart
+                loopUp
             )
 
             return
@@ -104,7 +104,7 @@
         }
 
         if (isWheelingForward(e)) {
-            moveForward(canMoveForward(), activeSectionNumber, loopFromEnd)
+            moveForward(canMoveForward(), activeSectionNumber, loopDown)
 
             if (canMoveForward() && !unlimitedMovement) {
                 $isMoving = true
@@ -114,7 +114,7 @@
                 canMoveBackward(),
                 activeSectionNumber,
                 sections,
-                loopFromStart
+                loopUp
             )
 
             if (canMoveBackward() && !unlimitedMovement) {

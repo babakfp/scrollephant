@@ -9,8 +9,8 @@
     const activeSectionNumber: Writable<number> = getContext(
         "activeSectionNumber"
     )
-    const loopFromStart: boolean = getContext("loopFromStart")
-    const loopFromEnd: boolean = getContext("loopFromEnd")
+    const loopUp: boolean = getContext("loopUp")
+    const loopDown: boolean = getContext("loopDown")
 
     $: canMoveForward = $activeSectionNumber < $sections.length
     $: canMoveBackward = $activeSectionNumber > 1
@@ -19,13 +19,13 @@
 <nav class="scrollephant-buttons">
     <button
         class="scrollephant-buttons-prev"
-        data-scrollephant-disabled={!(canMoveBackward || loopFromStart)}
+        data-scrollephant-disabled={!(canMoveBackward || loopUp)}
         on:click={() =>
             moveBackward(
                 canMoveBackward,
                 activeSectionNumber,
                 sections,
-                loopFromStart
+                loopUp
             )}
     >
         {#if direction === "vertical"}
@@ -38,9 +38,9 @@
     </button>
     <button
         class="scrollephant-buttons-next"
-        data-scrollephant-disabled={!(canMoveForward || loopFromEnd)}
+        data-scrollephant-disabled={!(canMoveForward || loopDown)}
         on:click={() =>
-            moveForward(canMoveForward, activeSectionNumber, loopFromEnd)}
+            moveForward(canMoveForward, activeSectionNumber, loopDown)}
     >
         {#if direction === "vertical"}
             <!-- prettier-ignore -->

@@ -8,7 +8,7 @@
     } from "scrollephant"
 </script>
 
-<Scrollephant loopFromStart={true} loopFromEnd={true}>
+<Scrollephant loopUp={true} loopDown={true}>
     <ScrollephantWrapper>
         <ScrollephantSection label="Section 1">
             <div class="section-inner">1</div>
