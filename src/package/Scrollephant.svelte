@@ -106,7 +106,7 @@
         if (isWheelingForward(e)) {
             moveForward(canMoveForward(), activeSectionNumber, loopFromEnd)
 
-            if (!unlimitedMovement) {
+            if (canMoveForward() && !unlimitedMovement) {
                 $isMoving = true
             }
         } else if (isWheelingBackward(e)) {
@@ -117,7 +117,7 @@
                 loopFromStart
             )
 
-            if (!unlimitedMovement) {
+            if (canMoveBackward() && !unlimitedMovement) {
                 $isMoving = true
             }
         }
