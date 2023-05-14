@@ -3,6 +3,8 @@
     import type { Writable } from "svelte/store"
     import type { Sections } from "./types.js"
     import ScrollephantTooltip from "./ScrollephantTooltip.svelte"
+    import ScrollephantButtonNext from "./ScrollephantButtonNext.svelte"
+    import ScrollephantButtonPrev from "./ScrollephantButtonPrev.svelte"
 
     const sections: Writable<Sections> = getContext("sections")
     const activeSectionNumber: Writable<number> = getContext(
@@ -11,6 +13,8 @@
 </script>
 
 <nav class="scrollephant-dots">
+    <ScrollephantButtonPrev />
+
     <ol>
         {#each $sections as section, i}
             <li data-scrollephant-current={i === $activeSectionNumber - 1}>
@@ -24,6 +28,8 @@
             </li>
         {/each}
     </ol>
+
+    <ScrollephantButtonNext />
 </nav>
 
 <style>
