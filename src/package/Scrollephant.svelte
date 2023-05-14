@@ -78,7 +78,7 @@
             (direction === "vertical" && e.detail.direction === "up") ||
             (direction === "horizontal" && e.detail.direction === "left")
         ) {
-            moveForward(canMoveForward(), activeSectionNumber, loopDown)
+            moveForward(canMoveToNext(), activeSectionNumber, loopDown)
 
             return
         }
@@ -86,12 +86,7 @@
             (direction === "vertical" && e.detail.direction === "down") ||
             (direction === "horizontal" && e.detail.direction === "right")
         ) {
-            moveBackward(
-                canMoveBackward(),
-                activeSectionNumber,
-                sections,
-                loopUp
-            )
+            moveBackward(canMoveToPrev(), activeSectionNumber, sections, loopUp)
 
             return
         }
@@ -103,43 +98,68 @@
         }
 
         if (isWheelingForward(e)) {
-            moveForward(canMoveForward(), activeSectionNumber, loopDown)
-
-            if (restrictMovement && canMoveForward()) {
-                $isMoving = true
+            if (canMoveToNext()) {
+                if (restrictMovement) {
+                    moveToNext()
+                    $isMoving = true
+                } else {
+                    moveToNext()
+                }
+            } else if (loopDown) {
+                if (restrictMovement) {
+                    jumpToFirst()
+                    $isMoving = true
+                } else {
+                    jumpToFirst()
+                }
             }
         } else if (isWheelingBackward(e)) {
-            moveBackward(
-                canMoveBackward(),
-                activeSectionNumber,
-                sections,
-                loopUp
-            )
-
-            if (restrictMovement && canMoveBackward()) {
-                $isMoving = true
+            if (canMoveToPrev()) {
+                if (restrictMovement) {
+                    moveToPrev()
+                    $isMoving = true
+                } else {
+                    moveToPrev()
+                }
+            } else if (loopUp) {
+                if (restrictMovement) {
+                    jumpToLast()
+                    $isMoving = true
+                } else {
+                    jumpToLast()
+                }
             }
         }
 
-        if (restrictMovement) {
+        if (restrictMovement && $isMoving) {
             setTimeout(() => {
                 $isMoving = false
             }, duration)
         }
     }
 
-    function canMoveForward() {
-        if ($activeSectionNumber < $sections.length) {
-            return true
-        }
-        return false
+    function canMoveToNext() {
+        return $activeSectionNumber < $sections.length
     }
 
-    function canMoveBackward() {
-        if ($activeSectionNumber > 1) {
-            return true
-        }
-        return false
+    function canMoveToPrev() {
+        return $activeSectionNumber > 1
+    }
+
+    function moveToNext() {
+        $activeSectionNumber += 1
+    }
+
+    function moveToPrev() {
+        $activeSectionNumber -= 1
+    }
+
+    function jumpToFirst() {
+        $activeSectionNumber = 1
+    }
+
+    function jumpToLast() {
+        $activeSectionNumber = $sections.length
     }
 
     function isWheelingForward(e: WheelEvent) {
