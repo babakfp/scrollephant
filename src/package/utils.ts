@@ -9,7 +9,7 @@ export function moveForward(
     if (canMoveForward) {
         activeSectionNumber.update(v => (v += 1))
     } else if (loopDown) {
-        activeSectionNumber.set(1)
+        moveToFirst(activeSectionNumber)
     }
 }
 
@@ -22,6 +22,17 @@ export function moveBackward(
     if (canMoveBackward) {
         activeSectionNumber.update(v => (v -= 1))
     } else if (loopUp) {
-        activeSectionNumber.set(get(sections).length)
+        moveToLast(activeSectionNumber, sections)
     }
+}
+
+export function moveToFirst(activeSectionNumber: Writable<number>) {
+    activeSectionNumber.set(1)
+}
+
+export function moveToLast(
+    activeSectionNumber: Writable<number>,
+    sections: Writable<Sections>
+) {
+    activeSectionNumber.set(get(sections).length)
 }
