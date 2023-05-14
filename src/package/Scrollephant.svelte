@@ -9,7 +9,7 @@
     export let direction: Props["direction"] = "vertical"
     export let loopUp: Props["loopUp"] = false
     export let loopDown: Props["loopDown"] = false
-    export let unlimitedMovement: Props["unlimitedMovement"] = false
+    export let freeMovement: Props["freeMovement"] = false
 
     setContext("direction", direction)
     setContext("loopUp", loopUp)
@@ -98,14 +98,14 @@
     }
 
     function handleMousewheel(e: WheelEvent) {
-        if (!unlimitedMovement) {
-            if ($isMoving) return
+        if (!freeMovement && $isMoving) {
+            return
         }
 
         if (isWheelingForward(e)) {
             moveForward(canMoveForward(), activeSectionNumber, loopDown)
 
-            if (canMoveForward() && !unlimitedMovement) {
+            if (canMoveForward() && !freeMovement) {
                 $isMoving = true
             }
         } else if (isWheelingBackward(e)) {
@@ -116,12 +116,12 @@
                 loopUp
             )
 
-            if (canMoveBackward() && !unlimitedMovement) {
+            if (canMoveBackward() && !freeMovement) {
                 $isMoving = true
             }
         }
 
-        if (!unlimitedMovement) {
+        if (!freeMovement) {
             setTimeout(() => {
                 $isMoving = false
             }, duration)

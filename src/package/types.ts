@@ -3,7 +3,7 @@ export interface Props {
     direction: "vertical" | "horizontal"
     loopUp: boolean
     loopDown: boolean
-    unlimitedMovement: boolean
+    freeMovement: boolean
 }
 
 export type Sections = Section[] | []
