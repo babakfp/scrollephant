@@ -12,26 +12,25 @@
     )
 
     let element: HTMLElement
-    let indexPlusOne: number
+    let id: number
 
     onMount(() => {
         sections.update(currentValue => {
-            return [
-                ...currentValue,
-                {
-                    ref: element,
-                    label,
-                },
-            ]
+            const newSection = {
+                id: get(sections).length + 1,
+                ref: element,
+                label,
+            }
+            id = newSection.id
+            return [...currentValue, newSection]
         })
-        indexPlusOne = get(sections).length
     })
 </script>
 
 <div
     class="scrollephant-section"
     class:scrollephant-section--auto-height={autoHeight}
-    class:scrollephant-section-current={$activeSectionNumber === indexPlusOne}
+    class:scrollephant-section-current={$activeSectionNumber === id}
     bind:this={element}
 >
     <div class="scrollephant-section-inner">
