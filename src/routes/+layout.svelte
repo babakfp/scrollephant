@@ -6,7 +6,7 @@
         overflow: hidden;
     }
 
-    :global(.section-inner) {
+    :global(.scrollephant-section-inner) {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -15,13 +15,13 @@
         color: white;
         font-size: 4rem;
     }
-    :global(.scrollephant-section:nth-child(1) .section-inner) {
+    :global(.scrollephant-section:nth-child(1)) {
         background: #ff5f45;
     }
-    :global(.scrollephant-section:nth-child(2) .section-inner) {
+    :global(.scrollephant-section:nth-child(2)) {
         background: #0798ec;
     }
-    :global(.scrollephant-section:nth-child(3) .section-inner) {
+    :global(.scrollephant-section:nth-child(3)) {
         background: #fec401;
     }
 </style>

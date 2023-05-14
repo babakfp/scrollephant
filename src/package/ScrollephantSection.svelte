@@ -34,7 +34,9 @@
     class:scrollephant-section-current={$activeSectionNumber === indexPlusOne}
     bind:this={element}
 >
-    <slot />
+    <div class="scrollephant-section-inner">
+        <slot />
+    </div>
 </div>
 
 <style>
@@ -50,19 +52,41 @@
         flex-shrink: 0;
     }
 
-    :global(.scrollephant[data-scrollephant-mode="fade"])
-        .scrollephant-section {
-        position: absolute;
-        inset: 0;
-        transition: var(--scrollephant-duration) ease-in;
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
+    .scrollephant-section-inner {
+        width: 100%;
+        height: 100%;
+    }
 
-        &.scrollephant-section-current {
+    :global(.scrollephant[data-scrollephant-mode="fade"]) {
+        & .scrollephant-section {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: var(--scrollephant-duration) ease-in-out;
+        }
+
+        & .scrollephant-section-inner {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: calc(var(--scrollephant-duration) / 2) ease-in;
+            transform: scale(0.75);
+        }
+
+        & .scrollephant-section-current {
             opacity: 1;
             visibility: visible;
             pointer-events: all;
+            z-index: 1;
+
+            & .scrollephant-section-inner {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: all;
+                transform: scale(1);
+            }
         }
     }
 </style>
