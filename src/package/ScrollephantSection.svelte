@@ -30,8 +30,8 @@
 
 <div
     class="scrollephant-section"
+    data-scrollephant-current={$activeSectionNumber === id}
     data-scrollephant-auto-height={autoHeight}
-    class:scrollephant-section-current={$activeSectionNumber === id}
     data-scrollephant-id={`${id}`}
     bind:this={element}
 >
@@ -81,7 +81,7 @@
             transform: scale(0.75);
         }
 
-        & .scrollephant-section-current {
+        & [data-scrollephant-current="true"] {
             opacity: 1;
             visibility: visible;
             pointer-events: all;
