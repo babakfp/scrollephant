@@ -32,6 +32,7 @@
     class:scrollephant-section--auto-height={autoHeight}
     class:scrollephant-section-current={$activeSectionNumber === id}
     bind:this={element}
+    data-scrollephant-id={`${id}`}
 >
     <div class="scrollephant-section-inner">
         <slot />
