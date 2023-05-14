@@ -64,32 +64,26 @@
     }
 
     function handleSwipe(e: SwipeEvent) {
-        if (direction === "vertical") {
-            if (e.detail.direction === "up") {
-                moveForward(canMoveForward(), activeSectionNumber, loopFromEnd)
-            }
-            if (e.detail.direction === "down") {
-                moveBackward(
-                    canMoveBackward(),
-                    activeSectionNumber,
-                    sections,
-                    loopFromStart
-                )
-            }
-        }
+        if (
+            (direction === "vertical" && e.detail.direction === "up") ||
+            (direction === "horizontal" && e.detail.direction === "left")
+        ) {
+            moveForward(canMoveForward(), activeSectionNumber, loopFromEnd)
 
-        if (direction === "horizontal") {
-            if (e.detail.direction === "left") {
-                moveForward(canMoveForward(), activeSectionNumber, loopFromEnd)
-            }
-            if (e.detail.direction === "right") {
-                moveBackward(
-                    canMoveBackward(),
-                    activeSectionNumber,
-                    sections,
-                    loopFromStart
-                )
-            }
+            return
+        }
+        if (
+            (direction === "vertical" && e.detail.direction === "down") ||
+            (direction === "horizontal" && e.detail.direction === "right")
+        ) {
+            moveBackward(
+                canMoveBackward(),
+                activeSectionNumber,
+                sections,
+                loopFromStart
+            )
+
+            return
         }
     }
 
