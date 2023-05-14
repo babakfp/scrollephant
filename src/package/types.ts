@@ -1,3 +1,5 @@
+export type Direction = "vertical" | "horizontal"
+
 export type Sections = Section[] | []
 
 export interface Section {
