@@ -1,10 +1,10 @@
 <script lang="ts">
     import { getContext } from "svelte"
     import type { Writable } from "svelte/store"
-    import type { Direction, Sections } from "./types.js"
+    import type { Props, Sections } from "./types.js"
     import { moveForward, moveBackward } from "./utils.js"
 
-    const direction: Direction = getContext("direction")
+    const direction: Props["direction"] = getContext("direction")
     const sections: Writable<Sections> = getContext("sections")
     const activeSectionNumber: Writable<number> = getContext(
         "activeSectionNumber"

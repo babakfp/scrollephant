@@ -1,12 +1,12 @@
 <script lang="ts">
     import { onMount, setContext } from "svelte"
     import { writable } from "svelte/store"
-    import type { Direction, Sections } from "./types.js"
+    import type { Props, Sections } from "./types.js"
     import { swipe, type SwipeEvent } from "./swipe.js"
     import { moveForward, moveBackward } from "./utils.js"
 
-    export let mode: "scroll" | "fade" = "scroll"
-    export let direction: Direction = "vertical"
+    export let mode: Props["mode"] = "scroll"
+    export let direction: Props["direction"] = "vertical"
     export let loopFromStart = false
     export let loopFromEnd = false
     export let unlimitedMovement = false

@@ -1,4 +1,7 @@
-export type Direction = "vertical" | "horizontal"
+export interface Props {
+    mode: "scroll" | "fade"
+    direction: "vertical" | "horizontal"
+}
 
 export type Sections = Section[] | []
 
