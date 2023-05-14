@@ -4,5 +4,6 @@ export interface Section {
     id: number
     ref: HTMLElement
     label?: string
+    autoHeight: boolean
     subSections?: Section[]
 }

@@ -20,6 +20,7 @@
                 id: get(sections).length + 1,
                 ref: element,
                 label,
+                autoHeight,
             }
             id = newSection.id
             return [...currentValue, newSection]

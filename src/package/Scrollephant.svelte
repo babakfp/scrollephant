@@ -47,9 +47,13 @@
 
         for (let i = 0; i < activeSectionNumber - 1; i++) {
             if (direction === "vertical") {
-                y += $sections[activeSectionNumber - (i + 2)]?.ref.clientHeight
+                if ($sections[i]?.autoHeight) {
+                    y += $sections[i]?.ref.clientHeight
+                } else {
+                    y += $sections[i + 1]?.ref.clientHeight
+                }
             } else if (direction === "horizontal") {
-                x += $sections[activeSectionNumber - (i + 2)]?.ref.clientWidth
+                x += $sections[i]?.ref.clientWidth
             }
         }
 
