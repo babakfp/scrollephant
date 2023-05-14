@@ -17,6 +17,7 @@
         pointer-events: none;
         z-index: -1;
     }
+
     :global(.scrollephant-dots button:hover) + div {
         opacity: 1;
     }
@@ -26,6 +27,7 @@
         top: 50%;
         transform: translateX(-0.75rem) translateY(-50%);
     }
+
     :global(.scrollephant[data-scrollephant-direction="horizontal"]) div {
         bottom: 100%;
         left: 50%;

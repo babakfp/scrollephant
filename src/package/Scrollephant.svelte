@@ -210,12 +210,13 @@
         --scrollephant-duration: 700ms;
         --scrollephant-timing-function: ease-out;
         overflow: hidden;
+    }
 
-        &[data-scrollephant-direction="vertical"] {
-            --scrollephant-translate-y: 0;
-        }
-        &[data-scrollephant-direction="horizontal"] {
-            --scrollephant-translate-x: 0;
-        }
+    .scrollephant[data-scrollephant-direction="vertical"] {
+        --scrollephant-translate-y: 0;
+    }
+
+    .scrollephant[data-scrollephant-direction="horizontal"] {
+        --scrollephant-translate-x: 0;
     }
 </style>

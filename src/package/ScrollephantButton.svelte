@@ -20,17 +20,17 @@
         cursor: pointer;
         display: flex;
         transition: calc(var(--scrollephant-duration) / 2) ease-out;
+    }
 
-        &[data-scrollephant-disabled="true"] {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
+    .scrollephant-button[data-scrollephant-disabled="true"] {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
 
-        & svg {
-            width: 1rem;
-            color: white;
-        }
+    .scrollephant-button :global(svg) {
+        width: 1rem;
+        color: white;
     }
 
     :global(.scrollephant[data-scrollephant-direction="vertical"])

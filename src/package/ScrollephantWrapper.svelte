@@ -15,6 +15,7 @@
         flex-direction: column;
         transform: translateY(var(--scrollephant-translate-y));
     }
+
     :global(.scrollephant[data-scrollephant-direction="horizontal"])
         .scrollephant-wrapper {
         transform: translateX(var(--scrollephant-translate-x));

@@ -63,36 +63,39 @@
         height: 100%;
     }
 
-    :global(.scrollephant[data-scrollephant-movement="fade"]) {
-        & .scrollephant-section {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transition: var(--scrollephant-duration) ease-in-out;
-        }
+    :global(.scrollephant[data-scrollephant-movement="fade"])
+        .scrollephant-section {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: var(--scrollephant-duration) ease-in-out;
+    }
 
-        & .scrollephant-section-inner {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transition: calc(var(--scrollephant-duration) / 2) ease-in;
-            transform: scale(0.75);
-        }
+    :global(.scrollephant[data-scrollephant-movement="fade"])
+        .scrollephant-section-inner {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: calc(var(--scrollephant-duration) / 2) ease-in;
+        transform: scale(0.75);
+    }
 
-        & [data-scrollephant-current="true"] {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: all;
-            z-index: 1;
+    :global(.scrollephant[data-scrollephant-movement="fade"])
+        [data-scrollephant-current="true"] {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+        z-index: 1;
+    }
 
-            & .scrollephant-section-inner {
-                opacity: 1;
-                visibility: visible;
-                pointer-events: all;
-                transform: scale(1);
-            }
-        }
+    :global(.scrollephant[data-scrollephant-movement="fade"])
+        [data-scrollephant-current="true"]
+        .scrollephant-section-inner {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+        transform: scale(1);
     }
 </style>
