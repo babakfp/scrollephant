@@ -30,10 +30,10 @@
 
 <div
     class="scrollephant-section"
-    class:scrollephant-section--auto-height={autoHeight}
+    data-scrollephant-auto-height={autoHeight}
     class:scrollephant-section-current={$activeSectionNumber === id}
-    bind:this={element}
     data-scrollephant-id={`${id}`}
+    bind:this={element}
 >
     <div class="scrollephant-section-inner">
         <slot />
@@ -41,12 +41,12 @@
 </div>
 
 <style>
-    .scrollephant-section:not(.scrollephant-section--auto-height) {
+    .scrollephant-section:not([data-scrollephant-auto-height="true"]) {
         height: 100vh;
         height: 100dvh;
     }
 
-    .scrollephant-section--auto-height {
+    [data-scrollephant-auto-height="true"] {
         max-height: 100vh;
         max-height: 100dvh;
     }
