@@ -46,6 +46,11 @@
         height: 100dvh;
     }
 
+    .scrollephant-section--auto-height {
+        max-height: 100vh;
+        max-height: 100dvh;
+    }
+
     :global(.scrollephant[data-scrollephant-direction="horizontal"])
         .scrollephant-section {
         width: 100vw;
