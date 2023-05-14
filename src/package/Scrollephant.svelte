@@ -17,6 +17,10 @@
 
     const sections = setContext("sections", writable<Sections>([]))
     const activeSectionNumber = setContext("activeSectionNumber", writable(1))
+    const isMoving = setContext("isMoving", writable(false))
+
+    let element: HTMLElement
+    let duration: number
 
     let rtl = false
 
@@ -24,6 +28,12 @@
         if (document.dir === "rtl") {
             rtl = true
         }
+
+        duration = Number(
+            getComputedStyle(element)
+                .getPropertyValue("--scrollephant-duration")
+                .slice(0, -2)
+        )
     })
 
     let translateY = 0
@@ -88,8 +98,12 @@
     }
 
     function handleMousewheel(e: WheelEvent) {
+        if ($isMoving) return
+
         if (isWheelingForward(e)) {
             moveForward(canMoveForward(), activeSectionNumber, loopFromEnd)
+
+            $isMoving = true
         } else if (isWheelingBackward(e)) {
             moveBackward(
                 canMoveBackward(),
@@ -97,7 +111,13 @@
                 sections,
                 loopFromStart
             )
+
+            $isMoving = true
         }
+
+        setTimeout(() => {
+            $isMoving = false
+        }, duration)
     }
 
     function canMoveForward() {
@@ -136,6 +156,7 @@
     on:wheel|preventDefault={handleMousewheel}
     use:swipe
     on:swipe={handleSwipe}
+    bind:this={element}
 >
     <slot />
 </div>
