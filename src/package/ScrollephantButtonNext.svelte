@@ -2,7 +2,6 @@
     import { getContext } from "svelte"
     import type { Writable } from "svelte/store"
     import type { Props, Sections } from "./types.js"
-    import { moveForward } from "./utils.js"
     import ScrollephantButton from "./ScrollephantButton.svelte"
 
     const sections: Writable<Sections> = getContext("sections")
@@ -13,12 +12,24 @@
     const loopDown: Props["loopDown"] = getContext("loopDown")
 
     $: canMoveForward = $activeSectionNumber < $sections.length
+
+    function moveForward() {
+        if (canMoveForward) {
+            $activeSectionNumber += 1
+        } else if (loopDown) {
+            moveToFirst()
+        }
+    }
+
+    function moveToFirst() {
+        $activeSectionNumber = 1
+    }
 </script>
 
 <ScrollephantButton
     class="scrollephant-button-next"
     isDisabled={!(canMoveForward || loopDown)}
-    on:click={() => moveForward(canMoveForward, activeSectionNumber, loopDown)}
+    on:click={moveForward}
 >
     {#if direction === "vertical"}
         <!-- prettier-ignore -->
