@@ -55,6 +55,8 @@
         .scrollephant-section {
         width: 100vw;
         width: 100dvw;
+
+        /* Prevent width shrinks. Inforce full view size. */
         flex-shrink: 0;
     }
 
