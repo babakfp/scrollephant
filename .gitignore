@@ -1,6 +1,6 @@
 .DS_Store
-node_modules/
-.svelte-kit/
-dist/
+/node_modules/
+/.svelte-kit/
+/dist/
 vite.config.ts.timestamp-*
 pnpm-lock.yaml
