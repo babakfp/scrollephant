@@ -45,8 +45,8 @@
     let translateY = 0
     let translateX = 0
 
-    let translateYSubSection = setContext("translateYSubSection", writable(0))
-    let translateXSubSection = setContext("translateXSubSection", writable(0))
+    const translateYSubSection = setContext("translateYSubSection", writable(0))
+    const translateXSubSection = setContext("translateXSubSection", writable(0))
 
     $: {
         const { y, x } = getYX($activeSectionNumber)
