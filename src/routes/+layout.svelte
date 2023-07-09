@@ -10,11 +10,16 @@
     :global(.scrollephant-section-inner) {
         display: flex;
         align-items: center;
-        justify-content: center;
         width: 100%;
         height: 100%;
         color: white;
         font-size: 4rem;
+    }
+    :global(
+            .scrollephant-section:not([data-scrollephant-is-subsection-wrapper])
+                .scrollephant-section-inner
+        ) {
+        justify-content: center;
     }
     :global(.scrollephant-section:nth-child(1)) {
         background: #ff5f45;

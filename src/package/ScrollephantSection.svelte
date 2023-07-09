@@ -37,6 +37,7 @@
     class="scrollephant-section"
     data-scrollephant-current={$activeSectionNumber === id}
     data-scrollephant-auto-height={autoHeight}
+    data-scrollephant-is-subsection-wrapper={isSubSectionWrapper}
     data-scrollephant-id={id}
     bind:this={element}
 >
