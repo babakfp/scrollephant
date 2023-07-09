@@ -13,21 +13,21 @@
     let element: HTMLElement
     let id: number
 
-    onMount(() => {
-        sections.update(currentValue => {
-            id = get(sections).length + 1
-            const newSection = {
-                id,
-                ref: element,
-                label,
-            }
-            return [...currentValue, newSection]
-        })
-    })
+    // onMount(() => {
+    //     sections.update(currentValue => {
+    //         id = get(sections).length + 1
+    //         const newSection = {
+    //             id,
+    //             ref: element,
+    //             label,
+    //         }
+    //         return [...currentValue, newSection]
+    //     })
+    // })
 </script>
 
 <div
-    class="scrollephant-section"
+    class="scrollephant-subsection"
     data-scrollephant-current={$activeSectionNumber === id}
     data-scrollephant-id={id}
     bind:this={element}
@@ -36,7 +36,7 @@
 </div>
 
 <style>
-    .scrollephant-section {
+    .scrollephant-subsection {
         height: 100vh;
         height: 100dvh;
         /* TODO:? max-height & overflow: hidden */
