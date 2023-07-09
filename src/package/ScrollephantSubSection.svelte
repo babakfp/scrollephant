@@ -15,12 +15,12 @@
 
     onMount(() => {
         sections.update(currentValue => {
+            id = get(sections).length + 1
             const newSection = {
-                id: get(sections).length + 1,
+                id,
                 ref: element,
                 label,
             }
-            id = newSection.id
             return [...currentValue, newSection]
         })
     })
@@ -37,12 +37,10 @@
 
 <style>
     .scrollephant-section {
-        height: 100%;
-        /* What about max-height and overflow: hidden */
-    }
+        height: 100vh;
+        height: 100dvh;
+        /* TODO:? max-height & overflow: hidden */
 
-    :global(.scrollephant[data-scrollephant-direction="horizontal"])
-        .scrollephant-section {
         width: 100vw;
         width: 100dvw;
 
