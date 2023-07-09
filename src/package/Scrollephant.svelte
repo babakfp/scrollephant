@@ -169,11 +169,9 @@
         ) {
             if (canMoveToNextSubSection()) {
                 if (restrictMovement) {
-                    moveToNextSubSection()
                     $isMoving = true
-                } else {
-                    moveToNextSubSection()
                 }
+                moveToNextSubSection()
             } else {
                 moveSectionForward()
             }
@@ -191,11 +189,9 @@
         ) {
             if (canMoveToPrevSubSection()) {
                 if (restrictMovement) {
-                    moveToPrevSubSection()
                     $isMoving = true
-                } else {
-                    moveToPrevSubSection()
                 }
+                moveToPrevSubSection()
             } else {
                 moveSectionBackward()
             }
@@ -207,36 +203,28 @@
     function moveSectionForward() {
         if (canMoveToNext()) {
             if (restrictMovement) {
-                moveToNext()
                 $isMoving = true
-            } else {
-                moveToNext()
             }
+            moveToNext()
         } else if (loopDown) {
             if (restrictMovement) {
-                jumpToFirstSubSection()
                 $isMoving = true
-            } else {
-                jumpToFirstSubSection()
             }
+            jumpToFirstSubSection()
         }
     }
 
     function moveSectionBackward() {
         if (canMoveToPrev()) {
             if (restrictMovement) {
-                moveToPrev()
                 $isMoving = true
-            } else {
-                moveToPrev()
             }
+            moveToPrev()
         } else if (loopUp) {
             if (restrictMovement) {
-                jumpToLast()
                 $isMoving = true
-            } else {
-                jumpToLast()
             }
+            jumpToLast()
         }
     }
 
