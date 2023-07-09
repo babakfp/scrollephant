@@ -15,6 +15,7 @@
 
     let element: HTMLElement
     let id: number
+    $: console.log($sections)
 
     onMount(() => {
         sections.update(currentValue => {
