@@ -175,38 +175,10 @@
                     moveToNextSubSection()
                 }
             } else {
-                if (canMoveToNext()) {
-                    if (restrictMovement) {
-                        moveToNext()
-                        $isMoving = true
-                    } else {
-                        moveToNext()
-                    }
-                } else if (loopDown) {
-                    if (restrictMovement) {
-                        jumpToFirstSubSection()
-                        $isMoving = true
-                    } else {
-                        jumpToFirstSubSection()
-                    }
-                }
+                moveSectionForward()
             }
         } else {
-            if (canMoveToNext()) {
-                if (restrictMovement) {
-                    moveToNext()
-                    $isMoving = true
-                } else {
-                    moveToNext()
-                }
-            } else if (loopDown) {
-                if (restrictMovement) {
-                    jumpToFirstSubSection()
-                    $isMoving = true
-                } else {
-                    jumpToFirstSubSection()
-                }
-            }
+            moveSectionForward()
         }
     }
 
@@ -225,37 +197,45 @@
                     moveToPrevSubSection()
                 }
             } else {
-                if (canMoveToPrev()) {
-                    if (restrictMovement) {
-                        moveToPrev()
-                        $isMoving = true
-                    } else {
-                        moveToPrev()
-                    }
-                } else if (loopUp) {
-                    if (restrictMovement) {
-                        jumpToLast()
-                        $isMoving = true
-                    } else {
-                        jumpToLast()
-                    }
-                }
+                moveSectionBackward()
             }
         } else {
-            if (canMoveToPrev()) {
-                if (restrictMovement) {
-                    moveToPrev()
-                    $isMoving = true
-                } else {
-                    moveToPrev()
-                }
-            } else if (loopUp) {
-                if (restrictMovement) {
-                    jumpToLast()
-                    $isMoving = true
-                } else {
-                    jumpToLast()
-                }
+            moveSectionBackward()
+        }
+    }
+
+    function moveSectionForward() {
+        if (canMoveToNext()) {
+            if (restrictMovement) {
+                moveToNext()
+                $isMoving = true
+            } else {
+                moveToNext()
+            }
+        } else if (loopDown) {
+            if (restrictMovement) {
+                jumpToFirstSubSection()
+                $isMoving = true
+            } else {
+                jumpToFirstSubSection()
+            }
+        }
+    }
+
+    function moveSectionBackward() {
+        if (canMoveToPrev()) {
+            if (restrictMovement) {
+                moveToPrev()
+                $isMoving = true
+            } else {
+                moveToPrev()
+            }
+        } else if (loopUp) {
+            if (restrictMovement) {
+                jumpToLast()
+                $isMoving = true
+            } else {
+                jumpToLast()
             }
         }
     }
