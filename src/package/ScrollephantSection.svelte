@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount, setContext, getContext } from "svelte"
     import { type Writable, get, writable } from "svelte/store"
-    import type { Sections, SubSections } from "./types.js"
+    import type { Sections, SubSections, Props } from "./types.js"
 
     export let autoHeight = false
     export let label = ""
@@ -11,11 +11,18 @@
     const activeSectionNumber: Writable<number> = getContext(
         "activeSectionNumber"
     )
+    const movement: Writable<Props["movement"]> = getContext("movement")
+    const translateYSubSection: Writable<number> = getContext(
+        "translateYSubSection"
+    )
+    const translateXSubSection: Writable<number> = getContext(
+        "translateXSubSection"
+    )
+    const rtl: Writable<number> = getContext("rtl")
     const subSections = setContext("subSections", writable<SubSections>([]))
 
     let element: HTMLElement
     let id: number
-    $: console.log($sections)
 
     onMount(() => {
         sections.update(currentValue => {
@@ -40,6 +47,12 @@
     data-scrollephant-is-subsection-wrapper={isSubSectionWrapper}
     data-scrollephant-id={id}
     bind:this={element}
+    style:--scrollephant-translate-y-subsection="-{$movement === "scroll"
+        ? $translateYSubSection
+        : 0}px"
+    style:--scrollephant-translate-x-subsection="{!$rtl
+        ? "-"
+        : ""}{$movement === "scroll" ? $translateXSubSection : 0}px"
 >
     <div class="scrollephant-section-inner">
         <slot />
@@ -105,5 +118,35 @@
         visibility: visible;
         pointer-events: all;
         transform: scale(1);
+    }
+
+    /* --- */
+
+    .scrollephant-section-inner {
+        display: flex;
+        transition-property: transform;
+        transition-duration: var(--scrollephant-duration);
+        transition-timing-function: var(--scrollephant-timing-function);
+    }
+
+    :global(.scrollephant[data-scrollephant-direction="vertical"])
+        .scrollephant-section-inner {
+        transform: translateX(var(--scrollephant-translate-x-subsection));
+    }
+
+    :global(.scrollephant[data-scrollephant-direction="horizontal"])
+        .scrollephant-section-inner {
+        flex-direction: column;
+        transform: translateY(var(--scrollephant-translate-y-subsection));
+    }
+
+    :global(.scrollephant[data-scrollephant-movement="fade"])
+        .scrollephant-section-inner {
+        position: relative;
+        display: block;
+        height: 100vh;
+        height: 100dvh;
+        width: 100vw;
+        width: 100dvw;
     }
 </style>
