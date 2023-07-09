@@ -16,13 +16,13 @@
 
     onMount(() => {
         sections.update(currentValue => {
+            id = get(sections).length + 1
             const newSection = {
-                id: get(sections).length + 1,
+                id,
                 ref: element,
                 label,
                 autoHeight,
             }
-            id = newSection.id
             return [...currentValue, newSection]
         })
     })
