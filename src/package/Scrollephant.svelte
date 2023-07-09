@@ -16,6 +16,10 @@
 
     const sections = setContext("sections", writable<Sections>([]))
     const activeSectionNumber = setContext("activeSectionNumber", writable(1))
+    const activeSubSectionNumber = setContext(
+        "activeSubSectionNumber",
+        writable(1)
+    )
     const isMoving = setContext("isMoving", writable(false))
 
     let element: HTMLElement

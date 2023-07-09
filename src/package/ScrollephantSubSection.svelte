@@ -13,17 +13,26 @@
     let element: HTMLElement
     let id: number
 
-    // onMount(() => {
-    //     sections.update(currentValue => {
-    //         id = get(sections).length + 1
-    //         const newSection = {
-    //             id,
-    //             ref: element,
-    //             label,
-    //         }
-    //         return [...currentValue, newSection]
-    //     })
-    // })
+    interface SubSectionData {
+        id: number
+        ref: HTMLElement
+        label: string
+    }
+
+    onMount(() => {
+        sections.update(currentValue => {
+            id = get(sections).length + 1
+            const newSubSection: SubSectionData = {
+                id,
+                ref: element,
+                label,
+            }
+            currentValue[currentValue.length - 1].subSections.push(
+                newSubSection
+            )
+            return currentValue
+        })
+    })
 </script>
 
 <div

@@ -5,6 +5,7 @@
 
     export let autoHeight = false
     export let label = ""
+    export let isSubSectionWrapper = false
 
     const sections: Writable<Sections> = getContext("sections")
     const activeSectionNumber: Writable<number> = getContext(
@@ -22,6 +23,8 @@
                 ref: element,
                 label,
                 autoHeight,
+                isSubSectionWrapper,
+                subSections: [],
             }
             return [...currentValue, newSection]
         })
