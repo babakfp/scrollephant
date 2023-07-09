@@ -1,7 +1,7 @@
 <script lang="ts">
-    import { onMount, getContext } from "svelte"
-    import { type Writable, get } from "svelte/store"
-    import type { Sections } from "./types.js"
+    import { onMount, setContext, getContext } from "svelte"
+    import { type Writable, get, writable } from "svelte/store"
+    import type { Sections, SubSections } from "./types.js"
 
     export let autoHeight = false
     export let label = ""
@@ -11,6 +11,7 @@
     const activeSectionNumber: Writable<number> = getContext(
         "activeSectionNumber"
     )
+    const subSections = setContext("subSections", writable<SubSections>([]))
 
     let element: HTMLElement
     let id: number
@@ -23,8 +24,8 @@
                 ref: element,
                 label,
                 autoHeight,
+                subSections: $subSections,
                 isSubSectionWrapper,
-                subSections: [],
             }
             return [...currentValue, newSection]
         })

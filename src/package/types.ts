@@ -6,12 +6,21 @@ export interface Props {
     restrictMovement: boolean
 }
 
-export type Sections = Section[] | []
-
 export interface Section {
     id: number
     ref: HTMLElement
     label?: string
     autoHeight: boolean
-    subSections?: Section[]
+    subSections: SubSections
+    isSubSectionWrapper: boolean
 }
+
+export type Sections = Section[] | []
+
+export interface SubSection {
+    id: number
+    ref: HTMLElement
+    label: string
+}
+
+export type SubSections = SubSection[] | []

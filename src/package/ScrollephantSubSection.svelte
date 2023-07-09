@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount, getContext } from "svelte"
     import { type Writable, get } from "svelte/store"
-    import type { Sections } from "./types.js"
+    import type { Sections, SubSection } from "./types.js"
 
     export let label = ""
 
@@ -13,23 +13,18 @@
     let element: HTMLElement
     let id: number
 
-    interface SubSectionData {
-        id: number
-        ref: HTMLElement
-        label: string
-    }
-
     onMount(() => {
         sections.update(currentValue => {
             id = get(sections).length + 1
-            const newSubSection: SubSectionData = {
+            const newSubSection: SubSection = {
                 id,
                 ref: element,
                 label,
             }
-            currentValue[currentValue.length - 1].subSections.push(
-                newSubSection
-            )
+            currentValue[currentValue.length - 1].subSections = [
+                ...currentValue[currentValue.length - 1].subSections,
+                newSubSection,
+            ]
             return currentValue
         })
     })
