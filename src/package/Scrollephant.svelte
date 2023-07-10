@@ -208,7 +208,7 @@
             if (restrictMovement) {
                 $isMoving = true
             }
-            jumpToFirstSubSection()
+            jumpToFirst()
         }
     }
 

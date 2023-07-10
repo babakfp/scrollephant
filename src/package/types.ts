@@ -23,6 +23,7 @@ export interface SubSection {
     id: number
     ref: HTMLElement
     label: string
+    autoHeight: boolean
 }
 
 export type SubSections = SubSection[] | []
