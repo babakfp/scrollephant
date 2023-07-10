@@ -45,9 +45,6 @@
     let translateY = 0
     let translateX = 0
 
-    const translateYSubSection = setContext("translateYSubSection", writable(0))
-    const translateXSubSection = setContext("translateXSubSection", writable(0))
-
     $: {
         const { y, x } = getYX($activeSectionNumber)
         translateY = y
@@ -59,9 +56,10 @@
             $sections[$activeSectionNumber - 1],
             $activeSubSectionNumber
         )
-        $translateYSubSection = y
-        $translateXSubSection = x
-        console.log($translateYSubSection, $translateXSubSection)
+        if ($sections.length > 0) {
+            $sections[$activeSectionNumber - 1].translateY = y
+            $sections[$activeSectionNumber - 1].translateX = x
+        }
     }
 
     function onWindowResize() {

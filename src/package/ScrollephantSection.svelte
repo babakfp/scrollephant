@@ -12,12 +12,6 @@
         "activeSectionNumber"
     )
     const movement: Writable<Props["movement"]> = getContext("movement")
-    const translateYSubSection: Writable<number> = getContext(
-        "translateYSubSection"
-    )
-    const translateXSubSection: Writable<number> = getContext(
-        "translateXSubSection"
-    )
     const rtl: Writable<number> = getContext("rtl")
     const subSections = setContext("subSections", writable<SubSections>([]))
 
@@ -34,10 +28,17 @@
                 autoHeight,
                 subSections: $subSections,
                 isSubSectionWrapper,
+                translateY: 0,
+                translateX: 0,
             }
             return [...currentValue, newSection]
         })
     })
+
+    $: translateY = $sections.filter(section => section.id === id)[0]
+        ?.translateY
+    $: translateX = $sections.filter(section => section.id === id)[0]
+        ?.translateX
 </script>
 
 <div
@@ -48,11 +49,11 @@
     data-scrollephant-id={id}
     bind:this={element}
     style:--scrollephant-translate-y-subsection="-{$movement === "scroll"
-        ? $translateYSubSection
+        ? translateY
         : 0}px"
     style:--scrollephant-translate-x-subsection="{!$rtl
         ? "-"
-        : ""}{$movement === "scroll" ? $translateXSubSection : 0}px"
+        : ""}{$movement === "scroll" ? translateX : 0}px"
 >
     <div class="scrollephant-section-inner">
         <slot />
