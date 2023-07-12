@@ -209,8 +209,27 @@
                 $isMoving = true
             }
             jumpToFirst()
+            // setSubSectionsToFirstPosition()
         }
     }
+
+    // function setSubSectionsToFirstPosition() {
+    //     $activeSubSectionNumber = 1
+    //     $sections.map(sections => {
+    //         sections.translateY = 0
+    //         sections.translateX = 0
+    //         return sections
+    //     })
+    // }
+
+    // function setSubSectionsToLastPosition() {
+    //     $activeSubSectionNumber = 1
+    //     $sections.map(sections => {
+    //         sections.translateY = 0
+    //         sections.translateX = 0
+    //         return sections
+    //     })
+    // }
 
     function moveSectionBackward() {
         if (canMoveToPrev()) {
