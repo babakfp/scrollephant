@@ -34,6 +34,11 @@
         pointer-events: none;
     }
 
+    .scrollephant-button[data-scrollephant-disabled="true"] {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+
     .scrollephant-button :global(svg) {
         width: 1rem;
         color: white;
@@ -47,10 +52,5 @@
     :global(.scrollephant[data-scrollephant-direction="horizontal"])
         .scrollephant-button {
         padding: 0.25rem 1.5rem 1rem 1.5rem;
-    }
-
-    [data-scrollephant-disabled="true"] {
-        opacity: 0.5;
-        pointer-events: none;
     }
 </style>
