@@ -2,7 +2,7 @@
     import { getContext } from "svelte"
     import type { Writable } from "svelte/store"
     import type { Props, Sections } from "./types.js"
-    import ScrollephantNavigationWrapper from "./ScrollephantNavigationWrapper.svelte"
+    import ScrollephantNavigationsWrapper from "./ScrollephantNavigationsWrapper.svelte"
     import ScrollephantDotsWrapper from "./ScrollephantDotsWrapper.svelte"
     import ScrollephantDot from "./ScrollephantDot.svelte"
     import ScrollephantTooltip from "./ScrollephantTooltip.svelte"
@@ -31,7 +31,7 @@
     }
 </script>
 
-<ScrollephantNavigationWrapper>
+<ScrollephantNavigationsWrapper>
     <ScrollephantButtonPrev />
 
     <ScrollephantDotsWrapper>
@@ -48,4 +48,4 @@
     </ScrollephantDotsWrapper>
 
     <ScrollephantButtonNext />
-</ScrollephantNavigationWrapper>
+</ScrollephantNavigationsWrapper>
