@@ -21,6 +21,9 @@
         ) {
         justify-content: center;
     }
+    :global(.scrollephant-section) {
+        background: #52525b;
+    }
     :global(.scrollephant-section:nth-child(1)) {
         background: #ff5f45;
     }
@@ -29,5 +32,14 @@
     }
     :global(.scrollephant-section:nth-child(3)) {
         background: #fec401;
+    }
+    :global(.scrollephant-section:nth-child(4)) {
+        background: #65a30d;
+    }
+    :global(.scrollephant-section:nth-child(5)) {
+        background: #0891b2;
+    }
+    :global(.scrollephant-section:nth-child(6)) {
+        background: #7c3aed;
     }
 </style>
