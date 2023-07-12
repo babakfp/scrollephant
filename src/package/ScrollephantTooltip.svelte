@@ -18,7 +18,7 @@
         z-index: -1;
     }
 
-    :global(.scrollephant-dots button:hover) + div {
+    :global(.scrollephant-dot button:hover) + div {
         opacity: 1;
     }
 

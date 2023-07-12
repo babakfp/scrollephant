@@ -4,7 +4,7 @@ export { default as ScrollephantButtonNext } from "./ScrollephantButtonNext.svel
 export { default as ScrollephantButtonPrev } from "./ScrollephantButtonPrev.svelte"
 export { default as ScrollephantDot } from "./ScrollephantDot.svelte"
 export { default as ScrollephantDots } from "./ScrollephantDots.svelte"
-export { default as ScrollephantDotsContainer } from "./ScrollephantDotsContainer.svelte"
+export { default as ScrollephantNavigationWrapper } from "./ScrollephantNavigationWrapper.svelte"
 export { default as ScrollephantDotsWrapper } from "./ScrollephantDotsWrapper.svelte"
 export { default as ScrollephantSection } from "./ScrollephantSection.svelte"
 export { default as ScrollephantSubSection } from "./ScrollephantSubSection.svelte"

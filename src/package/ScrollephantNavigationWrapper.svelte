@@ -1,23 +1,23 @@
-<nav class="scrollephant-dots">
+<nav class="scrollephant-navigation-wrapper">
     <slot />
 </nav>
 
 <style>
-    .scrollephant-dots {
+    .scrollephant-navigation-wrapper {
         position: fixed;
         user-select: none;
         -webkit-user-drag: none;
     }
 
     :global(.scrollephant[data-scrollephant-direction="vertical"])
-        .scrollephant-dots {
+        .scrollephant-navigation-wrapper {
         right: 0;
         top: 50%;
         transform: translateY(-50%);
     }
 
     :global(.scrollephant[data-scrollephant-direction="horizontal"])
-        .scrollephant-dots {
+        .scrollephant-navigation-wrapper {
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
@@ -29,7 +29,7 @@
             html[dir="rtl"]
                 .scrollephant[data-scrollephant-direction="vertical"]
         )
-        .scrollephant-dots {
+        .scrollephant-navigation-wrapper {
         right: initial;
         left: 0;
     }
