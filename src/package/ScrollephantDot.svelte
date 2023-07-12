@@ -27,7 +27,7 @@
         padding: 0;
         cursor: pointer;
         padding: 0.25rem;
-        transition: calc(var(--scrollephant-duration) / 2) ease-out;
+        transition: calc(var(--scrollephant-duration) - 300ms) ease-out;
     }
 
     button div {
@@ -38,7 +38,7 @@
         height: 1rem;
         background: white;
         border-radius: 99px;
-        transition: calc(var(--scrollephant-duration) / 2) ease-out;
+        transition: calc(var(--scrollephant-duration) - 300ms) ease-out;
         transform: scale(0.25);
     }
 

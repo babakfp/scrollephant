@@ -25,7 +25,7 @@
         padding: 0;
         cursor: pointer;
         display: flex;
-        transition: calc(var(--scrollephant-duration) / 2) ease-out;
+        transition: calc(var(--scrollephant-duration) - 300ms) ease-out;
     }
 
     .scrollephant-button[data-scrollephant-hidden="true"] {

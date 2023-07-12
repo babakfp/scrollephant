@@ -24,7 +24,7 @@
             if (restrictMovement && $isMoving) {
                 setTimeout(() => {
                     $isMoving = false
-                }, $duration)
+                }, $duration - 300)
             }
         } else if (loopUp) {
             moveToLast()
@@ -32,7 +32,7 @@
             if (restrictMovement && $isMoving) {
                 setTimeout(() => {
                     $isMoving = false
-                }, $duration)
+                }, $duration - 300)
             }
         }
     }

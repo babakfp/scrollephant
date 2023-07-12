@@ -26,7 +26,7 @@
         if (restrictMovement && $isMoving) {
             setTimeout(() => {
                 $isMoving = false
-            }, $duration)
+            }, $duration - 300)
         }
     }
 </script>
