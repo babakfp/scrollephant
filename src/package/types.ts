@@ -4,6 +4,7 @@ export interface Props {
     loopUp: boolean
     loopDown: boolean
     restrictMovement: boolean
+    scrollableSubSections: boolean
 }
 
 export interface Section {

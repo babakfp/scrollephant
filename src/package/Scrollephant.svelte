@@ -12,6 +12,7 @@
     export let loopUp: Props["loopUp"] = false
     export let loopDown: Props["loopDown"] = false
     export let restrictMovement: Props["restrictMovement"] = true
+    export let scrollableSubSections: Props["scrollableSubSections"] = false
 
     setContext("direction", direction)
     setContext("loopUp", loopUp)
@@ -162,6 +163,7 @@
         const currentSection = $sections[$activeSectionNumber - 1]
 
         if (
+            scrollableSubSections &&
             currentSection.isSubSectionWrapper &&
             currentSection.subSections.length > 0
         ) {
@@ -182,6 +184,7 @@
         const currentSection = $sections[$activeSectionNumber - 1]
 
         if (
+            scrollableSubSections &&
             currentSection.isSubSectionWrapper &&
             currentSection.subSections.length > 0
         ) {
