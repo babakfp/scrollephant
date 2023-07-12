@@ -7,7 +7,7 @@
     const isMoving: Writable<boolean> = getContext("isMoving")
 </script>
 
-<li class="scrollephant-dot" data-scrollephant-current={isCurrent}>
+<li class="scrollephant-dot" data-scrollephant-dot-current={isCurrent}>
     <button on:click data-scrollephant-disabled={$isMoving}>
         <div />
     </button>
@@ -46,7 +46,7 @@
         transform: scale(0.5);
     }
 
-    li[data-scrollephant-current="true"] button div {
+    li[data-scrollephant-dot-current="true"] button div {
         transform: scale(0.75);
     }
 
@@ -58,7 +58,8 @@
         padding-bottom: 1rem;
     }
 
-    [data-scrollephant-current="false"] [data-scrollephant-disabled="true"] {
+    [data-scrollephant-dot-current="false"]
+        [data-scrollephant-disabled="true"] {
         opacity: 0.5;
         pointer-events: none;
     }
