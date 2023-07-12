@@ -1,7 +1,7 @@
 <script lang="ts">
     import { getContext } from "svelte"
     import type { Writable } from "svelte/store"
-    import type { Sections } from "./types.js"
+    import type { Props, Sections } from "./types.js"
     import ScrollephantDotsContainer from "./ScrollephantDotsContainer.svelte"
     import ScrollephantDotsWrapper from "./ScrollephantDotsWrapper.svelte"
     import ScrollephantDot from "./ScrollephantDot.svelte"
@@ -13,6 +13,22 @@
     const activeSectionNumber: Writable<number> = getContext(
         "activeSectionNumber"
     )
+    const isMoving: Writable<boolean> = getContext("isMoving")
+    const duration: Writable<number> = getContext("duration")
+    const restrictMovement: Writable<Props["restrictMovement"]> =
+        getContext("restrictMovement")
+
+    function handleClick(i: number) {
+        $isMoving = true
+
+        $activeSectionNumber = i + 1
+
+        if (restrictMovement && $isMoving) {
+            setTimeout(() => {
+                $isMoving = false
+            }, $duration)
+        }
+    }
 </script>
 
 <ScrollephantDotsContainer>
@@ -22,7 +38,7 @@
         {#each $sections as section, i}
             <ScrollephantDot
                 isCurrent={i === $activeSectionNumber - 1}
-                on:click={() => ($activeSectionNumber = i + 1)}
+                on:click={() => handleClick(i)}
             >
                 {#if section.label}
                     <ScrollephantTooltip content={section.label} />

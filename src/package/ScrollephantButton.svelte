@@ -1,12 +1,18 @@
 <script lang="ts">
+    import { getContext } from "svelte"
+    import type { Writable } from "svelte/store"
+
     export let isDisabled: boolean
     export let className = ""
     export { className as class }
+
+    const isMoving: Writable<boolean> = getContext("isMoving")
 </script>
 
 <button
     class="scrollephant-button {className}"
-    data-scrollephant-disabled={isDisabled}
+    data-scrollephant-hidden={isDisabled}
+    data-scrollephant-disabled={$isMoving}
     on:click
 >
     <slot />
@@ -22,7 +28,7 @@
         transition: calc(var(--scrollephant-duration) / 2) ease-out;
     }
 
-    .scrollephant-button[data-scrollephant-disabled="true"] {
+    .scrollephant-button[data-scrollephant-hidden="true"] {
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
@@ -41,5 +47,10 @@
     :global(.scrollephant[data-scrollephant-direction="horizontal"])
         .scrollephant-button {
         padding: 0.25rem 1.5rem 1rem 1.5rem;
+    }
+
+    [data-scrollephant-disabled="true"] {
+        opacity: 0.5;
+        pointer-events: none;
     }
 </style>

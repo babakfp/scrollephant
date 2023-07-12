@@ -8,7 +8,10 @@
     export let direction: Props["direction"] = "vertical"
     export let loopUp: Props["loopUp"] = false
     export let loopDown: Props["loopDown"] = false
-    export let restrictMovement: Props["restrictMovement"] = true
+    export let restrictMovement = setContext(
+        "restrictMovement",
+        <Props["restrictMovement"]>true
+    )
     export let scrollableSubSections: Props["scrollableSubSections"] = false
 
     setContext("direction", direction)
@@ -18,9 +21,9 @@
     const sections = setContext("sections", writable<Sections>([]))
     const activeSectionNumber = setContext("activeSectionNumber", writable(1))
     const isMoving = setContext("isMoving", writable(false))
+    const duration = setContext("duration", writable<number>())
 
     let element: HTMLElement
-    let duration: number
 
     const rtl = setContext("rtl", writable(false))
 
@@ -29,7 +32,7 @@
             $rtl = true
         }
 
-        duration = Number(
+        $duration = Number(
             getComputedStyle(element)
                 .getPropertyValue("--scrollephant-duration")
                 .slice(0, -2)
@@ -130,7 +133,7 @@
         if (restrictMovement && $isMoving) {
             setTimeout(() => {
                 $isMoving = false
-            }, duration)
+            }, $duration)
         }
     }
 
@@ -148,7 +151,7 @@
         if (restrictMovement && $isMoving) {
             setTimeout(() => {
                 $isMoving = false
-            }, duration)
+            }, $duration)
         }
     }
 

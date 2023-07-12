@@ -1,9 +1,14 @@
-<script>
+<script lang="ts">
+    import { getContext } from "svelte"
+    import type { Writable } from "svelte/store"
+
     export let isCurrent = false
+
+    const isMoving: Writable<boolean> = getContext("isMoving")
 </script>
 
 <li data-scrollephant-current={isCurrent}>
-    <button on:click>
+    <button on:click data-scrollephant-disabled={$isMoving}>
         <div />
     </button>
 
@@ -22,6 +27,7 @@
         padding: 0;
         cursor: pointer;
         padding: 0.25rem;
+        transition: calc(var(--scrollephant-duration) / 2) ease-out;
     }
 
     button div {
@@ -50,6 +56,11 @@
 
     :global(.scrollephant[data-scrollephant-direction="horizontal"]) button {
         padding-bottom: 1rem;
+    }
+
+    [data-scrollephant-current="false"] [data-scrollephant-disabled="true"] {
+        opacity: 0.5;
+        pointer-events: none;
     }
 
     /* RTL */

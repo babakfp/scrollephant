@@ -10,14 +10,30 @@
     )
     const direction: Props["direction"] = getContext("direction")
     const loopUp: Props["loopUp"] = getContext("loopUp")
+    const isMoving: Writable<boolean> = getContext("isMoving")
+    const duration: Writable<number> = getContext("duration")
+    const restrictMovement: Writable<Props["restrictMovement"]> =
+        getContext("restrictMovement")
 
     $: canMoveBackward = $activeSectionNumber > 1
 
     function moveBackward() {
         if (canMoveBackward) {
             $activeSectionNumber -= 1
+            $isMoving = true
+            if (restrictMovement && $isMoving) {
+                setTimeout(() => {
+                    $isMoving = false
+                }, $duration)
+            }
         } else if (loopUp) {
             moveToLast()
+            $isMoving = true
+            if (restrictMovement && $isMoving) {
+                setTimeout(() => {
+                    $isMoving = false
+                }, $duration)
+            }
         }
     }
 

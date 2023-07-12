@@ -8,7 +8,7 @@
     } from "scrollephant"
 </script>
 
-<Scrollephant loopDown={true} loopUp={true} scrollableSubSections={true}>
+<Scrollephant>
     <ScrollephantWrapper>
         <ScrollephantSection label="Section 1">1</ScrollephantSection>
         <ScrollephantSection label="Section 2">
