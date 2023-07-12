@@ -5,7 +5,6 @@
 
     export let autoHeight = false
     export let label = ""
-    export let isSubSectionWrapper = false
 
     const sections: Writable<Sections> = getContext("sections")
     const activeSectionNumber: Writable<number> = getContext(
@@ -27,7 +26,6 @@
                 label,
                 autoHeight,
                 subSections: $subSections,
-                isSubSectionWrapper,
                 translateY: 0,
                 translateX: 0,
             }
@@ -45,7 +43,7 @@
     class="scrollephant-section"
     data-scrollephant-current={$activeSectionNumber === id}
     data-scrollephant-auto-height={autoHeight}
-    data-scrollephant-is-subsection-wrapper={isSubSectionWrapper}
+    data-scrollephant-have-subsection={$subSections.length > 0}
     data-scrollephant-id={id}
     bind:this={element}
     style:--scrollephant-translate-y-subsection="-{$movement === "scroll"

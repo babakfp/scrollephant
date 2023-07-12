@@ -162,11 +162,7 @@
     function moveForward() {
         const currentSection = $sections[$activeSectionNumber - 1]
 
-        if (
-            scrollableSubSections &&
-            currentSection.isSubSectionWrapper &&
-            currentSection.subSections.length > 0
-        ) {
+        if (scrollableSubSections && currentSection.subSections.length > 0) {
             if (canMoveToNextSubSection()) {
                 if (restrictMovement) {
                     $isMoving = true
@@ -183,11 +179,7 @@
     function moveBackward() {
         const currentSection = $sections[$activeSectionNumber - 1]
 
-        if (
-            scrollableSubSections &&
-            currentSection.isSubSectionWrapper &&
-            currentSection.subSections.length > 0
-        ) {
+        if (scrollableSubSections && currentSection.subSections.length > 0) {
             if (canMoveToPrevSubSection()) {
                 if (restrictMovement) {
                     $isMoving = true

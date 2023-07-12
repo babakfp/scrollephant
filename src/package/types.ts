@@ -13,7 +13,6 @@ export interface Section {
     label?: string
     autoHeight: boolean
     subSections: SubSections
-    isSubSectionWrapper: boolean
     translateY: number
     translateX: number
 }

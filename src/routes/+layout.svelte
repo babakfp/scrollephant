@@ -16,7 +16,7 @@
         font-size: 4rem;
     }
     :global(
-            .scrollephant-section:not([data-scrollephant-is-subsection-wrapper])
+            .scrollephant-section:not([data-scrollephant-have-subsection])
                 .scrollephant-section-inner
         ) {
         justify-content: center;

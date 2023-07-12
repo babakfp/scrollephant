@@ -13,7 +13,7 @@
         <ScrollephantSection label="Section 1">
             <div class="section-inner">1</div>
         </ScrollephantSection>
-        <ScrollephantSection label="Section 2" isSubSectionWrapper={true}>
+        <ScrollephantSection label="Section 2">
             <ScrollephantSubSection label="Section 2.1">
                 <div class="section-inner">2.1</div>
             </ScrollephantSubSection>
