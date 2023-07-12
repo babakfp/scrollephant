@@ -9,16 +9,9 @@
 
 <Scrollephant loopUp={true} loopDown={true}>
     <ScrollephantWrapper>
-        <ScrollephantSection label="Section 1">
-            <div class="section-inner">1</div>
-        </ScrollephantSection>
-        <ScrollephantSection label="Section 2">
-            <div class="section-inner">2</div>
-        </ScrollephantSection>
-        <ScrollephantSection label="Section 3">
-            <div class="section-inner">3</div>
-        </ScrollephantSection>
+        <ScrollephantSection label="Section 1">1</ScrollephantSection>
+        <ScrollephantSection label="Section 2">2</ScrollephantSection>
+        <ScrollephantSection label="Section 3">3</ScrollephantSection>
     </ScrollephantWrapper>
-
     <ScrollephantDots />
 </Scrollephant>

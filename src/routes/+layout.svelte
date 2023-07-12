@@ -2,23 +2,26 @@
 
 <style>
     :global(body) {
-        margin: 0;
-        overflow: hidden;
         font-family: JetBrains Mono;
     }
 
     :global(.scrollephant-section-inner) {
-        display: flex;
         align-items: center;
-        width: 100%;
-        height: 100%;
         color: white;
         font-size: 4rem;
     }
     :global(
-            .scrollephant-section:not([data-scrollephant-have-subsection])
+            .scrollephant-section:not(
+                    [data-scrollephant-have-subsection="true"]
+                )
                 .scrollephant-section-inner
         ) {
+        display: flex;
+        justify-content: center;
+    }
+    :global(.scrollephant-subsection) {
+        display: flex;
+        align-items: center;
         justify-content: center;
     }
     :global(.scrollephant-section) {

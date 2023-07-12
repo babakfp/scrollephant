@@ -122,8 +122,11 @@
 
     /* --- */
 
-    .scrollephant-section-inner {
+    [data-scrollephant-have-subsection="true"] .scrollephant-section-inner {
         display: flex;
+    }
+
+    .scrollephant-section-inner {
         transition-property: transform;
         transition-duration: var(--scrollephant-duration);
         transition-timing-function: var(--scrollephant-timing-function);

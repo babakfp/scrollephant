@@ -320,6 +320,11 @@
 </div>
 
 <style>
+    :global(body) {
+        margin: 0;
+        overflow: hidden;
+    }
+
     .scrollephant {
         --scrollephant-duration: 700ms;
         --scrollephant-timing-function: ease-out;
