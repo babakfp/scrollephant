@@ -28,6 +28,7 @@
                 subSections: $subSections,
                 translateY: 0,
                 translateX: 0,
+                activeSubSectionNumber: 1,
             }
             return [...currentValue, newSection]
         })

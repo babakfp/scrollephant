@@ -20,10 +20,6 @@
 
     const sections = setContext("sections", writable<Sections>([]))
     const activeSectionNumber = setContext("activeSectionNumber", writable(1))
-    const activeSubSectionNumber = setContext(
-        "activeSubSectionNumber",
-        writable(1)
-    )
     const isMoving = setContext("isMoving", writable(false))
 
     let element: HTMLElement
@@ -55,7 +51,7 @@
     $: {
         const { y, x } = getYXSubSection(
             $sections[$activeSectionNumber - 1],
-            $activeSubSectionNumber
+            $sections[$activeSectionNumber - 1]?.activeSubSectionNumber
         )
         if ($sections.length > 0) {
             $sections[$activeSectionNumber - 1].translateY = y
@@ -206,27 +202,27 @@
                 $isMoving = true
             }
             jumpToFirst()
-            // setSubSectionsToFirstPosition()
+            resetSubSectionsToFirstPosition()
         }
     }
 
-    // function setSubSectionsToFirstPosition() {
-    //     $activeSubSectionNumber = 1
-    //     $sections.map(sections => {
-    //         sections.translateY = 0
-    //         sections.translateX = 0
-    //         return sections
-    //     })
-    // }
+    function resetSubSectionsToFirstPosition() {
+        $sections.map(section => {
+            section.activeSubSectionNumber = 1
+            section.translateY = 0
+            section.translateX = 0
+            return section
+        })
+    }
 
-    // function setSubSectionsToLastPosition() {
-    //     $activeSubSectionNumber = 1
-    //     $sections.map(sections => {
-    //         sections.translateY = 0
-    //         sections.translateX = 0
-    //         return sections
-    //     })
-    // }
+    function resetSubSectionsToLastPosition() {
+        $sections.map(section => {
+            section.activeSubSectionNumber = 1
+            section.translateY = 0
+            section.translateX = 0
+            return section
+        })
+    }
 
     function moveSectionBackward() {
         if (canMoveToPrev()) {
@@ -252,13 +248,13 @@
 
     function canMoveToNextSubSection() {
         return (
-            $activeSubSectionNumber <
+            $sections[$activeSectionNumber - 1].activeSubSectionNumber <
             $sections[$activeSectionNumber - 1].subSections.length
         )
     }
 
     function canMoveToPrevSubSection() {
-        return $activeSubSectionNumber > 1
+        return $sections[$activeSectionNumber - 1].activeSubSectionNumber > 1
     }
 
     function moveToNext() {
@@ -270,11 +266,11 @@
     }
 
     function moveToNextSubSection() {
-        $activeSubSectionNumber += 1
+        $sections[$activeSectionNumber - 1].activeSubSectionNumber += 1
     }
 
     function moveToPrevSubSection() {
-        $activeSubSectionNumber -= 1
+        $sections[$activeSectionNumber - 1].activeSubSectionNumber -= 1
     }
 
     function jumpToFirst() {
@@ -286,11 +282,12 @@
     }
 
     function jumpToFirstSubSection() {
-        $activeSubSectionNumber = 1
+        $sections[$activeSectionNumber - 1].activeSubSectionNumber = 1
     }
 
     function jumpToLastSubSection() {
-        $activeSubSectionNumber = $sections.length
+        $sections[$activeSectionNumber - 1].activeSubSectionNumber =
+            $sections.length
     }
 
     function isWheelingForward(e: WheelEvent) {

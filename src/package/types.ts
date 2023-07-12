@@ -15,6 +15,7 @@ export interface Section {
     subSections: SubSections
     translateY: number
     translateX: number
+    activeSubSectionNumber: number
 }
 
 export type Sections = Section[] | []
