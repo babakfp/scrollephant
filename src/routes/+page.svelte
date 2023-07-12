@@ -4,7 +4,10 @@
         ScrollephantWrapper,
         ScrollephantSection,
         ScrollephantSubSection,
+        ScrollephantNavigationsWrapper,
+        ScrollephantButtonPrev,
         ScrollephantDots,
+        ScrollephantButtonNext,
     } from "scrollephant"
 </script>
 
@@ -24,5 +27,10 @@
         </ScrollephantSection>
         <ScrollephantSection label="Section 3">3</ScrollephantSection>
     </ScrollephantWrapper>
-    <ScrollephantDots />
+
+    <ScrollephantNavigationsWrapper>
+        <ScrollephantButtonPrev />
+        <ScrollephantDots />
+        <ScrollephantButtonNext />
+    </ScrollephantNavigationsWrapper>
 </Scrollephant>

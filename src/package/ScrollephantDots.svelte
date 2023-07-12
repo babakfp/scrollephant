@@ -2,12 +2,8 @@
     import { getContext } from "svelte"
     import type { Writable } from "svelte/store"
     import type { Props, Sections } from "./types.js"
-    import ScrollephantNavigationsWrapper from "./ScrollephantNavigationsWrapper.svelte"
-    import ScrollephantDotsWrapper from "./ScrollephantDotsWrapper.svelte"
     import ScrollephantDot from "./ScrollephantDot.svelte"
     import ScrollephantTooltip from "./ScrollephantTooltip.svelte"
-    import ScrollephantButtonNext from "./ScrollephantButtonNext.svelte"
-    import ScrollephantButtonPrev from "./ScrollephantButtonPrev.svelte"
 
     const sections: Writable<Sections> = getContext("sections")
     const activeSectionNumber: Writable<number> = getContext(
@@ -31,21 +27,31 @@
     }
 </script>
 
-<ScrollephantNavigationsWrapper>
-    <ScrollephantButtonPrev />
+<ol>
+    {#each $sections as section, i}
+        <ScrollephantDot
+            isCurrent={i === $activeSectionNumber - 1}
+            on:click={() => handleClick(i)}
+        >
+            {#if section.label}
+                <ScrollephantTooltip content={section.label} />
+            {/if}
+        </ScrollephantDot>
+    {/each}
+</ol>
 
-    <ScrollephantDotsWrapper>
-        {#each $sections as section, i}
-            <ScrollephantDot
-                isCurrent={i === $activeSectionNumber - 1}
-                on:click={() => handleClick(i)}
-            >
-                {#if section.label}
-                    <ScrollephantTooltip content={section.label} />
-                {/if}
-            </ScrollephantDot>
-        {/each}
-    </ScrollephantDotsWrapper>
+<style>
+    ol {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
 
-    <ScrollephantButtonNext />
-</ScrollephantNavigationsWrapper>
+    :global(.scrollephant[data-scrollephant-direction="vertical"]) ol {
+        display: grid;
+    }
+
+    :global(.scrollephant[data-scrollephant-direction="horizontal"]) ol {
+        display: flex;
+    }
+</style>
