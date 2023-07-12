@@ -10,7 +10,7 @@
     const activeSectionNumber: Writable<number> = getContext(
         "activeSectionNumber"
     )
-    const movement: Writable<Props["movement"]> = getContext("movement")
+    const movement = getContext<Props["movement"]>("movement")
     const rtl: Writable<number> = getContext("rtl")
     const subSections = setContext("subSections", writable<SubSections>([]))
 
@@ -47,12 +47,13 @@
     data-scrollephant-have-subsection={$subSections.length > 0}
     data-scrollephant-id={id}
     bind:this={element}
-    style:--scrollephant-translate-y-subsection="-{$movement === "scroll"
+    style:--scrollephant-translate-y-subsection="-{movement === "scroll"
         ? translateY
         : 0}px"
-    style:--scrollephant-translate-x-subsection="{!$rtl
-        ? "-"
-        : ""}{$movement === "scroll" ? translateX : 0}px"
+    style:--scrollephant-translate-x-subsection="{!$rtl ? "-" : ""}{movement ===
+    "scroll"
+        ? translateX
+        : 0}px"
 >
     <div class="scrollephant-section-inner">
         <slot />

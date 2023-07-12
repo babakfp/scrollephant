@@ -4,10 +4,7 @@
     import type { Props, Section, Sections } from "./types.js"
     import { swipe, type SwipeEvent } from "./swipe.js"
 
-    export let movement = setContext(
-        "movement",
-        writable<Props["movement"]>("scroll")
-    )
+    export let movement = setContext("movement", <Props["movement"]>"scroll")
     export let direction: Props["direction"] = "vertical"
     export let loopUp: Props["loopUp"] = false
     export let loopDown: Props["loopDown"] = false
@@ -303,12 +300,12 @@
 
 <div
     class="scrollephant"
-    data-scrollephant-movement={$movement}
+    data-scrollephant-movement={movement}
     data-scrollephant-direction={direction}
-    style:--scrollephant-translate-y="-{$movement === "scroll"
+    style:--scrollephant-translate-y="-{movement === "scroll"
         ? translateY
         : 0}px"
-    style:--scrollephant-translate-x="{!$rtl ? "-" : ""}{$movement === "scroll"
+    style:--scrollephant-translate-x="{!$rtl ? "-" : ""}{movement === "scroll"
         ? translateX
         : 0}px"
     on:wheel|preventDefault={handleMousewheel}
