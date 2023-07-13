@@ -4,6 +4,7 @@
     import type { Sections, SubSection, SubSections } from "./types.js"
 
     export let label = ""
+    export let autoHeight = false
 
     const sections: Writable<Sections> = getContext("sections")
     const activeSectionNumber: Writable<number> = getContext(
@@ -21,6 +22,7 @@
                 id,
                 ref: element,
                 label,
+                autoHeight,
             }
             return [...currentValue, newSubSection]
         })
