@@ -3,7 +3,6 @@
         Scrollephant,
         ScrollephantWrapper,
         ScrollephantSection,
-        ScrollephantDots,
     } from "scrollephant"
 </script>
 
@@ -15,5 +14,4 @@
         <ScrollephantSection label="Section 2">2</ScrollephantSection>
         <ScrollephantSection label="Section 3">3</ScrollephantSection>
     </ScrollephantWrapper>
-    <ScrollephantDots />
 </Scrollephant>

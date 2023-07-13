@@ -3,7 +3,6 @@
         Scrollephant,
         ScrollephantWrapper,
         ScrollephantSection,
-        ScrollephantDots,
     } from "scrollephant"
 </script>
 
@@ -15,5 +14,4 @@
             Auto Height
         </ScrollephantSection>
     </ScrollephantWrapper>
-    <ScrollephantDots />
 </Scrollephant>
