@@ -46,11 +46,11 @@
 
     :global(.scrollephant[data-scrollephant-direction="vertical"])
         .scrollephant-button {
-        padding: 1.5rem 1rem 1.5rem 0.25rem;
+        padding: 1rem 1rem 1rem 0.25rem;
     }
 
     :global(.scrollephant[data-scrollephant-direction="horizontal"])
         .scrollephant-button {
-        padding: 0.25rem 1.5rem 1rem 1.5rem;
+        padding: 0.25rem 1rem 1rem 1rem;
     }
 </style>
