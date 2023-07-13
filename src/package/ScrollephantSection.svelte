@@ -147,7 +147,6 @@
     :global(.scrollephant[data-scrollephant-movement="fade"])
         .scrollephant-section-inner {
         position: relative;
-        display: block;
         height: 100vh;
         height: 100dvh;
         width: 100vw;
