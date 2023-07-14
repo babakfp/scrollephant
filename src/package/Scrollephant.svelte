@@ -206,6 +206,21 @@
         }
     }
 
+    function moveSectionBackward() {
+        if (canMoveToPrev()) {
+            if (restrictMovement) {
+                $isMoving = true
+            }
+            moveToPrev()
+        } else if (loopUp) {
+            if (restrictMovement) {
+                $isMoving = true
+            }
+            jumpToLast()
+            resetSubSectionsToLastPosition()
+        }
+    }
+
     function resetSubSectionsToFirstPosition() {
         $sections.map(section => {
             section.activeSubSectionNumber = 1
@@ -222,20 +237,6 @@
             section.translateX = 0
             return section
         })
-    }
-
-    function moveSectionBackward() {
-        if (canMoveToPrev()) {
-            if (restrictMovement) {
-                $isMoving = true
-            }
-            moveToPrev()
-        } else if (loopUp) {
-            if (restrictMovement) {
-                $isMoving = true
-            }
-            jumpToLast()
-        }
     }
 
     function canMoveToNext() {
