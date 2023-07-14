@@ -4,10 +4,6 @@
         ScrollephantWrapper,
         ScrollephantSection,
         ScrollephantSubSection,
-        ScrollephantNavigationsWrapper,
-        ScrollephantButtonPrev,
-        ScrollephantDots,
-        ScrollephantButtonNext,
     } from "scrollephant"
 </script>
 
