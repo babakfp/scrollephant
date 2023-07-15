@@ -12,7 +12,7 @@
         "restrictMovement",
         <Props["restrictMovement"]>true
     )
-    export let scrollableSubSections: Props["scrollableSubSections"] = false
+    export let scrollableSubSections: Props["scrollableSubSections"] = true
 
     setContext("direction", direction)
     setContext("loopUp", loopUp)
