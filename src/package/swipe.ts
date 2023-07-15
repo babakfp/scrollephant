@@ -34,7 +34,7 @@ interface Options {
 
 export function swipe(
     element: HTMLElement,
-    options?: Options
+    options?: Options,
 ): ActionReturn<undefined, Attributes> {
     const mergedOptions = {
         ...{
@@ -94,12 +94,12 @@ export function swipe(
 
         if (mergedOptions.thresholdUnit === "vh") {
             thresholdSize = Math.round(
-                (thresholdSize / 100) * document.documentElement.clientHeight
+                (thresholdSize / 100) * document.documentElement.clientHeight,
             ) // get percentage of viewport height in pixels
         }
         if (mergedOptions.thresholdUnit === "vw") {
             thresholdSize = Math.round(
-                (thresholdSize / 100) * document.documentElement.clientWidth
+                (thresholdSize / 100) * document.documentElement.clientWidth,
             ) // get percentage of viewport height in pixels
         }
 
@@ -141,7 +141,7 @@ export function swipe(
                         yStart: touchStartClientY,
                         yEnd: (changedTouches[0] || {}).clientY || -1,
                     },
-                })
+                }),
             )
         }
 

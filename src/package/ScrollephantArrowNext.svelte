@@ -68,10 +68,10 @@
         padding-top: 0.5rem;
     }
 
-    :global(
-            .scrollephant[data-scrollephant-direction="horizontal"]
-                .scrollephant-arrow-next
-        ) {
-        padding-left: 0.5rem;
-    }
+	:global(
+			.scrollephant[data-scrollephant-direction="horizontal"]
+				.scrollephant-arrow-next
+		) {
+		padding-left: 0.5rem;
+	}
 </style>
