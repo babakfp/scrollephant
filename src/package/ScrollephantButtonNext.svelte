@@ -19,16 +19,20 @@
 
     function moveForward() {
         if (canMoveForward) {
+            if (restrictMovement && $isMoving) {
+                $isMoving = true
+            }
             $activeSectionNumber += 1
-            $isMoving = true
             if (restrictMovement && $isMoving) {
                 setTimeout(() => {
                     $isMoving = false
                 }, $duration - 300)
             }
         } else if (loopDown) {
+            if (restrictMovement && $isMoving) {
+                $isMoving = true
+            }
             moveToFirst()
-            $isMoving = true
             if (restrictMovement && $isMoving) {
                 setTimeout(() => {
                     $isMoving = false

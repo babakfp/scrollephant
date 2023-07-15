@@ -15,7 +15,9 @@
         getContext("restrictMovement")
 
     function handleClick(i: number) {
-        $isMoving = true
+        if (restrictMovement && $isMoving) {
+            $isMoving = true
+        }
 
         $activeSectionNumber = i + 1
 

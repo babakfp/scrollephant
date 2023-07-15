@@ -19,16 +19,20 @@
 
     function moveBackward() {
         if (canMoveBackward) {
+            if (restrictMovement && $isMoving) {
+                $isMoving = true
+            }
             $activeSectionNumber -= 1
-            $isMoving = true
             if (restrictMovement && $isMoving) {
                 setTimeout(() => {
                     $isMoving = false
                 }, $duration - 300)
             }
         } else if (loopUp) {
+            if (restrictMovement && $isMoving) {
+                $isMoving = true
+            }
             moveToLast()
-            $isMoving = true
             if (restrictMovement && $isMoving) {
                 setTimeout(() => {
                     $isMoving = false
