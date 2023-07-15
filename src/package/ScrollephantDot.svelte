@@ -17,6 +17,9 @@
 
 <style>
     li {
+        --dot-button-padding: 0.25rem;
+        --dot-button-corner-padding: 1rem;
+
         position: relative;
         display: flex;
     }
@@ -26,7 +29,7 @@
         background: transparent;
         padding: 0;
         cursor: pointer;
-        padding: 0.25rem;
+        padding: var(--dot-button-padding);
         transition: calc(var(--scrollephant-duration) - 300ms) ease-out;
     }
 
@@ -51,11 +54,11 @@
     }
 
     :global(.scrollephant[data-scrollephant-direction="vertical"]) button {
-        padding-right: 1rem;
+        padding-right: var(--dot-button-corner-padding);
     }
 
     :global(.scrollephant[data-scrollephant-direction="horizontal"]) button {
-        padding-bottom: 1rem;
+        padding-bottom: var(--dot-button-corner-padding);
     }
 
     [data-scrollephant-dot-current="false"]
@@ -70,7 +73,7 @@
                 .scrollephant[data-scrollephant-direction="vertical"]
         )
         button {
-        padding-right: 0.25rem;
-        padding-left: 1rem;
+        padding-right: var(--dot-button-padding);
+        padding-left: var(--dot-button-corner-padding);
     }
 </style>
