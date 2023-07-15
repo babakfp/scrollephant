@@ -11,8 +11,8 @@
 
 <button
     class="scrollephant-arrow {className}"
-    data-scrollephant-hidden={isDisabled}
-    data-scrollephant-disabled={$isMoving}
+    data-scrollephant-arrow-hidden={isDisabled}
+    data-scrollephant-arrow-disabled={$isMoving}
     on:click
 >
     <slot />
@@ -28,13 +28,13 @@
         transition: calc(var(--scrollephant-duration) - 300ms) ease-out;
     }
 
-    .scrollephant-arrow[data-scrollephant-hidden="true"] {
+    .scrollephant-arrow[data-scrollephant-arrow-hidden="true"] {
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
     }
 
-    .scrollephant-arrow[data-scrollephant-disabled="true"] {
+    .scrollephant-arrow[data-scrollephant-arrow-disabled="true"] {
         opacity: 0.5;
         pointer-events: none;
     }

@@ -8,7 +8,7 @@
 </script>
 
 <li class="scrollephant-dot" data-scrollephant-dot-current={isCurrent}>
-    <button on:click data-scrollephant-disabled={$isMoving}>
+    <button on:click data-scrollephant-dot-disabled={$isMoving}>
         <div />
     </button>
 
@@ -62,7 +62,7 @@
     }
 
     [data-scrollephant-dot-current="false"]
-        [data-scrollephant-disabled="true"] {
+        [data-scrollephant-dot-disabled="true"] {
         opacity: 0.5;
         pointer-events: none;
     }
