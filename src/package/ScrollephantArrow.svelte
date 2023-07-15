@@ -10,7 +10,7 @@
 </script>
 
 <button
-    class="scrollephant-button {className}"
+    class="scrollephant-arrow {className}"
     data-scrollephant-hidden={isDisabled}
     data-scrollephant-disabled={$isMoving}
     on:click
@@ -19,7 +19,7 @@
 </button>
 
 <style>
-    .scrollephant-button {
+    .scrollephant-arrow {
         border: none;
         background: transparent;
         padding: 0;
@@ -28,29 +28,29 @@
         transition: calc(var(--scrollephant-duration) - 300ms) ease-out;
     }
 
-    .scrollephant-button[data-scrollephant-hidden="true"] {
+    .scrollephant-arrow[data-scrollephant-hidden="true"] {
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
     }
 
-    .scrollephant-button[data-scrollephant-disabled="true"] {
+    .scrollephant-arrow[data-scrollephant-disabled="true"] {
         opacity: 0.5;
         pointer-events: none;
     }
 
-    .scrollephant-button :global(svg) {
+    .scrollephant-arrow :global(svg) {
         width: 1rem;
         color: white;
     }
 
     :global(.scrollephant[data-scrollephant-direction="vertical"])
-        .scrollephant-button {
+        .scrollephant-arrow {
         padding: 1rem 1rem 1rem 0.25rem;
     }
 
     :global(.scrollephant[data-scrollephant-direction="horizontal"])
-        .scrollephant-button {
+        .scrollephant-arrow {
         padding: 0.25rem 1rem 1rem 1rem;
     }
 </style>

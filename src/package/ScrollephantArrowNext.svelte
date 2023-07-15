@@ -47,30 +47,30 @@
 </script>
 
 <ScrollephantArrow
-    class="scrollephant-button-next"
+    class="scrollephant-arrow-next"
     isDisabled={!(canMoveForward || loopDown)}
     on:click={moveForward}
 >
     {#if direction === "vertical"}
         <!-- prettier-ignore -->
-        <svg class="scrollephant-button-prev-down" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25 12 21m0 0-3.75-3.75M12 21V3"/></svg>
+        <svg class="scrollephant-arrow-prev-down" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25 12 21m0 0-3.75-3.75M12 21V3"/></svg>
     {:else}
         <!-- prettier-ignore -->
-        <svg class="scrollephant-button-prev-right" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"/></svg>
+        <svg class="scrollephant-arrow-prev-right" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"/></svg>
     {/if}
 </ScrollephantArrow>
 
 <style>
     :global(
             .scrollephant[data-scrollephant-direction="vertical"]
-                .scrollephant-button-next
+                .scrollephant-arrow-next
         ) {
         padding-top: 0.5rem;
     }
 
     :global(
             .scrollephant[data-scrollephant-direction="horizontal"]
-                .scrollephant-button-next
+                .scrollephant-arrow-next
         ) {
         padding-left: 0.5rem;
     }
