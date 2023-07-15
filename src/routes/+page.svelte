@@ -5,9 +5,9 @@
         ScrollephantSection,
         ScrollephantSubSection,
         ScrollephantNavigationsWrapper,
-        ScrollephantButtonPrev,
+        ScrollephantArrowPrev,
         ScrollephantDots,
-        ScrollephantButtonNext,
+        ScrollephantArrowNext,
     } from "scrollephant"
 </script>
 
@@ -29,8 +29,8 @@
     </ScrollephantWrapper>
 
     <ScrollephantNavigationsWrapper>
-        <ScrollephantButtonPrev />
+        <ScrollephantArrowPrev />
         <ScrollephantDots />
-        <ScrollephantButtonNext />
+        <ScrollephantArrowNext />
     </ScrollephantNavigationsWrapper>
 </Scrollephant>
