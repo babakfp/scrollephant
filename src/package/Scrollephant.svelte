@@ -49,11 +49,11 @@
     }
 
     $: {
-        const { y, x } = getYXSubSection(
-            $sections[$activeSectionNumber - 1],
-            $sections[$activeSectionNumber - 1]?.activeSubSectionNumber
-        )
-        if ($sections.length > 0) {
+		if ($sections.length > 0) {
+			const { y, x } = getYXSubSection(
+				$sections[$activeSectionNumber - 1],
+				$sections[$activeSectionNumber - 1]?.activeSubSectionNumber
+			)
             $sections[$activeSectionNumber - 1].translateY = y
             $sections[$activeSectionNumber - 1].translateX = x
         }
