@@ -11,16 +11,23 @@
     )
     const isMoving: Writable<boolean> = getContext("isMoving")
     const duration: Writable<number> = getContext("duration")
-    const restrictMovement: Writable<Props["restrictMovement"]> =
-        getContext("restrictMovement")
+    const restrictMovement: Writable<Props["restrictMovement"]> = getContext(
+        "restrictMovement"
+    )
 
     function handleClick(i: number) {
+        setIsMovingToTrue()
+        $activeSectionNumber = i + 1
+        setIsMovingToFalse()
+    }
+
+    function setIsMovingToTrue() {
         if (restrictMovement && $isMoving) {
             $isMoving = true
         }
+    }
 
-        $activeSectionNumber = i + 1
-
+    function setIsMovingToFalse() {
         if (restrictMovement && $isMoving) {
             setTimeout(() => {
                 $isMoving = false
