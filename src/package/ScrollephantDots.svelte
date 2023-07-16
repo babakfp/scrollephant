@@ -16,18 +16,12 @@
     )
 
     function handleClick(i: number) {
-        setIsMovingToTrue()
-        $activeSectionNumber = i + 1
-        setIsMovingToFalse()
-    }
-
-    function setIsMovingToTrue() {
-        if (restrictMovement && $isMoving) {
+        if (restrictMovement) {
             $isMoving = true
         }
-    }
 
-    function setIsMovingToFalse() {
+        $activeSectionNumber = i + 1
+
         if (restrictMovement && $isMoving) {
             setTimeout(() => {
                 $isMoving = false
