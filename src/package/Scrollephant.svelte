@@ -130,11 +130,7 @@
             moveBackward()
         }
 
-        if (restrictMovement && $isMoving) {
-            setTimeout(() => {
-                $isMoving = false
-            }, $duration)
-        }
+        setIsMovingToFalse()
     }
 
     function handleMousewheel(e: WheelEvent) {
@@ -148,11 +144,7 @@
             moveBackward()
         }
 
-        if (restrictMovement && $isMoving) {
-            setTimeout(() => {
-                $isMoving = false
-            }, $duration)
-        }
+        setIsMovingToFalse()
     }
 
     function moveForward() {
@@ -297,6 +289,14 @@
 
     function isWheelingBackward(e: WheelEvent) {
         return e.deltaY < 0
+    }
+
+	function setIsMovingToFalse() {
+        if (restrictMovement && $isMoving) {
+            setTimeout(() => {
+                $isMoving = false
+            }, $duration)
+        }
     }
 </script>
 
