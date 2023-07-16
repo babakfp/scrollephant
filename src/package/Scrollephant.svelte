@@ -42,7 +42,7 @@
     let translateY = 0
     let translateX = 0
 
-    $: {
+    $: if ($sections.length > 0) {
         const { y, x } = getYX($activeSectionNumber)
         translateY = y
         translateX = x
