@@ -12,43 +12,50 @@
     const loopUp: Props["loopUp"] = getContext("loopUp")
     const isMoving: Writable<boolean> = getContext("isMoving")
     const duration: Writable<number> = getContext("duration")
-    const restrictMovement: Writable<Props["restrictMovement"]> =
-        getContext("restrictMovement")
+    const restrictMovement: Writable<Props["restrictMovement"]> = getContext(
+        "restrictMovement"
+    )
 
-    $: canMoveBackward = $activeSectionNumber > 1
+    $: canMoveSectionBackward = $activeSectionNumber > 1
 
     function moveBackward() {
-        if (canMoveBackward) {
-            if (restrictMovement && $isMoving) {
-                $isMoving = true
-            }
-            $activeSectionNumber -= 1
-            if (restrictMovement && $isMoving) {
-                setTimeout(() => {
-                    $isMoving = false
-                }, $duration - 300)
-            }
+        if (canMoveSectionBackward) {
+            setIsMovingToTrue()
+            moveToPrevSection()
+            setIsMovingToFalse()
         } else if (loopUp) {
-            if (restrictMovement && $isMoving) {
-                $isMoving = true
-            }
-            moveToLast()
-            if (restrictMovement && $isMoving) {
-                setTimeout(() => {
-                    $isMoving = false
-                }, $duration - 300)
-            }
+            setIsMovingToTrue()
+            moveToLastSection()
+            setIsMovingToFalse()
         }
     }
 
-    function moveToLast() {
+    function moveToPrevSection() {
+        $activeSectionNumber -= 1
+    }
+
+    function moveToLastSection() {
         activeSectionNumber.set($sections.length)
+    }
+
+    function setIsMovingToTrue() {
+        if (restrictMovement && $isMoving) {
+            $isMoving = true
+        }
+    }
+
+    function setIsMovingToFalse() {
+        if (restrictMovement && $isMoving) {
+            setTimeout(() => {
+                $isMoving = false
+            }, $duration - 300)
+        }
     }
 </script>
 
 <ScrollephantArrow
     class="scrollephant-arrow-prev"
-    isDisabled={!(canMoveBackward || loopUp)}
+    isDisabled={!(canMoveSectionBackward || loopUp)}
     on:click={moveBackward}
 >
     {#if direction === "vertical"}
@@ -61,17 +68,13 @@
 </ScrollephantArrow>
 
 <style>
-    :global(
-            .scrollephant[data-scrollephant-direction="vertical"]
-                .scrollephant-arrow-prev
-        ) {
+    :global(.scrollephant[data-scrollephant-direction="vertical"]
+            .scrollephant-arrow-prev) {
         padding-bottom: 0.5rem;
     }
 
-    :global(
-            .scrollephant[data-scrollephant-direction="horizontal"]
-                .scrollephant-arrow-prev
-        ) {
+    :global(.scrollephant[data-scrollephant-direction="horizontal"]
+            .scrollephant-arrow-prev) {
         padding-right: 0.5rem;
     }
 </style>
