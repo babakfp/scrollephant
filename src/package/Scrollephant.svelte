@@ -81,10 +81,7 @@
             }
         }
 
-        return {
-            y,
-            x,
-        }
+        return { y, x }
     }
 
     function getYXSubSection(section: Section, activeSubSectionNumber: number) {
@@ -105,16 +102,11 @@
             }
         }
 
-        return {
-            y,
-            x,
-        }
+        return { y, x }
     }
 
     function handleSwipe(e: SwipeEvent) {
-        if (restrictMovement && $isMoving) {
-            return
-        }
+        if (restrictMovement && $isMoving) return
 
         const isSwipeForward =
             (direction === "vertical" && e.detail.direction === "up") ||
@@ -134,9 +126,7 @@
     }
 
     function handleMousewheel(e: WheelEvent) {
-        if (restrictMovement && $isMoving) {
-            return
-        }
+        if (restrictMovement && $isMoving) return
 
         if (isWheelingForward(e)) {
             moveForward()
