@@ -10,10 +10,10 @@
     )
     const direction: Props["direction"] = getContext("direction")
     const loopDown: Props["loopDown"] = getContext("loopDown")
+	const setIsMovingToTrue = getContext<() => void>("setIsMovingToTrue")
 	const setIsMovingToFalse = getContext<() => void>("setIsMovingToFalse")
 	const moveToNextSection = getContext<() => void>("moveToNextSection")
 	const moveToFirstSection = getContext<() => void>("moveToFirstSection")
-	const setIsMovingToTrue = getContext<() => void>("setIsMovingToTrue")
 
     $: canMoveSectionForward = $activeSectionNumber < $sections.length
 
