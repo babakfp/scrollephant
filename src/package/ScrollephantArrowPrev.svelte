@@ -12,6 +12,8 @@
     const loopUp: Props["loopUp"] = getContext("loopUp")
 	const setIsMovingToTrue = getContext<() => void>("setIsMovingToTrue")
 	const setIsMovingToFalse = getContext<() => void>("setIsMovingToFalse")
+	const moveToPrevSection = getContext<() => void>("moveToPrevSection")
+	const moveToLastSection = getContext<() => void>("moveToLastSection")
 
     $: canMoveSectionBackward = $activeSectionNumber > 1
 
@@ -25,14 +27,6 @@
             moveToLastSection()
             setIsMovingToFalse()
         }
-    }
-
-    function moveToPrevSection() {
-        $activeSectionNumber -= 1
-    }
-
-    function moveToLastSection() {
-        activeSectionNumber.set($sections.length)
     }
 </script>
 
