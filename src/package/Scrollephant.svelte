@@ -237,6 +237,7 @@
     function moveToNextSection() {
         $activeSectionNumber += 1
     }
+	setContext('moveToNextSection', moveToNextSection)
 
     function moveToPrevSection() {
         $activeSectionNumber -= 1
@@ -253,6 +254,7 @@
     function moveToFirstSection() {
         $activeSectionNumber = 1
     }
+	setContext('moveToFirstSection', moveToFirstSection)
 
     function moveToLastSection() {
         $activeSectionNumber = $sections.length

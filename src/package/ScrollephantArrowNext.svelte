@@ -16,6 +16,8 @@
         "restrictMovement"
     )
 	const setIsMovingToFalse = getContext<() => void>("setIsMovingToFalse")
+	const moveToNextSection = getContext<() => void>("moveToNextSection")
+	const moveToFirstSection = getContext<() => void>("moveToFirstSection")
 
     $: canMoveSectionForward = $activeSectionNumber < $sections.length
 
@@ -29,14 +31,6 @@
             moveToFirstSection()
             setIsMovingToFalse()
         }
-    }
-
-    function moveToNextSection() {
-        $activeSectionNumber += 1
-    }
-
-    function moveToFirstSection() {
-        $activeSectionNumber = 1
     }
 
     function setIsMovingToTrue() {
