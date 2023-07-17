@@ -282,6 +282,7 @@
             }, $duration)
         }
     }
+	setContext('setIsMovingToFalse', setIsMovingToFalse)
 </script>
 
 <svelte:window on:resize={onWindowResize} />

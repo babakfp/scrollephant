@@ -15,6 +15,7 @@
     const restrictMovement: Writable<Props["restrictMovement"]> = getContext(
         "restrictMovement"
     )
+	const setIsMovingToFalse = getContext<() => void>("setIsMovingToFalse")
 
     $: canMoveSectionForward = $activeSectionNumber < $sections.length
 
@@ -41,14 +42,6 @@
     function setIsMovingToTrue() {
         if (restrictMovement) {
             $isMoving = true
-        }
-    }
-
-    function setIsMovingToFalse() {
-        if (restrictMovement) {
-            setTimeout(() => {
-                $isMoving = false
-            }, $duration)
         }
     }
 </script>
