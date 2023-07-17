@@ -18,7 +18,7 @@
 
     $: canMoveSectionForward = $activeSectionNumber < $sections.length
 
-    function moveForward() {
+    function moveSectionForward() {
         if (canMoveSectionForward) {
             setIsMovingToTrue()
             moveToNextSection()
@@ -56,7 +56,7 @@
 <ScrollephantArrow
     class="scrollephant-arrow-next"
     isDisabled={!(canMoveSectionForward || loopDown)}
-    on:click={moveForward}
+    on:click={moveSectionForward}
 >
     {#if direction === "vertical"}
         <!-- prettier-ignore -->

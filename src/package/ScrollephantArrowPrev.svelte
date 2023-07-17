@@ -18,7 +18,7 @@
 
     $: canMoveSectionBackward = $activeSectionNumber > 1
 
-    function moveBackward() {
+    function moveSectionBackward() {
         if (canMoveSectionBackward) {
             setIsMovingToTrue()
             moveToPrevSection()
@@ -56,7 +56,7 @@
 <ScrollephantArrow
     class="scrollephant-arrow-prev"
     isDisabled={!(canMoveSectionBackward || loopUp)}
-    on:click={moveBackward}
+    on:click={moveSectionBackward}
 >
     {#if direction === "vertical"}
         <!-- prettier-ignore -->
