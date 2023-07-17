@@ -115,8 +115,6 @@
         } else if (isSwipeBackward) {
             moveBackward()
         }
-
-        setIsMovingToFalse()
     }
 
     function handleMousewheel(e: WheelEvent) {
@@ -127,8 +125,6 @@
         } else if (isWheelingBackward(e)) {
             moveBackward()
         }
-
-        setIsMovingToFalse()
     }
 
     function moveForward() {
@@ -137,8 +133,9 @@
             $sections[$activeSectionNumber - 1].subSections.length > 0
         ) {
             if (canMoveToNextSubSection()) {
-                setIsMovingToTrue()
+				setIsMovingToTrue()
                 moveToNextSubSection()
+				setIsMovingToFalse()
             } else {
                 moveSectionForward()
             }
@@ -153,8 +150,9 @@
             $sections[$activeSectionNumber - 1].subSections.length > 0
         ) {
             if (canMoveToPrevSubSection()) {
-                setIsMovingToTrue()
+				setIsMovingToTrue()
                 moveToPrevSubSection()
+				setIsMovingToFalse()
             } else {
                 moveSectionBackward()
             }
@@ -167,10 +165,12 @@
         if (canMoveToNextSection()) {
             setIsMovingToTrue()
             moveToNextSection()
+			setIsMovingToFalse()
         } else if (loopDown) {
             setIsMovingToTrue()
             moveToFirstSection()
             resetSubSectionsToFirstPosition()
+			setIsMovingToFalse()
         }
     }
 
@@ -178,10 +178,12 @@
         if (canMoveToPrevSection()) {
             setIsMovingToTrue()
             moveToPrevSection()
+			setIsMovingToFalse()
         } else if (loopUp) {
             setIsMovingToTrue()
             moveToLastSection()
             resetSubSectionsToLastPosition()
+			setIsMovingToFalse()
         }
     }
 
