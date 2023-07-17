@@ -280,7 +280,7 @@
     }
 
 	function setIsMovingToFalse() {
-        if (restrictMovement && $isMoving) {
+        if (restrictMovement) {
             setTimeout(() => {
                 $isMoving = false
             }, $duration)
