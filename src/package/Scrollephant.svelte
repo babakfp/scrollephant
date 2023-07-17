@@ -137,9 +137,7 @@
             $sections[$activeSectionNumber - 1].subSections.length > 0
         ) {
             if (canMoveToNextSubSection()) {
-                if (restrictMovement) {
-                    $isMoving = true
-                }
+                setIsMovingToTrue()
                 moveToNextSubSection()
             } else {
                 moveSectionForward()
@@ -155,9 +153,7 @@
             $sections[$activeSectionNumber - 1].subSections.length > 0
         ) {
             if (canMoveToPrevSubSection()) {
-                if (restrictMovement) {
-                    $isMoving = true
-                }
+                setIsMovingToTrue()
                 moveToPrevSubSection()
             } else {
                 moveSectionBackward()
@@ -169,14 +165,10 @@
 
     function moveSectionForward() {
         if (canMoveToNextSection()) {
-            if (restrictMovement) {
-                $isMoving = true
-            }
+            setIsMovingToTrue()
             moveToNextSection()
         } else if (loopDown) {
-            if (restrictMovement) {
-                $isMoving = true
-            }
+            setIsMovingToTrue()
             moveToFirstSection()
             resetSubSectionsToFirstPosition()
         }
@@ -184,14 +176,10 @@
 
     function moveSectionBackward() {
         if (canMoveToPrevSection()) {
-            if (restrictMovement) {
-                $isMoving = true
-            }
+            setIsMovingToTrue()
             moveToPrevSection()
         } else if (loopUp) {
-            if (restrictMovement) {
-                $isMoving = true
-            }
+            setIsMovingToTrue()
             moveToLastSection()
             resetSubSectionsToLastPosition()
         }
@@ -276,6 +264,13 @@
     function isWheelingBackward(e: WheelEvent) {
         return e.deltaY < 0
     }
+
+	function setIsMovingToTrue() {
+        if (restrictMovement) {
+            $isMoving = true
+        }
+    }
+	setContext('setIsMovingToTrue', setIsMovingToTrue)
 
 	function setIsMovingToFalse() {
         if (restrictMovement) {
