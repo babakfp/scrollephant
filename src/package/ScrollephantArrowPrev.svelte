@@ -1,10 +1,9 @@
 <script lang="ts">
     import { getContext } from "svelte"
     import type { Writable } from "svelte/store"
-    import type { Props, Sections } from "./types.js"
+    import type { Props } from "./types.js"
     import ScrollephantArrow from "./ScrollephantArrow.svelte"
 
-    const sections: Writable<Sections> = getContext("sections")
     const activeSectionNumber: Writable<number> = getContext(
         "activeSectionNumber"
     )
