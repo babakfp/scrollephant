@@ -1,7 +1,7 @@
 <script lang="ts">
     import { getContext } from "svelte"
     import type { Writable } from "svelte/store"
-    import type { Props, Sections } from "./types.js"
+    import type { Sections } from "./types.js"
     import ScrollephantDot from "./ScrollephantDot.svelte"
     import ScrollephantTooltip from "./ScrollephantTooltip.svelte"
 
@@ -9,28 +9,14 @@
     const activeSectionNumber: Writable<number> = getContext(
         "activeSectionNumber"
     )
-    const isMoving: Writable<boolean> = getContext("isMoving")
-    const duration: Writable<number> = getContext("duration")
-    const restrictMovement: Writable<Props["restrictMovement"]> = getContext(
-        "restrictMovement"
-    )
+	const setIsMovingToTrue = getContext<() => void>("setIsMovingToTrue")
+	const setIsMovingToFalse = getContext<() => void>("setIsMovingToFalse")
 
     function handleClick(i: number) {
-        if ($activeSectionNumber === i + 1) {
-            return
-        }
-
-        if (restrictMovement) {
-            $isMoving = true
-        }
-
+        if ($activeSectionNumber === i + 1) return
+        setIsMovingToTrue()
         $activeSectionNumber = i + 1
-
-        if (restrictMovement) {
-            setTimeout(() => {
-                $isMoving = false
-            }, $duration)
-        }
+        setIsMovingToFalse()
     }
 </script>
 
