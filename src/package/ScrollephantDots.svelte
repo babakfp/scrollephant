@@ -16,6 +16,10 @@
     )
 
     function handleClick(i: number) {
+        if ($activeSectionNumber === i + 1) {
+            return
+        }
+
         if (restrictMovement) {
             $isMoving = true
         }
