@@ -5,18 +5,14 @@
     import { swipe, type SwipeEvent } from "./swipe.js"
 
     export let movement = setContext("movement", <Props["movement"]>"scroll")
-    export let direction: Props["direction"] = "vertical"
-    export let loopUp: Props["loopUp"] = false
-    export let loopDown: Props["loopDown"] = false
+    export let direction = setContext("direction", <Props["direction"]>"vertical")
+    export let loopUp = setContext("loopUp", <Props["loopUp"]>false)
+    export let loopDown = setContext("loopDown", <Props["loopDown"]>false)
     export let restrictMovement = setContext(
         "restrictMovement",
         <Props["restrictMovement"]>true
     )
     export let scrollableSubSections: Props["scrollableSubSections"] = true
-
-    setContext("direction", direction)
-    setContext("loopUp", loopUp)
-    setContext("loopDown", loopDown)
 
     const sections = setContext("sections", writable<Sections>([]))
     const activeSectionNumber = setContext("activeSectionNumber", writable(1))
