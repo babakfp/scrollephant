@@ -172,31 +172,31 @@
     }
 
     function moveSectionForward() {
-        if (canMoveToNext()) {
+        if (canMoveToNextSection()) {
             if (restrictMovement) {
                 $isMoving = true
             }
-            moveToNext()
+            moveToNextSection()
         } else if (loopDown) {
             if (restrictMovement) {
                 $isMoving = true
             }
-            jumpToFirst()
+            moveToFirstSection()
             resetSubSectionsToFirstPosition()
         }
     }
 
     function moveSectionBackward() {
-        if (canMoveToPrev()) {
+        if (canMoveToPrevSection()) {
             if (restrictMovement) {
                 $isMoving = true
             }
-            moveToPrev()
+            moveToPrevSection()
         } else if (loopUp) {
             if (restrictMovement) {
                 $isMoving = true
             }
-            jumpToLast()
+            moveToLastSection()
             resetSubSectionsToLastPosition()
         }
     }
@@ -219,11 +219,11 @@
         })
     }
 
-    function canMoveToNext() {
+    function canMoveToNextSection() {
         return $activeSectionNumber < $sections.length
     }
 
-    function canMoveToPrev() {
+    function canMoveToPrevSection() {
         return $activeSectionNumber > 1
     }
 
@@ -238,11 +238,11 @@
         return $sections[$activeSectionNumber - 1].activeSubSectionNumber > 1
     }
 
-    function moveToNext() {
+    function moveToNextSection() {
         $activeSectionNumber += 1
     }
 
-    function moveToPrev() {
+    function moveToPrevSection() {
         $activeSectionNumber -= 1
     }
 
@@ -254,11 +254,11 @@
         $sections[$activeSectionNumber - 1].activeSubSectionNumber -= 1
     }
 
-    function jumpToFirst() {
+    function moveToFirstSection() {
         $activeSectionNumber = 1
     }
 
-    function jumpToLast() {
+    function moveToLastSection() {
         $activeSectionNumber = $sections.length
     }
 
