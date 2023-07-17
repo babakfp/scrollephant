@@ -10,11 +10,6 @@
     )
     const direction: Props["direction"] = getContext("direction")
     const loopDown: Props["loopDown"] = getContext("loopDown")
-    const isMoving: Writable<boolean> = getContext("isMoving")
-    const duration: Writable<number> = getContext("duration")
-    const restrictMovement: Writable<Props["restrictMovement"]> = getContext(
-        "restrictMovement"
-    )
 	const setIsMovingToFalse = getContext<() => void>("setIsMovingToFalse")
 	const moveToNextSection = getContext<() => void>("moveToNextSection")
 	const moveToFirstSection = getContext<() => void>("moveToFirstSection")
