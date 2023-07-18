@@ -9,30 +9,15 @@
     )
     const direction: Props["direction"] = getContext("direction")
     const loopUp: Props["loopUp"] = getContext("loopUp")
-	const setIsMovingToTrue = getContext<() => void>("setIsMovingToTrue")
-	const setIsMovingToFalse = getContext<() => void>("setIsMovingToFalse")
-	const moveToPrevSection = getContext<() => void>("moveToPrevSection")
-	const moveToLastSection = getContext<() => void>("moveToLastSection")
+	const moveBackward = getContext<() => void>("moveBackward")
 
     $: canMoveSectionBackward = $activeSectionNumber > 1
-
-    function moveSectionBackward() {
-        if (canMoveSectionBackward) {
-            setIsMovingToTrue()
-            moveToPrevSection()
-            setIsMovingToFalse()
-        } else if (loopUp) {
-            setIsMovingToTrue()
-            moveToLastSection()
-            setIsMovingToFalse()
-        }
-    }
 </script>
 
 <ScrollephantArrow
     class="scrollephant-arrow-prev"
     isDisabled={!(canMoveSectionBackward || loopUp)}
-    on:click={moveSectionBackward}
+    on:click={moveBackward}
 >
     {#if direction === "vertical"}
         <!-- prettier-ignore -->

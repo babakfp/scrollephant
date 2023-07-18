@@ -143,6 +143,7 @@
             moveSectionForward()
         }
     }
+	setContext('moveForward', moveForward)
 
     function moveBackward() {
         if (
@@ -160,6 +161,7 @@
             moveSectionBackward()
         }
     }
+	setContext('moveBackward', moveBackward)
 
     function moveSectionForward() {
         if (canMoveToNextSection()) {
