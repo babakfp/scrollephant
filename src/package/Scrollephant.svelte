@@ -202,7 +202,7 @@
 
     function resetSubSectionsToLastPosition() {
         $sections.map(section => {
-            section.activeSubSectionNumber = 1
+            section.activeSubSectionNumber = section.subSections.length
             section.translateY = 0
             section.translateX = 0
             return section
