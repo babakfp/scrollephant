@@ -7,10 +7,12 @@
         position: fixed;
         user-select: none;
         -webkit-user-drag: none;
+        display: flex;
     }
 
     :global(.scrollephant[data-scrollephant-direction="vertical"])
         .scrollephant-navigation-wrapper {
+        flex-direction: column;
         right: 0;
         top: 50%;
         transform: translateY(-50%);
@@ -21,7 +23,6 @@
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
-        display: flex;
     }
 
     /* RTL */
