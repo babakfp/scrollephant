@@ -1,22 +1,17 @@
 <script lang="ts">
     import { getContext } from "svelte"
-    import type { Writable } from "svelte/store"
+    import type { Readable } from "svelte/store"
     import type { Props } from "./types.js"
     import ScrollephantArrow from "./ScrollephantArrow.svelte"
-
-    const activeSectionNumber: Writable<number> = getContext(
-        "activeSectionNumber"
-    )
     const direction: Props["direction"] = getContext("direction")
     const loopUp: Props["loopUp"] = getContext("loopUp")
 	const moveBackward = getContext<() => void>("moveBackward")
-
-    $: canMoveSectionBackward = $activeSectionNumber > 1
+	const canMoveToPrevSection = getContext<Readable<boolean>>("canMoveToPrevSection")
 </script>
 
 <ScrollephantArrow
     class="scrollephant-arrow-prev"
-    isDisabled={!(canMoveSectionBackward || loopUp)}
+    isDisabled={!($canMoveToPrevSection || loopUp)}
     on:click={moveBackward}
 >
     {#if direction === "vertical"}

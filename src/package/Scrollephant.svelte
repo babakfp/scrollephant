@@ -1,6 +1,6 @@
 <script lang="ts">
     import { onMount, setContext } from "svelte"
-    import { writable } from "svelte/store"
+    import { writable, derived } from "svelte/store"
     import type { Props, Section, Sections } from "./types.js"
     import { swipe, type SwipeEvent } from "./swipe.js"
 
@@ -18,6 +18,8 @@
     const activeSectionNumber = setContext("activeSectionNumber", writable(1))
     const isMoving = setContext("isMoving", writable(false))
     const duration = setContext("duration", writable<number>())
+	const canMoveToPrevSection = setContext("canMoveToPrevSection", derived(activeSectionNumber, ($activeSectionNumber) => $activeSectionNumber > 1))
+	const canMoveToNextSection = setContext("canMoveToNextSection", derived([activeSectionNumber, sections], ([$activeSectionNumber, $sections]) => $activeSectionNumber < $sections.length))
 
     let element: HTMLElement
 
@@ -164,7 +166,7 @@
 	setContext('moveBackward', moveBackward)
 
     function moveSectionForward() {
-        if (canMoveToNextSection()) {
+        if ($canMoveToNextSection) {
             setIsMovingToTrue()
             moveToNextSection()
 			setIsMovingToFalse()
@@ -177,7 +179,7 @@
     }
 
     function moveSectionBackward() {
-        if (canMoveToPrevSection()) {
+        if ($canMoveToPrevSection) {
             setIsMovingToTrue()
             moveToPrevSection()
 			setIsMovingToFalse()
@@ -205,14 +207,6 @@
             section.translateX = 0
             return section
         })
-    }
-
-    function canMoveToNextSection() {
-        return $activeSectionNumber < $sections.length
-    }
-
-    function canMoveToPrevSection() {
-        return $activeSectionNumber > 1
     }
 
     function canMoveToNextSubSection() {
