@@ -47,11 +47,10 @@
     data-scrollephant-have-subsection={$subSections.length > 0}
     data-scrollephant-id={id}
     bind:this={element}
-    style:--scrollephant-translate-y-subsection="-{movement === "scroll"
+    style:--scrollephant-translate-y="-{movement === "scroll"
         ? translateY
         : 0}px"
-    style:--scrollephant-translate-x-subsection="{!$rtl ? "-" : ""}{movement ===
-    "scroll"
+    style:--scrollephant-translate-x="{!$rtl ? "-" : ""}{movement === "scroll"
         ? translateX
         : 0}px"
 >
@@ -119,37 +118,5 @@
         visibility: visible;
         pointer-events: all;
         transform: scale(1);
-    }
-
-    /* --- */
-
-    [data-scrollephant-have-subsection="true"] .scrollephant-section-inner {
-        display: flex;
-    }
-
-    .scrollephant-section-inner {
-        transition-property: transform;
-        transition-duration: var(--scrollephant-duration);
-        transition-timing-function: var(--scrollephant-timing-function);
-    }
-
-    :global(.scrollephant[data-scrollephant-direction="vertical"])
-        .scrollephant-section-inner {
-        transform: translateX(var(--scrollephant-translate-x-subsection));
-    }
-
-    :global(.scrollephant[data-scrollephant-direction="horizontal"])
-        .scrollephant-section-inner {
-        flex-direction: column;
-        transform: translateY(var(--scrollephant-translate-y-subsection));
-    }
-
-    :global(.scrollephant[data-scrollephant-movement="fade"])
-        .scrollephant-section-inner {
-        position: relative;
-        height: 100vh;
-        height: 100dvh;
-        width: 100vw;
-        width: 100dvw;
     }
 </style>
