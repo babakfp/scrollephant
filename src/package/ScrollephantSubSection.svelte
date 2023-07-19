@@ -42,11 +42,8 @@
     .scrollephant-subsection {
         height: 100vh;
         height: 100dvh;
-        /* TODO:? max-height & overflow: hidden */
-
         width: 100vw;
         width: 100dvw;
-
         /* Prevent width shrinks. Inforce full view size. */
         flex-shrink: 0;
     }
