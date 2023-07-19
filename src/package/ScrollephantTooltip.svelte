@@ -34,7 +34,6 @@
         transform: translateX(-50%) translateY(-0.75rem);
     }
 
-    /* RTL */
     :global(
             html[dir="rtl"]
                 .scrollephant[data-scrollephant-direction="vertical"]

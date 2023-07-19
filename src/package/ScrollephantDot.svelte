@@ -67,7 +67,6 @@
         pointer-events: none;
     }
 
-    /* RTL */
     :global(
             html[dir="rtl"]
                 .scrollephant[data-scrollephant-direction="vertical"]

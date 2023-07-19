@@ -9,8 +9,8 @@
     const activeSectionNumber: Writable<number> = getContext(
         "activeSectionNumber"
     )
-	const setIsMovingToTrue = getContext<() => void>("setIsMovingToTrue")
-	const setIsMovingToFalse = getContext<() => void>("setIsMovingToFalse")
+    const setIsMovingToTrue = getContext<() => void>("setIsMovingToTrue")
+    const setIsMovingToFalse = getContext<() => void>("setIsMovingToFalse")
 
     function handleClick(i: number) {
         if ($activeSectionNumber === i + 1) return

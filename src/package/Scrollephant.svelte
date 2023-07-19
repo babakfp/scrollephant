@@ -5,7 +5,10 @@
     import { swipe, type SwipeEvent } from "./swipe.js"
 
     export let movement = setContext("movement", <Props["movement"]>"scroll")
-    export let direction = setContext("direction", <Props["direction"]>"vertical")
+    export let direction = setContext(
+        "direction",
+        <Props["direction"]>"vertical"
+    )
     export let loopUp = setContext("loopUp", <Props["loopUp"]>false)
     export let loopDown = setContext("loopDown", <Props["loopDown"]>false)
     export let restrictMovement = setContext(
@@ -18,8 +21,21 @@
     const activeSectionNumber = setContext("activeSectionNumber", writable(1))
     const isMoving = setContext("isMoving", writable(false))
     const duration = setContext("duration", writable<number>())
-	const canMoveToPrevSection = setContext("canMoveToPrevSection", derived(activeSectionNumber, ($activeSectionNumber) => $activeSectionNumber > 1))
-	const canMoveToNextSection = setContext("canMoveToNextSection", derived([activeSectionNumber, sections], ([$activeSectionNumber, $sections]) => $activeSectionNumber < $sections.length))
+    const canMoveToPrevSection = setContext(
+        "canMoveToPrevSection",
+        derived(
+            activeSectionNumber,
+            $activeSectionNumber => $activeSectionNumber > 1
+        )
+    )
+    const canMoveToNextSection = setContext(
+        "canMoveToNextSection",
+        derived(
+            [activeSectionNumber, sections],
+            ([$activeSectionNumber, $sections]) =>
+                $activeSectionNumber < $sections.length
+        )
+    )
 
     let element: HTMLElement
 
@@ -47,12 +63,12 @@
     }
 
     $: if ($sections.length > 0) {
-		const { y, x } = getYXSubSection(
-			$sections[$activeSectionNumber - 1],
-			$sections[$activeSectionNumber - 1]?.activeSubSectionNumber
-		)
-		$sections[$activeSectionNumber - 1].translateY = y
-		$sections[$activeSectionNumber - 1].translateX = x
+        const { y, x } = getYXSubSection(
+            $sections[$activeSectionNumber - 1],
+            $sections[$activeSectionNumber - 1]?.activeSubSectionNumber
+        )
+        $sections[$activeSectionNumber - 1].translateY = y
+        $sections[$activeSectionNumber - 1].translateX = x
     }
 
     function onWindowResize() {
@@ -135,9 +151,9 @@
             $sections[$activeSectionNumber - 1].subSections.length > 0
         ) {
             if (canMoveToNextSubSection()) {
-				setIsMovingToTrue()
+                setIsMovingToTrue()
                 moveToNextSubSection()
-				setIsMovingToFalse()
+                setIsMovingToFalse()
             } else {
                 moveSectionForward()
             }
@@ -145,7 +161,7 @@
             moveSectionForward()
         }
     }
-	setContext('moveForward', moveForward)
+    setContext("moveForward", moveForward)
 
     function moveBackward() {
         if (
@@ -153,9 +169,9 @@
             $sections[$activeSectionNumber - 1].subSections.length > 0
         ) {
             if (canMoveToPrevSubSection()) {
-				setIsMovingToTrue()
+                setIsMovingToTrue()
                 moveToPrevSubSection()
-				setIsMovingToFalse()
+                setIsMovingToFalse()
             } else {
                 moveSectionBackward()
             }
@@ -163,18 +179,18 @@
             moveSectionBackward()
         }
     }
-	setContext('moveBackward', moveBackward)
+    setContext("moveBackward", moveBackward)
 
     function moveSectionForward() {
         if ($canMoveToNextSection) {
             setIsMovingToTrue()
             moveToNextSection()
-			setIsMovingToFalse()
+            setIsMovingToFalse()
         } else if (loopDown) {
             setIsMovingToTrue()
             moveToFirstSection()
             resetSubSectionsToFirstPosition()
-			setIsMovingToFalse()
+            setIsMovingToFalse()
         }
     }
 
@@ -182,12 +198,12 @@
         if ($canMoveToPrevSection) {
             setIsMovingToTrue()
             moveToPrevSection()
-			setIsMovingToFalse()
+            setIsMovingToFalse()
         } else if (loopUp) {
             setIsMovingToTrue()
             moveToLastSection()
             resetSubSectionsToLastPosition()
-			setIsMovingToFalse()
+            setIsMovingToFalse()
         }
     }
 
@@ -223,12 +239,12 @@
     function moveToNextSection() {
         $activeSectionNumber += 1
     }
-	setContext('moveToNextSection', moveToNextSection)
+    setContext("moveToNextSection", moveToNextSection)
 
     function moveToPrevSection() {
         $activeSectionNumber -= 1
     }
-	setContext('moveToPrevSection', moveToPrevSection)
+    setContext("moveToPrevSection", moveToPrevSection)
 
     function moveToNextSubSection() {
         $sections[$activeSectionNumber - 1].activeSubSectionNumber += 1
@@ -241,12 +257,12 @@
     function moveToFirstSection() {
         $activeSectionNumber = 1
     }
-	setContext('moveToFirstSection', moveToFirstSection)
+    setContext("moveToFirstSection", moveToFirstSection)
 
     function moveToLastSection() {
         $activeSectionNumber = $sections.length
     }
-	setContext('moveToLastSection', moveToLastSection)
+    setContext("moveToLastSection", moveToLastSection)
 
     function jumpToFirstSubSection() {
         $sections[$activeSectionNumber - 1].activeSubSectionNumber = 1
@@ -265,21 +281,21 @@
         return e.deltaY < 0
     }
 
-	function setIsMovingToTrue() {
+    function setIsMovingToTrue() {
         if (restrictMovement) {
             $isMoving = true
         }
     }
-	setContext('setIsMovingToTrue', setIsMovingToTrue)
+    setContext("setIsMovingToTrue", setIsMovingToTrue)
 
-	function setIsMovingToFalse() {
+    function setIsMovingToFalse() {
         if (restrictMovement) {
             setTimeout(() => {
                 $isMoving = false
             }, $duration)
         }
     }
-	setContext('setIsMovingToFalse', setIsMovingToFalse)
+    setContext("setIsMovingToFalse", setIsMovingToFalse)
 </script>
 
 <svelte:window on:resize={onWindowResize} />

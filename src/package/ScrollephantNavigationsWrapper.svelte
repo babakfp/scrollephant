@@ -25,7 +25,6 @@
         transform: translateX(-50%);
     }
 
-    /* RTL */
     :global(
             html[dir="rtl"]
                 .scrollephant[data-scrollephant-direction="vertical"]
