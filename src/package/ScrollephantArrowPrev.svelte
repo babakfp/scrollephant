@@ -3,8 +3,8 @@
     import type { Readable } from "svelte/store"
     import type { Props } from "./types.js"
     import ScrollephantArrow from "./ScrollephantArrow.svelte"
-    import ArrowUp from "./icons/ArrowDown.svelte"
-    import ArrowLeft from "./icons/ArrowRight.svelte"
+    import ArrowUp from "./icons/ArrowUp.svelte"
+    import ArrowLeft from "./icons/ArrowLeft.svelte"
 
     const direction: Props["direction"] = getContext("direction")
     const loopUp: Props["loopUp"] = getContext("loopUp")
