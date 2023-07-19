@@ -40,10 +40,8 @@
 
 <style>
     .scrollephant-subsection {
-        height: 100vh;
-        height: 100dvh;
-        width: 100vw;
-        width: 100dvw;
+        height: 100%;
+        width: 100%;
         /* Prevent width shrinks. Inforce full view size. */
         flex-shrink: 0;
     }

@@ -8,6 +8,8 @@
         transition-property: transform;
         transition-duration: var(--scrollephant-duration);
         transition-timing-function: var(--scrollephant-timing-function);
+        height: 100%;
+        width: 100%;
     }
 
     :global(.scrollephant[data-scrollephant-direction="vertical"])
