@@ -3,6 +3,9 @@
     import type { Readable } from "svelte/store"
     import type { Props } from "./types.js"
     import ScrollephantArrow from "./ScrollephantArrow.svelte"
+	import ArrowDown from "./icons/ArrowDown.svelte"
+	import ArrowRight from "./icons/ArrowRight.svelte"
+
     const direction: Props["direction"] = getContext("direction")
     const loopDown: Props["loopDown"] = getContext("loopDown")
 	const moveForward = getContext<() => void>("moveForward")
@@ -15,11 +18,9 @@
     on:click={moveForward}
 >
     {#if direction === "vertical"}
-        <!-- prettier-ignore -->
-        <svg class="scrollephant-arrow-prev-down" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25 12 21m0 0-3.75-3.75M12 21V3"/></svg>
+        <ArrowDown />
     {:else}
-        <!-- prettier-ignore -->
-        <svg class="scrollephant-arrow-prev-right" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"/></svg>
+        <ArrowRight />
     {/if}
 </ScrollephantArrow>
 
