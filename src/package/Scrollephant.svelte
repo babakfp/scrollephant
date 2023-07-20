@@ -327,6 +327,6 @@
     .scrollephant {
         --scrollephant-duration: 700ms;
         --scrollephant-timing-function: ease-out;
-        overflow: hidden;
+        position: relative;
     }
 </style>
