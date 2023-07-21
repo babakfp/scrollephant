@@ -72,9 +72,19 @@
     }
 
     function onWindowResize() {
-        const { y, x } = getSectionYX($activeSectionNumber)
-        translateY = y
-        translateX = x
+        if ($sections.length > 0) {
+            const { y, x } = getSectionYX($activeSectionNumber)
+            translateY = y
+            translateX = x
+            ;(() => {
+                const { y, x } = getSubSectionYX(
+                    $sections[$activeSectionNumber - 1],
+                    $sections[$activeSectionNumber - 1]?.activeSubSectionNumber
+                )
+                $sections[$activeSectionNumber - 1].translateY = y
+                $sections[$activeSectionNumber - 1].translateX = x
+            })()
+        }
     }
 
     function handleSwipe(e: SwipeEvent) {
