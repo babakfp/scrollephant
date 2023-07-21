@@ -57,13 +57,13 @@
     let translateX = 0
 
     $: if ($sections.length > 0) {
-        const { y, x } = getYX($activeSectionNumber)
+        const { y, x } = getSectionYX($activeSectionNumber)
         translateY = y
         translateX = x
     }
 
     $: if ($sections.length > 0) {
-        const { y, x } = getYXSubSection(
+        const { y, x } = getSubSectionYX(
             $sections[$activeSectionNumber - 1],
             $sections[$activeSectionNumber - 1]?.activeSubSectionNumber
         )
@@ -72,49 +72,9 @@
     }
 
     function onWindowResize() {
-        const { y, x } = getYX($activeSectionNumber)
+        const { y, x } = getSectionYX($activeSectionNumber)
         translateY = y
         translateX = x
-    }
-
-    function getYX(activeSectionNumber: number) {
-        let y = 0
-        let x = 0
-
-        for (let i = 0; i < activeSectionNumber - 1; i++) {
-            if (direction === "vertical") {
-                if ($sections[i]?.autoHeight) {
-                    y += $sections[i]?.ref.clientHeight
-                } else {
-                    y += $sections[i + 1]?.ref.clientHeight
-                }
-            } else if (direction === "horizontal") {
-                x += $sections[i]?.ref.clientWidth
-            }
-        }
-
-        return { y, x }
-    }
-
-    function getYXSubSection(section: Section, activeSubSectionNumber: number) {
-        let y = 0
-        let x = 0
-
-        if (section?.subSections.length > 0) {
-            for (let i = 0; i < activeSubSectionNumber - 1; i++) {
-                if (direction === "vertical") {
-                    x += section.subSections[i]?.ref.clientWidth
-                } else if (direction === "horizontal") {
-                    if (section.subSections[i]?.autoHeight) {
-                        y += section.subSections[i]?.ref.clientHeight
-                    } else {
-                        y += section.subSections[i + 1]?.ref.clientHeight
-                    }
-                }
-            }
-        }
-
-        return { y, x }
     }
 
     function handleSwipe(e: SwipeEvent) {
@@ -227,6 +187,25 @@
     }
     setContext("moveToLastSection", moveToLastSection)
 
+    function getSectionYX(activeSectionNumber: number) {
+        let y = 0
+        let x = 0
+
+        for (let i = 0; i < activeSectionNumber - 1; i++) {
+            if (direction === "vertical") {
+                if ($sections[i]?.autoHeight) {
+                    y += $sections[i]?.ref.clientHeight
+                } else {
+                    y += $sections[i + 1]?.ref.clientHeight
+                }
+            } else if (direction === "horizontal") {
+                x += $sections[i]?.ref.clientWidth
+            }
+        }
+
+        return { y, x }
+    }
+
     function resetSubSectionsToFirstPosition() {
         $sections.map(section => {
             section.activeSubSectionNumber = 1
@@ -271,6 +250,27 @@
     function moveToLastSubSection() {
         $sections[$activeSectionNumber - 1].activeSubSectionNumber =
             $sections.length
+    }
+
+    function getSubSectionYX(section: Section, activeSubSectionNumber: number) {
+        let y = 0
+        let x = 0
+
+        if (section?.subSections.length > 0) {
+            for (let i = 0; i < activeSubSectionNumber - 1; i++) {
+                if (direction === "vertical") {
+                    x += section.subSections[i]?.ref.clientWidth
+                } else if (direction === "horizontal") {
+                    if (section.subSections[i]?.autoHeight) {
+                        y += section.subSections[i]?.ref.clientHeight
+                    } else {
+                        y += section.subSections[i + 1]?.ref.clientHeight
+                    }
+                }
+            }
+        }
+
+        return { y, x }
     }
 
     function isWheelingForward(e: WheelEvent) {
