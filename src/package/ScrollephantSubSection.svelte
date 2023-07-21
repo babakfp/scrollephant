@@ -17,7 +17,9 @@
 
     onMount(() => {
         subSections.update(currentValue => {
-            id = get(sections).length + 1
+            id = Number(
+                `${get(sections).length + 1}.${$subSections.length + 1}`
+            )
             const newSubSection: SubSection = {
                 id,
                 ref: element,
