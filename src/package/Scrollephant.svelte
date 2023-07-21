@@ -264,11 +264,11 @@
     }
     setContext("moveToLastSection", moveToLastSection)
 
-    function jumpToFirstSubSection() {
+    function moveToFirstSubSection() {
         $sections[$activeSectionNumber - 1].activeSubSectionNumber = 1
     }
 
-    function jumpToLastSubSection() {
+    function moveToLastSubSection() {
         $sections[$activeSectionNumber - 1].activeSubSectionNumber =
             $sections.length
     }
