@@ -19,7 +19,6 @@
     li {
         --dot-button-padding: 0.25rem;
         --dot-button-corner-padding: 1rem;
-
         position: relative;
         display: flex;
     }
@@ -67,6 +66,15 @@
         pointer-events: none;
     }
 
+    :global(
+            html[dir="rtl"]
+                .scrollephant[data-scrollephant-direction="vertical"]
+        )
+        button {
+        padding-right: var(--dot-button-padding);
+        padding-left: var(--dot-button-corner-padding);
+    }
+
     li:hover :global(ol) {
         opacity: 1 !important;
         visibility: visible !important;
@@ -80,14 +88,5 @@
         li
         :global(ol button) {
         --dot-button-corner-padding: var(--dot-button-padding);
-    }
-
-    :global(
-            html[dir="rtl"]
-                .scrollephant[data-scrollephant-direction="vertical"]
-        )
-        button {
-        padding-right: var(--dot-button-padding);
-        padding-left: var(--dot-button-corner-padding);
     }
 </style>
