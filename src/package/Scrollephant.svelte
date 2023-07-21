@@ -73,17 +73,17 @@
 
     function onWindowResize() {
         if ($sections.length > 0) {
-            const { y, x } = getSectionYX($activeSectionNumber)
-            translateY = y
-            translateX = x
-            ;(() => {
-                const { y, x } = getSubSectionYX(
-                    $sections[$activeSectionNumber - 1],
-                    $sections[$activeSectionNumber - 1]?.activeSubSectionNumber
-                )
-                $sections[$activeSectionNumber - 1].translateY = y
-                $sections[$activeSectionNumber - 1].translateX = x
-            })()
+            const { y: ySection, x: xSection } =
+                getSectionYX($activeSectionNumber)
+            translateY = ySection
+            translateX = xSection
+
+            const { y: ySubSection, x: xSubSection } = getSubSectionYX(
+                $sections[$activeSectionNumber - 1],
+                $sections[$activeSectionNumber - 1]?.activeSubSectionNumber
+            )
+            $sections[$activeSectionNumber - 1].translateY = ySubSection
+            $sections[$activeSectionNumber - 1].translateX = xSubSection
         }
     }
 
