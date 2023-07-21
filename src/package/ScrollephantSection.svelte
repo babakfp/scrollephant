@@ -72,7 +72,7 @@
         height: 100dvh;
     }
 
-    [data-scrollephant-auto-height="true"] {
+    .scrollephant-section[data-scrollephant-auto-height="true"] {
         max-height: 100vh;
         max-height: 100dvh;
     }
@@ -85,6 +85,11 @@
         flex-shrink: 0;
     }
 
+    :global(.scrollephant[data-scrollephant-movement="fade"])
+        .scrollephant-section {
+        width: 100%;
+    }
+
     .scrollephant-section-inner {
         width: 100%;
         height: 100%;
@@ -93,7 +98,6 @@
     :global(.scrollephant[data-scrollephant-movement="fade"])
         .scrollephant-section {
         position: absolute;
-        inset: 0;
         opacity: 0;
         visibility: hidden;
         pointer-events: none;

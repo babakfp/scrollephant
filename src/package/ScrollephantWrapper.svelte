@@ -37,10 +37,5 @@
     :global(.scrollephant[data-scrollephant-movement="fade"])
         .scrollephant-wrapper {
         position: relative;
-        display: block;
-        height: 100vh;
-        height: 100dvh;
-        width: 100vw;
-        width: 100dvw;
     }
 </style>
