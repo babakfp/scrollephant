@@ -49,7 +49,7 @@
         transform: scale(0.5);
     }
 
-    li[data-scrollephant-dot-current="true"] button div {
+    li[data-scrollephant-dot-current="true"] > button div {
         transform: scale(0.75);
     }
 
@@ -61,10 +61,25 @@
         padding-bottom: var(--dot-button-corner-padding);
     }
 
-    [data-scrollephant-dot-current="false"]
+    li[data-scrollephant-dot-current="false"]
         [data-scrollephant-dot-disabled="true"] {
         opacity: 0.5;
         pointer-events: none;
+    }
+
+    li:hover :global(ol) {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: all !important;
+    }
+
+    :global(.scrollephant[data-scrollephant-direction="vertical"])
+        li
+        :global(ol button),
+    :global(.scrollephant[data-scrollephant-direction="horizontal"])
+        li
+        :global(ol button) {
+        --dot-button-corner-padding: var(--dot-button-padding);
     }
 
     :global(
