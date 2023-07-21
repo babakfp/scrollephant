@@ -1,8 +1,8 @@
 <script lang="ts">
     import { onMount, setContext } from "svelte"
     import { writable, derived } from "svelte/store"
-    import type { Props, Section, Sections } from "./types.js"
     import { swipe, type SwipeEvent } from "./swipe.js"
+    import type { Props, Section, Sections } from "./types.js"
 
     export let movement: Props["movement"] = "scroll"
     export let direction: Props["direction"] = "vertical"
