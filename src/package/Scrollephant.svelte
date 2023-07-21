@@ -207,6 +207,26 @@
         }
     }
 
+    function moveToNextSection() {
+        $activeSectionNumber += 1
+    }
+    setContext("moveToNextSection", moveToNextSection)
+
+    function moveToPrevSection() {
+        $activeSectionNumber -= 1
+    }
+    setContext("moveToPrevSection", moveToPrevSection)
+
+    function moveToFirstSection() {
+        $activeSectionNumber = 1
+    }
+    setContext("moveToFirstSection", moveToFirstSection)
+
+    function moveToLastSection() {
+        $activeSectionNumber = $sections.length
+    }
+    setContext("moveToLastSection", moveToLastSection)
+
     function resetSubSectionsToFirstPosition() {
         $sections.map(section => {
             section.activeSubSectionNumber = 1
@@ -236,16 +256,6 @@
         return $sections[$activeSectionNumber - 1].activeSubSectionNumber > 1
     }
 
-    function moveToNextSection() {
-        $activeSectionNumber += 1
-    }
-    setContext("moveToNextSection", moveToNextSection)
-
-    function moveToPrevSection() {
-        $activeSectionNumber -= 1
-    }
-    setContext("moveToPrevSection", moveToPrevSection)
-
     function moveToNextSubSection() {
         $sections[$activeSectionNumber - 1].activeSubSectionNumber += 1
     }
@@ -253,16 +263,6 @@
     function moveToPrevSubSection() {
         $sections[$activeSectionNumber - 1].activeSubSectionNumber -= 1
     }
-
-    function moveToFirstSection() {
-        $activeSectionNumber = 1
-    }
-    setContext("moveToFirstSection", moveToFirstSection)
-
-    function moveToLastSection() {
-        $activeSectionNumber = $sections.length
-    }
-    setContext("moveToLastSection", moveToLastSection)
 
     function moveToFirstSubSection() {
         $sections[$activeSectionNumber - 1].activeSubSectionNumber = 1
