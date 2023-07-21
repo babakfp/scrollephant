@@ -17,6 +17,13 @@
     let element: HTMLElement
     let id: number
 
+    if (autoHeight && movement === "fade") {
+        console.warn(
+            "Using the autoHeight prop in conjunction with the movement prop set to fade is not logically meaningful and should be avoided."
+        )
+        autoHeight = false
+    }
+
     onMount(() => {
         sections.update(currentValue => {
             id = get(sections).length + 1
