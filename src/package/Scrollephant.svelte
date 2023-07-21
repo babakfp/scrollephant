@@ -18,6 +18,7 @@
     setContext("restrictMovement", restrictMovement)
     setContext("scrollableSubSections", scrollableSubSections)
 
+    const rtl = setContext("rtl", writable(false))
     const sections = setContext("sections", writable<Sections>([]))
     const activeSectionNumber = setContext("activeSectionNumber", writable(1))
     const isMoving = setContext("isMoving", writable(false))
@@ -39,8 +40,6 @@
     )
 
     let element: HTMLElement
-
-    const rtl = setContext("rtl", writable(false))
 
     onMount(() => {
         if (document.dir === "rtl") {
