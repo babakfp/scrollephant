@@ -118,15 +118,12 @@
     function moveForward() {
         if (
             scrollableSubSections &&
-            $sections[$activeSectionNumber - 1].subSections.length > 0
+            $sections[$activeSectionNumber - 1].subSections.length > 0 &&
+            canMoveToNextSubSection()
         ) {
-            if (canMoveToNextSubSection()) {
-                setIsMovingToTrue()
-                moveToNextSubSection()
-                setIsMovingToFalse()
-            } else {
-                moveSectionForward()
-            }
+            setIsMovingToTrue()
+            moveToNextSubSection()
+            setIsMovingToFalse()
         } else {
             moveSectionForward()
         }
@@ -136,15 +133,12 @@
     function moveBackward() {
         if (
             scrollableSubSections &&
-            $sections[$activeSectionNumber - 1].subSections.length > 0
+            $sections[$activeSectionNumber - 1].subSections.length > 0 &&
+            canMoveToPrevSubSection()
         ) {
-            if (canMoveToPrevSubSection()) {
-                setIsMovingToTrue()
-                moveToPrevSubSection()
-                setIsMovingToFalse()
-            } else {
-                moveSectionBackward()
-            }
+            setIsMovingToTrue()
+            moveToPrevSubSection()
+            setIsMovingToFalse()
         } else {
             moveSectionBackward()
         }
