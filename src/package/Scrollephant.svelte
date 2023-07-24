@@ -218,6 +218,10 @@
             return section
         })
     }
+    setContext(
+        "resetSubSectionsToFirstPosition",
+        resetSubSectionsToFirstPosition
+    )
 
     function resetSubSectionsToLastPosition() {
         $sections.map(section => {

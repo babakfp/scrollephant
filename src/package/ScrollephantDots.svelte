@@ -13,11 +13,15 @@
     )
     const setIsMovingToTrue = getContext<() => void>("setIsMovingToTrue")
     const setIsMovingToFalse = getContext<() => void>("setIsMovingToFalse")
+    const resetSubSectionsToFirstPosition = getContext<() => void>(
+        "resetSubSectionsToFirstPosition"
+    )
 
     function handleClick(i: number) {
         if ($activeSectionNumber === i + 1) return
         setIsMovingToTrue()
         $activeSectionNumber = i + 1
+        resetSubSectionsToFirstPosition()
         setIsMovingToFalse()
     }
 
