@@ -51,9 +51,7 @@
                         />
                     {/each}
                 </ol>
-            {/if}
-
-            {#if !useSubSectionsDots && section.label}
+            {:else if section.label}
                 <ScrollephantTooltip content={section.label} />
             {/if}
         </ScrollephantDot>
