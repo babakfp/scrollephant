@@ -31,8 +31,6 @@
         $sections[$activeSectionNumber - 1].activeSubSectionNumber = i + 1
         setIsMovingToFalse()
     }
-
-    $: console.log($sections)
 </script>
 
 <ol>
