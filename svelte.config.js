@@ -10,4 +10,7 @@ export default {
             scrollephant: "src/package/index.ts",
         },
     },
+    compilerOptions: {
+        customElement: true,
+    },
 }
