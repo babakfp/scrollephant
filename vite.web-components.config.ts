@@ -3,11 +3,6 @@ import { defineConfig } from "vite"
 
 export default defineConfig({
     envPrefix: "PUBLIC_",
-    resolve: {
-        alias: {
-            $lib: "./src/lib",
-        },
-    },
     plugins: [
         svelte({
             exclude: "*.svelte",
