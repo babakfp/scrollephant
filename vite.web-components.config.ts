@@ -17,6 +17,7 @@ export default defineConfig({
     build: {
         target: "modules",
         outDir: "dist",
+        sourcemap: process.env.NODE_ENV === "development" ? true : false,
         lib: {
             entry: "src/package/index.ts",
             fileName: "index",
