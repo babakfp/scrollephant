@@ -3,8 +3,8 @@
     import { type Writable, get, writable } from "svelte/store"
     import type { Sections, SubSections, Props } from "./types.js"
 
-    export let autoHeight = false
     export let label = ""
+    export let autoHeight = false
 
     const sections: Writable<Sections> = getContext("sections")
     const activeSectionNumber: Writable<number> = getContext(
