@@ -3,7 +3,7 @@
         Scrollephant,
         ScrollephantWrapper,
         ScrollephantSection,
-		ScrollephantNavigationsWrapper,
+        ScrollephantNavigationsWrapper,
         ScrollephantDots,
     } from "scrollephant"
 </script>

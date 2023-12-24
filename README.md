@@ -6,6 +6,6 @@ Scrollephant.JS is a JavaScript library that simplifies the creation of full-scr
 
 ## Todos
 
-- Implement fully customizable features.
-- Add different styles for dot navigation and arrow navigation.
-- Create separate navigations for sub-sections.
+-   Implement fully customizable features.
+-   Add different styles for dot navigation and arrow navigation.
+-   Create separate navigations for sub-sections.
