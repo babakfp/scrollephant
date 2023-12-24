@@ -1,4 +1,4 @@
-export interface Props {
+export type Props = {
     movement: "scroll" | "fade"
     direction: "vertical" | "horizontal"
     loopUp: boolean
@@ -7,7 +7,7 @@ export interface Props {
     scrollableSubSections: boolean
 }
 
-export interface Section {
+export type Section = {
     id: number
     ref: HTMLElement
     label?: string
@@ -20,7 +20,7 @@ export interface Section {
 
 export type Sections = Section[]
 
-export interface SubSection {
+export type SubSection = {
     id: number
     ref: HTMLElement
     label: string
