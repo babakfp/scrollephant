@@ -1,3 +1,5 @@
+<svelte:options customElement={{ tag: "scrollephant-dots" }} />
+
 <script lang="ts">
     import { getContext } from "svelte"
     import type { Writable } from "svelte/store"

@@ -1,3 +1,5 @@
+<svelte:options customElement={{ tag: "scrollephant-section" }} />
+
 <script lang="ts">
     import { onMount, setContext, getContext } from "svelte"
     import { type Writable, get, writable } from "svelte/store"

@@ -1,3 +1,5 @@
+<svelte:options customElement={{ tag: "scrollephant-navigations-wrapper" }} />
+
 <nav class="scrollephant-navigation-wrapper">
     <slot />
 </nav>

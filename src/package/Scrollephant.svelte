@@ -1,3 +1,5 @@
+<svelte:options customElement={{ tag: "scrollephant-root" }} />
+
 <script lang="ts">
     import { onMount, setContext } from "svelte"
     import { writable, derived } from "svelte/store"

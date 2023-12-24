@@ -1,3 +1,5 @@
+<svelte:options customElement={{ tag: "scrollephant-arrow-next" }} />
+
 <script lang="ts">
     import { getContext } from "svelte"
     import type { Readable } from "svelte/store"
