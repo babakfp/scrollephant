@@ -5,6 +5,7 @@
     "scripts": {
         "dev": "vite dev",
         "build": "vite build && pnpm package",
+        "build:web-components": "vite build --config vite.web-components.config.js",
         "preview": "vite preview",
         "prepack": "svelte-kit sync",
         "package": "svelte-kit sync && svelte-package -i src/package && publint",
