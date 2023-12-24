@@ -2,7 +2,6 @@ import { svelte } from "@sveltejs/vite-plugin-svelte"
 import { defineConfig } from "vite"
 
 export default defineConfig({
-    envPrefix: "PUBLIC_",
     plugins: [
         svelte({
             exclude: "*.svelte",
