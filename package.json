@@ -14,7 +14,7 @@
         "format": "prettier -w ."
     },
     "peerDependencies": {
-        "svelte": "3.x"
+        "svelte": "3.x || 4.x"
     },
     "devDependencies": {
         "@sveltejs/adapter-auto": "3.0.1",
