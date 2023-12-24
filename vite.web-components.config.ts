@@ -18,7 +18,7 @@ export default defineConfig({
         target: "modules",
         outDir: "dist",
         lib: {
-            entry: "src/lib/index.js",
+            entry: "src/package/index.ts",
             fileName: "index",
             name: "lib",
         },
