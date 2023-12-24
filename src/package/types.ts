@@ -18,7 +18,7 @@ export interface Section {
     activeSubSectionNumber: number
 }
 
-export type Sections = Section[] | []
+export type Sections = Section[]
 
 export interface SubSection {
     id: number
@@ -27,4 +27,4 @@ export interface SubSection {
     autoHeight: boolean
 }
 
-export type SubSections = SubSection[] | []
+export type SubSections = SubSection[]
