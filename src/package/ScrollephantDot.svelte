@@ -48,6 +48,10 @@
         transform: scale(0.5);
     }
 
+    li[data-scrollephant-dot-current="true"] > button {
+        cursor: default;
+    }
+
     li[data-scrollephant-dot-current="true"] > button div {
         transform: scale(0.75);
     }
