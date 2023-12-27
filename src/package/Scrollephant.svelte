@@ -91,12 +91,10 @@
         if (restrictMovement && $isMoving) return
 
         const isSwipeForward =
-            (direction === "vertical" && e.detail.direction === "up") ||
-            (direction === "horizontal" && e.detail.direction === "left")
+            e.detail.direction === "up" || e.detail.direction === "left"
 
         const isSwipeBackward =
-            (direction === "vertical" && e.detail.direction === "down") ||
-            (direction === "horizontal" && e.detail.direction === "right")
+            e.detail.direction === "down" || e.detail.direction === "right"
 
         if (isSwipeForward) {
             moveForward()
@@ -336,5 +334,6 @@
         --scrollephant-duration: 700ms;
         --scrollephant-timing-function: ease-out;
         position: relative;
+        overflow: hidden;
     }
 </style>
