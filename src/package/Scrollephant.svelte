@@ -90,15 +90,9 @@
     function handleSwipe(e: SwipeEvent) {
         if (restrictMovement && $isMoving) return
 
-        const isSwipeForward =
-            e.detail.direction === "up" || e.detail.direction === "left"
-
-        const isSwipeBackward =
-            e.detail.direction === "down" || e.detail.direction === "right"
-
-        if (isSwipeForward) {
+        if (["up", "left"].includes(e.detail.direction)) {
             moveForward()
-        } else if (isSwipeBackward) {
+        } else {
             moveBackward()
         }
     }
