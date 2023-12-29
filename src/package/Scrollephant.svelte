@@ -27,6 +27,10 @@
         moveToPrevSection,
         moveToFirstSection,
         moveToLastSection,
+        canMoveToNextSubSection,
+        canMoveToPrevSubSection,
+        moveToNextSubSection,
+        moveToPrevSubSection,
     } from "./utils.js"
 
     export let movement = _movement
@@ -177,25 +181,6 @@
         }
 
         return { y, x }
-    }
-
-    function canMoveToNextSubSection() {
-        return (
-            $sections[$activeSectionNumber - 1].activeSubSectionNumber <
-            $sections[$activeSectionNumber - 1].subSections.length
-        )
-    }
-
-    function canMoveToPrevSubSection() {
-        return $sections[$activeSectionNumber - 1].activeSubSectionNumber > 1
-    }
-
-    function moveToNextSubSection() {
-        $sections[$activeSectionNumber - 1].activeSubSectionNumber += 1
-    }
-
-    function moveToPrevSubSection() {
-        $sections[$activeSectionNumber - 1].activeSubSectionNumber -= 1
     }
 
     function getSubSectionYX(section: Section, activeSubSectionNumber: number) {
