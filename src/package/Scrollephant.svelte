@@ -25,6 +25,9 @@
     export let restrictMovement = _restrictMovement
     export let scrollableSubSections = _scrollableSubSections
 
+    // Added this code to get rid of this shit, lol!
+    // Component has unused export property 'loopDown'. If it is for external reference only, please consider using `export const loopDown`svelte(unused-export-let)
+    // TODO: Maybe this is fixed in Svelte v5?
     $_movement = $movement
     $_direction = $direction
     $_loopUp = $loopUp
