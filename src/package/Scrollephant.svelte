@@ -261,13 +261,8 @@
         return { y, x }
     }
 
-    function isWheelingForward(e: WheelEvent) {
-        return e.deltaY > 0
-    }
-
-    function isWheelingBackward(e: WheelEvent) {
-        return e.deltaY < 0
-    }
+    const isWheelingForward = (e: WheelEvent) => e.deltaY > 0
+    const isWheelingBackward = (e: WheelEvent) => e.deltaY < 0
 </script>
 
 <svelte:window on:resize={onWindowResize} />
