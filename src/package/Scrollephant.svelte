@@ -231,15 +231,6 @@
         $sections[$activeSectionNumber - 1].activeSubSectionNumber -= 1
     }
 
-    function moveToFirstSubSection() {
-        $sections[$activeSectionNumber - 1].activeSubSectionNumber = 1
-    }
-
-    function moveToLastSubSection() {
-        $sections[$activeSectionNumber - 1].activeSubSectionNumber =
-            $sections.length
-    }
-
     function getSubSectionYX(section: Section, activeSubSectionNumber: number) {
         let y = 0
         let x = 0
