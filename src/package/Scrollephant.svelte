@@ -9,7 +9,6 @@
         loopDown as _loopDown,
         restrictMovement as _restrictMovement,
         scrollableSubSections as _scrollableSubSections,
-        //
         rtl,
         sections,
         activeSectionNumber,
