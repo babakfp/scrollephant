@@ -25,8 +25,12 @@
         setIsMovingToFalse()
     }
 
-    function handleSubSections(i: number) {
+    function handleSubSections(i: number, sectionIndex: number) {
         // if ($activeSectionNumber === i + 1) return
+        if ($activeSectionNumber - 1 !== sectionIndex) {
+            $activeSectionNumber = sectionIndex + 1
+        }
+
         setIsMovingToTrue()
         $sections[$activeSectionNumber - 1].activeSubSectionNumber = i + 1
         setIsMovingToFalse()
@@ -45,7 +49,7 @@
                         <ScrollephantDot
                             isCurrent={$activeSectionNumber === i + 1 &&
                                 section.activeSubSectionNumber === i2 + 1}
-                            on:click={() => handleSubSections(i2)}
+                            on:click={() => handleSubSections(i2, i)}
                         />
                     {/each}
                 </ol>
