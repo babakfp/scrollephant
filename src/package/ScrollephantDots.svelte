@@ -3,11 +3,10 @@
     import ScrollephantDot from "./ScrollephantDot.svelte"
     import ScrollephantTooltip from "./ScrollephantTooltip.svelte"
     import { sections, activeSectionNumber } from "./stores.js"
+    import { setIsMovingToTrue, setIsMovingToFalse } from "./utils.js"
 
     export let useSubSectionsDots = true
 
-    const setIsMovingToTrue = getContext<() => void>("setIsMovingToTrue")
-    const setIsMovingToFalse = getContext<() => void>("setIsMovingToFalse")
     const resetSubSectionsToFirstPosition = getContext<() => void>(
         "resetSubSectionsToFirstPosition"
     )

@@ -18,6 +18,7 @@
         canMoveToPrevSection,
         canMoveToNextSection,
     } from "./stores.js"
+    import { setIsMovingToTrue, setIsMovingToFalse } from "./utils.js"
 
     export let movement = _movement
     export let direction = _direction
@@ -267,22 +268,6 @@
     function isWheelingBackward(e: WheelEvent) {
         return e.deltaY < 0
     }
-
-    function setIsMovingToTrue() {
-        if ($restrictMovement) {
-            $isMoving = true
-        }
-    }
-    setContext("setIsMovingToTrue", setIsMovingToTrue)
-
-    function setIsMovingToFalse() {
-        if ($restrictMovement) {
-            setTimeout(() => {
-                $isMoving = false
-            }, $duration)
-        }
-    }
-    setContext("setIsMovingToFalse", setIsMovingToFalse)
 </script>
 
 <svelte:window on:resize={onWindowResize} />
