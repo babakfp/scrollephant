@@ -10,6 +10,7 @@ import {
     loopDown,
     canMoveToPrevSection,
     loopUp,
+    rtl,
 } from "./stores.js"
 
 export const setIsMovingToTrue = () => {
@@ -172,4 +173,22 @@ export const moveSectionBackward = () => {
         resetSubSectionsToLastPosition()
         setIsMovingToFalse()
     }
+}
+
+// ---
+
+export const getRTL = () => {
+    if (document.dir === "rtl") {
+        rtl.set(true)
+    }
+}
+
+export const getDuration = (element: HTMLElement) => {
+    duration.set(
+        Number(
+            getComputedStyle(element)
+                .getPropertyValue("--scrollephant-duration")
+                .slice(0, -2)
+        )
+    )
 }

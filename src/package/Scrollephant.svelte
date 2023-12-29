@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { onMount, setContext } from "svelte"
+    import { onMount } from "svelte"
     import { swipe, type SwipeEvent } from "./swipe.js"
     import type { Section } from "./types.js"
     import {
@@ -14,9 +14,8 @@
         sections,
         activeSectionNumber,
         isMoving,
-        duration,
     } from "./stores.js"
-    import { moveForward, moveBackward } from "./utils.js"
+    import { moveForward, moveBackward, getDuration, getRTL } from "./utils.js"
 
     export let movement = _movement
     export let direction = _direction
@@ -38,15 +37,8 @@
     let element: HTMLElement
 
     onMount(() => {
-        if (document.dir === "rtl") {
-            $rtl = true
-        }
-
-        $duration = Number(
-            getComputedStyle(element)
-                .getPropertyValue("--scrollephant-duration")
-                .slice(0, -2)
-        )
+        getRTL()
+        getDuration(element)
     })
 
     let translateY = 0
