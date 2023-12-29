@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { writable } from "svelte/store"
     import {
         Scrollephant,
         ScrollephantWrapper,
@@ -10,7 +11,7 @@
     } from "scrollephant"
 </script>
 
-<Scrollephant movement="fade">
+<Scrollephant movement={writable("fade")}>
     <ScrollephantWrapper>
         <ScrollephantSection label="Section 1">1</ScrollephantSection>
         <ScrollephantSection label="Section 2">2</ScrollephantSection>
