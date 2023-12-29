@@ -18,7 +18,12 @@
         canMoveToPrevSection,
         canMoveToNextSection,
     } from "./stores.js"
-    import { setIsMovingToTrue, setIsMovingToFalse } from "./utils.js"
+    import {
+        setIsMovingToTrue,
+        setIsMovingToFalse,
+        resetSubSectionsToFirstPosition,
+        resetSubSectionsToLastPosition,
+    } from "./utils.js"
 
     export let movement = _movement
     export let direction = _direction
@@ -188,28 +193,6 @@
         }
 
         return { y, x }
-    }
-
-    function resetSubSectionsToFirstPosition() {
-        $sections.map(section => {
-            section.activeSubSectionNumber = 1
-            section.translateY = 0
-            section.translateX = 0
-            return section
-        })
-    }
-    setContext(
-        "resetSubSectionsToFirstPosition",
-        resetSubSectionsToFirstPosition
-    )
-
-    function resetSubSectionsToLastPosition() {
-        $sections.map(section => {
-            section.activeSubSectionNumber = section.subSections.length
-            section.translateY = 0
-            section.translateX = 0
-            return section
-        })
     }
 
     function canMoveToNextSubSection() {

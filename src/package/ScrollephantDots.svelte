@@ -3,13 +3,13 @@
     import ScrollephantDot from "./ScrollephantDot.svelte"
     import ScrollephantTooltip from "./ScrollephantTooltip.svelte"
     import { sections, activeSectionNumber } from "./stores.js"
-    import { setIsMovingToTrue, setIsMovingToFalse } from "./utils.js"
+    import {
+        setIsMovingToTrue,
+        setIsMovingToFalse,
+        resetSubSectionsToFirstPosition,
+    } from "./utils.js"
 
     export let useSubSectionsDots = true
-
-    const resetSubSectionsToFirstPosition = getContext<() => void>(
-        "resetSubSectionsToFirstPosition"
-    )
 
     function handleClick(i: number) {
         if ($activeSectionNumber === i + 1) return
