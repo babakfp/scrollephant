@@ -61,3 +61,25 @@ export const resetSubSectionsToLastPosition = () => {
         })
     )
 }
+
+// ---
+
+export const moveToNextSection = () => {
+    activeSectionNumber.update(
+        _activeSectionNumber => (_activeSectionNumber += 1)
+    )
+}
+
+export const moveToPrevSection = () => {
+    activeSectionNumber.update(
+        _activeSectionNumber => (_activeSectionNumber -= 1)
+    )
+}
+
+export const moveToFirstSection = () => {
+    activeSectionNumber.set(1)
+}
+
+export const moveToLastSection = () => {
+    activeSectionNumber.set(get(sections).length)
+}

@@ -23,6 +23,10 @@
         setIsMovingToFalse,
         resetSubSectionsToFirstPosition,
         resetSubSectionsToLastPosition,
+        moveToNextSection,
+        moveToPrevSection,
+        moveToFirstSection,
+        moveToLastSection,
     } from "./utils.js"
 
     export let movement = _movement
@@ -155,26 +159,6 @@
             setIsMovingToFalse()
         }
     }
-
-    function moveToNextSection() {
-        $activeSectionNumber += 1
-    }
-    setContext("moveToNextSection", moveToNextSection)
-
-    function moveToPrevSection() {
-        $activeSectionNumber -= 1
-    }
-    setContext("moveToPrevSection", moveToPrevSection)
-
-    function moveToFirstSection() {
-        $activeSectionNumber = 1
-    }
-    setContext("moveToFirstSection", moveToFirstSection)
-
-    function moveToLastSection() {
-        $activeSectionNumber = $sections.length
-    }
-    setContext("moveToLastSection", moveToLastSection)
 
     function getSectionYX(activeSectionNumber: number) {
         let y = 0
