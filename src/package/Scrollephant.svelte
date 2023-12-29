@@ -86,6 +86,7 @@
     function handleSwipe(e: SwipeEvent) {
         if ($restrictMovement && $isMoving) return
 
+        // TODO: I think `"left"` may be problematic on RTL.
         if (["up", "left"].includes(e.detail.direction)) {
             moveForward()
         } else {
