@@ -93,7 +93,7 @@
         }
     }
 
-    function handleMousewheel(e: WheelEvent) {
+    function handleMouseWheel(e: WheelEvent) {
         if ($restrictMovement && $isMoving) return
 
         if (isWheelingForward(e)) {
@@ -159,7 +159,7 @@
     style:--scrollephant-translate-x="{!$rtl ? "-" : ""}{$movement === "scroll"
         ? translateX
         : 0}px"
-    on:wheel|preventDefault={handleMousewheel}
+    on:wheel|preventDefault={handleMouseWheel}
     use:swipe
     on:swipe={handleSwipe}
     bind:this={element}
