@@ -1,8 +1,7 @@
 <script lang="ts">
     import { onMount, setContext } from "svelte"
-    import { writable, derived } from "svelte/store"
     import { swipe, type SwipeEvent } from "./swipe.js"
-    import type { Section, Sections } from "./types.js"
+    import type { Section } from "./types.js"
     import {
         movement as _movement,
         direction as _direction,
@@ -10,6 +9,14 @@
         loopDown as _loopDown,
         restrictMovement as _restrictMovement,
         scrollableSubSections as _scrollableSubSections,
+        //
+        rtl,
+        sections,
+        activeSectionNumber,
+        isMoving,
+        duration,
+        canMoveToPrevSection,
+        canMoveToNextSection,
     } from "./stores.js"
 
     export let movement = _movement
@@ -18,27 +25,6 @@
     export let loopDown = _loopDown
     export let restrictMovement = _restrictMovement
     export let scrollableSubSections = _scrollableSubSections
-
-    const rtl = setContext("rtl", writable(false))
-    const sections = setContext("sections", writable<Sections>([]))
-    const activeSectionNumber = setContext("activeSectionNumber", writable(1))
-    const isMoving = setContext("isMoving", writable(false))
-    const duration = setContext("duration", writable<number>())
-    const canMoveToPrevSection = setContext(
-        "canMoveToPrevSection",
-        derived(
-            activeSectionNumber,
-            $activeSectionNumber => $activeSectionNumber > 1
-        )
-    )
-    const canMoveToNextSection = setContext(
-        "canMoveToNextSection",
-        derived(
-            [activeSectionNumber, sections],
-            ([$activeSectionNumber, $sections]) =>
-                $activeSectionNumber < $sections.length
-        )
-    )
 
     let element: HTMLElement
 

@@ -1,16 +1,11 @@
 <script lang="ts">
     import { getContext } from "svelte"
-    import type { Writable } from "svelte/store"
-    import type { Sections } from "./types.js"
     import ScrollephantDot from "./ScrollephantDot.svelte"
     import ScrollephantTooltip from "./ScrollephantTooltip.svelte"
+    import { sections, activeSectionNumber } from "./stores.js"
 
     export let useSubSectionsDots = true
 
-    const sections: Writable<Sections> = getContext("sections")
-    const activeSectionNumber: Writable<number> = getContext(
-        "activeSectionNumber"
-    )
     const setIsMovingToTrue = getContext<() => void>("setIsMovingToTrue")
     const setIsMovingToFalse = getContext<() => void>("setIsMovingToFalse")
     const resetSubSectionsToFirstPosition = getContext<() => void>(

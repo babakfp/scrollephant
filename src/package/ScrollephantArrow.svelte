@@ -1,12 +1,9 @@
 <script lang="ts">
-    import { getContext } from "svelte"
-    import type { Writable } from "svelte/store"
+    import { isMoving } from "./stores.js"
 
     export let isDisabled: boolean
     export let className = ""
     export { className as class }
-
-    const isMoving: Writable<boolean> = getContext("isMoving")
 </script>
 
 <button

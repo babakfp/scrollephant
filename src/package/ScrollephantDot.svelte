@@ -1,10 +1,7 @@
 <script lang="ts">
-    import { getContext } from "svelte"
-    import type { Writable } from "svelte/store"
+    import { isMoving } from "./stores.js"
 
     export let isCurrent = false
-
-    const isMoving: Writable<boolean> = getContext("isMoving")
 </script>
 
 <li class="scrollephant-dot" data-scrollephant-dot-current={isCurrent}>

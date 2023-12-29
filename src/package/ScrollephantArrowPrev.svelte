@@ -1,15 +1,11 @@
 <script lang="ts">
     import { getContext } from "svelte"
-    import type { Readable } from "svelte/store"
     import ScrollephantArrow from "./ScrollephantArrow.svelte"
     import ArrowUp from "./icons/ArrowUp.svelte"
     import ArrowLeft from "./icons/ArrowLeft.svelte"
-    import { direction, loopUp } from "./stores.js"
+    import { direction, loopUp, canMoveToPrevSection } from "./stores.js"
 
     const moveBackward = getContext<() => void>("moveBackward")
-    const canMoveToPrevSection = getContext<Readable<boolean>>(
-        "canMoveToPrevSection"
-    )
 </script>
 
 <ScrollephantArrow

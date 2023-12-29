@@ -1,17 +1,12 @@
 <script lang="ts">
-    import { onMount, setContext, getContext } from "svelte"
-    import { type Writable, get, writable } from "svelte/store"
-    import type { Sections, SubSections } from "./types.js"
-    import { movement } from "./stores.js"
+    import { onMount, setContext } from "svelte"
+    import { writable } from "svelte/store"
+    import type { SubSections } from "./types.js"
+    import { movement, rtl, sections, activeSectionNumber } from "./stores.js"
 
     export let label = ""
     export let autoHeight = false
 
-    const sections: Writable<Sections> = getContext("sections")
-    const activeSectionNumber: Writable<number> = getContext(
-        "activeSectionNumber"
-    )
-    const rtl: Writable<number> = getContext("rtl")
     const subSections = setContext("subSections", writable<SubSections>([]))
 
     let element: HTMLElement
@@ -32,7 +27,7 @@
 
     onMount(() => {
         sections.update(currentValue => {
-            id = get(sections).length + 1
+            id = $sections.length + 1
             const newSection = {
                 id,
                 ref: element,
