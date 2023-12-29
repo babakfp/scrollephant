@@ -1,11 +1,9 @@
 <script lang="ts">
-    import { getContext } from "svelte"
     import ScrollephantArrow from "./ScrollephantArrow.svelte"
     import ArrowUp from "./icons/ArrowUp.svelte"
     import ArrowLeft from "./icons/ArrowLeft.svelte"
     import { direction, loopUp, canMoveToPrevSection } from "./stores.js"
-
-    const moveBackward = getContext<() => void>("moveBackward")
+    import { moveBackward } from "./utils.js"
 </script>
 
 <ScrollephantArrow

@@ -15,23 +15,8 @@
         activeSectionNumber,
         isMoving,
         duration,
-        canMoveToPrevSection,
-        canMoveToNextSection,
     } from "./stores.js"
-    import {
-        setIsMovingToTrue,
-        setIsMovingToFalse,
-        resetSubSectionsToFirstPosition,
-        resetSubSectionsToLastPosition,
-        moveToNextSection,
-        moveToPrevSection,
-        moveToFirstSection,
-        moveToLastSection,
-        canMoveToNextSubSection,
-        canMoveToPrevSubSection,
-        moveToNextSubSection,
-        moveToPrevSubSection,
-    } from "./utils.js"
+    import { moveForward, moveBackward } from "./utils.js"
 
     export let movement = _movement
     export let direction = _direction
@@ -39,6 +24,13 @@
     export let loopDown = _loopDown
     export let restrictMovement = _restrictMovement
     export let scrollableSubSections = _scrollableSubSections
+
+    $_movement = $movement
+    $_direction = $direction
+    $_loopUp = $loopUp
+    $_loopDown = $loopDown
+    $_restrictMovement = $restrictMovement
+    $_scrollableSubSections = $scrollableSubSections
 
     let element: HTMLElement
 
@@ -105,62 +97,6 @@
             moveForward()
         } else if (isWheelingBackward(e)) {
             moveBackward()
-        }
-    }
-
-    function moveForward() {
-        if (
-            $scrollableSubSections &&
-            $sections[$activeSectionNumber - 1].subSections.length > 0 &&
-            canMoveToNextSubSection()
-        ) {
-            setIsMovingToTrue()
-            moveToNextSubSection()
-            setIsMovingToFalse()
-        } else {
-            moveSectionForward()
-        }
-    }
-    setContext("moveForward", moveForward)
-
-    function moveBackward() {
-        if (
-            $scrollableSubSections &&
-            $sections[$activeSectionNumber - 1].subSections.length > 0 &&
-            canMoveToPrevSubSection()
-        ) {
-            setIsMovingToTrue()
-            moveToPrevSubSection()
-            setIsMovingToFalse()
-        } else {
-            moveSectionBackward()
-        }
-    }
-    setContext("moveBackward", moveBackward)
-
-    function moveSectionForward() {
-        if ($canMoveToNextSection) {
-            setIsMovingToTrue()
-            moveToNextSection()
-            setIsMovingToFalse()
-        } else if ($loopDown) {
-            setIsMovingToTrue()
-            moveToFirstSection()
-            resetSubSectionsToFirstPosition()
-            setIsMovingToFalse()
-        }
-    }
-
-    function moveSectionBackward() {
-        if ($canMoveToPrevSection) {
-            setIsMovingToTrue()
-            moveToPrevSection()
-            setIsMovingToFalse()
-        } else if ($loopUp) {
-            setIsMovingToTrue()
-            moveToLastSection()
-            resetSubSectionsToLastPosition()
-            setIsMovingToFalse()
         }
     }
 

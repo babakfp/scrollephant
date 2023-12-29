@@ -5,6 +5,11 @@ import {
     duration,
     sections,
     activeSectionNumber,
+    scrollableSubSections,
+    canMoveToNextSection,
+    loopDown,
+    canMoveToPrevSection,
+    loopUp,
 } from "./stores.js"
 
 export const setIsMovingToTrue = () => {
@@ -105,4 +110,60 @@ export const moveToPrevSubSection = () => {
         _sections[get(activeSectionNumber) - 1].activeSubSectionNumber -= 1
         return _sections
     })
+}
+
+// ---
+
+export const moveForward = () => {
+    if (
+        get(scrollableSubSections) &&
+        get(sections)[get(activeSectionNumber) - 1].subSections.length > 0 &&
+        canMoveToNextSubSection()
+    ) {
+        setIsMovingToTrue()
+        moveToNextSubSection()
+        setIsMovingToFalse()
+    } else {
+        moveSectionForward()
+    }
+}
+
+export const moveBackward = () => {
+    if (
+        get(scrollableSubSections) &&
+        get(sections)[get(activeSectionNumber) - 1].subSections.length > 0 &&
+        canMoveToPrevSubSection()
+    ) {
+        setIsMovingToTrue()
+        moveToPrevSubSection()
+        setIsMovingToFalse()
+    } else {
+        moveSectionBackward()
+    }
+}
+
+export const moveSectionForward = () => {
+    if (get(canMoveToNextSection)) {
+        setIsMovingToTrue()
+        moveToNextSection()
+        setIsMovingToFalse()
+    } else if (get(loopDown)) {
+        setIsMovingToTrue()
+        moveToFirstSection()
+        resetSubSectionsToFirstPosition()
+        setIsMovingToFalse()
+    }
+}
+
+export const moveSectionBackward = () => {
+    if (get(canMoveToPrevSection)) {
+        setIsMovingToTrue()
+        moveToPrevSection()
+        setIsMovingToFalse()
+    } else if (get(loopUp)) {
+        setIsMovingToTrue()
+        moveToLastSection()
+        resetSubSectionsToLastPosition()
+        setIsMovingToFalse()
+    }
 }
