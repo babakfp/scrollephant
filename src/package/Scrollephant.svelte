@@ -2,21 +2,22 @@
     import { onMount, setContext } from "svelte"
     import { writable, derived } from "svelte/store"
     import { swipe, type SwipeEvent } from "./swipe.js"
-    import type { Props, Section, Sections } from "./types.js"
+    import type { Section, Sections } from "./types.js"
+    import {
+        movement as _movement,
+        direction as _direction,
+        loopUp as _loopUp,
+        loopDown as _loopDown,
+        restrictMovement as _restrictMovement,
+        scrollableSubSections as _scrollableSubSections,
+    } from "./stores.js"
 
-    export let movement: Props["movement"] = "scroll"
-    export let direction: Props["direction"] = "vertical"
-    export let loopUp: Props["loopUp"] = false
-    export let loopDown: Props["loopDown"] = false
-    export let restrictMovement: Props["restrictMovement"] = true
-    export let scrollableSubSections: Props["scrollableSubSections"] = true
-
-    setContext("movement", movement)
-    setContext("direction", direction)
-    setContext("loopUp", loopUp)
-    setContext("loopDown", loopDown)
-    setContext("restrictMovement", restrictMovement)
-    setContext("scrollableSubSections", scrollableSubSections)
+    export let movement = _movement
+    export let direction = _direction
+    export let loopUp = _loopUp
+    export let loopDown = _loopDown
+    export let restrictMovement = _restrictMovement
+    export let scrollableSubSections = _scrollableSubSections
 
     const rtl = setContext("rtl", writable(false))
     const sections = setContext("sections", writable<Sections>([]))
@@ -88,7 +89,7 @@
     }
 
     function handleSwipe(e: SwipeEvent) {
-        if (restrictMovement && $isMoving) return
+        if ($restrictMovement && $isMoving) return
 
         if (["up", "left"].includes(e.detail.direction)) {
             moveForward()
@@ -98,7 +99,7 @@
     }
 
     function handleMousewheel(e: WheelEvent) {
-        if (restrictMovement && $isMoving) return
+        if ($restrictMovement && $isMoving) return
 
         if (isWheelingForward(e)) {
             moveForward()
@@ -109,7 +110,7 @@
 
     function moveForward() {
         if (
-            scrollableSubSections &&
+            $scrollableSubSections &&
             $sections[$activeSectionNumber - 1].subSections.length > 0 &&
             canMoveToNextSubSection()
         ) {
@@ -124,7 +125,7 @@
 
     function moveBackward() {
         if (
-            scrollableSubSections &&
+            $scrollableSubSections &&
             $sections[$activeSectionNumber - 1].subSections.length > 0 &&
             canMoveToPrevSubSection()
         ) {
@@ -142,7 +143,7 @@
             setIsMovingToTrue()
             moveToNextSection()
             setIsMovingToFalse()
-        } else if (loopDown) {
+        } else if ($loopDown) {
             setIsMovingToTrue()
             moveToFirstSection()
             resetSubSectionsToFirstPosition()
@@ -155,7 +156,7 @@
             setIsMovingToTrue()
             moveToPrevSection()
             setIsMovingToFalse()
-        } else if (loopUp) {
+        } else if ($loopUp) {
             setIsMovingToTrue()
             moveToLastSection()
             resetSubSectionsToLastPosition()
@@ -188,13 +189,13 @@
         let x = 0
 
         for (let i = 0; i < activeSectionNumber - 1; i++) {
-            if (direction === "vertical") {
+            if ($direction === "vertical") {
                 if ($sections[i]?.autoHeight) {
                     y += $sections[i]?.ref.clientHeight
                 } else {
                     y += $sections[i + 1]?.ref.clientHeight
                 }
-            } else if (direction === "horizontal") {
+            } else if ($direction === "horizontal") {
                 x += $sections[i]?.ref.clientWidth
             }
         }
@@ -258,9 +259,9 @@
 
         if (section?.subSections.length > 0) {
             for (let i = 0; i < activeSubSectionNumber - 1; i++) {
-                if (direction === "vertical") {
+                if ($direction === "vertical") {
                     x += section.subSections[i]?.ref.clientWidth
-                } else if (direction === "horizontal") {
+                } else if ($direction === "horizontal") {
                     if (section.subSections[i]?.autoHeight) {
                         y += section.subSections[i]?.ref.clientHeight
                     } else {
@@ -282,14 +283,14 @@
     }
 
     function setIsMovingToTrue() {
-        if (restrictMovement) {
+        if ($restrictMovement) {
             $isMoving = true
         }
     }
     setContext("setIsMovingToTrue", setIsMovingToTrue)
 
     function setIsMovingToFalse() {
-        if (restrictMovement) {
+        if ($restrictMovement) {
             setTimeout(() => {
                 $isMoving = false
             }, $duration)
@@ -302,12 +303,12 @@
 
 <div
     class="scrollephant"
-    data-scrollephant-movement={movement}
-    data-scrollephant-direction={direction}
-    style:--scrollephant-translate-y="-{movement === "scroll"
+    data-scrollephant-movement={$movement}
+    data-scrollephant-direction={$direction}
+    style:--scrollephant-translate-y="-{$movement === "scroll"
         ? translateY
         : 0}px"
-    style:--scrollephant-translate-x="{!$rtl ? "-" : ""}{movement === "scroll"
+    style:--scrollephant-translate-x="{!$rtl ? "-" : ""}{$movement === "scroll"
         ? translateX
         : 0}px"
     on:wheel|preventDefault={handleMousewheel}

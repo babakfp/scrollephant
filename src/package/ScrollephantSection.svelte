@@ -1,7 +1,8 @@
 <script lang="ts">
     import { onMount, setContext, getContext } from "svelte"
     import { type Writable, get, writable } from "svelte/store"
-    import type { Sections, SubSections, Props } from "./types.js"
+    import type { Sections, SubSections } from "./types.js"
+    import { movement } from "./stores.js"
 
     export let label = ""
     export let autoHeight = false
@@ -10,21 +11,20 @@
     const activeSectionNumber: Writable<number> = getContext(
         "activeSectionNumber"
     )
-    const movement = getContext<Props["movement"]>("movement")
     const rtl: Writable<number> = getContext("rtl")
     const subSections = setContext("subSections", writable<SubSections>([]))
 
     let element: HTMLElement
     let id: number
 
-    if (autoHeight && movement === "fade") {
+    if (autoHeight && $movement === "fade") {
         console.warn(
             "Using the autoHeight prop in conjunction with the movement prop set to fade is not logically meaningful and should be avoided."
         )
         autoHeight = false
     }
 
-    $: if (movement === "fade" && $subSections.length > 0) {
+    $: if ($movement === "fade" && $subSections.length > 0) {
         throw new Error(
             "Using sub-sections with the movement prop set to fade is not logically meaningful and should be avoided."
         )
@@ -60,10 +60,10 @@
     data-scrollephant-have-subsection={$subSections.length > 0}
     data-scrollephant-id={id}
     bind:this={element}
-    style:--scrollephant-translate-y="-{movement === "scroll"
+    style:--scrollephant-translate-y="-{$movement === "scroll"
         ? translateY
         : 0}px"
-    style:--scrollephant-translate-x="{!$rtl ? "-" : ""}{movement === "scroll"
+    style:--scrollephant-translate-x="{!$rtl ? "-" : ""}{$movement === "scroll"
         ? translateX
         : 0}px"
 >
