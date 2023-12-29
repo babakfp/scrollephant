@@ -91,12 +91,18 @@ export const moveToLastSection = () => {
 
 // ---
 
-export const canMoveToNextSubSection = () =>
-    get(sections)[get(activeSectionNumber) - 1].activeSubSectionNumber <
-    get(sections)[get(activeSectionNumber) - 1].subSections.length
+export const canMoveToNextSubSection = () => {
+    return (
+        get(sections)[get(activeSectionNumber) - 1].activeSubSectionNumber <
+        get(sections)[get(activeSectionNumber) - 1].subSections.length
+    )
+}
 
-export const canMoveToPrevSubSection = () =>
-    get(sections)[get(activeSectionNumber) - 1].activeSubSectionNumber > 1
+export const canMoveToPrevSubSection = () => {
+    return (
+        get(sections)[get(activeSectionNumber) - 1].activeSubSectionNumber > 1
+    )
+}
 
 export const moveToNextSubSection = () => {
     sections.update(_sections => {
