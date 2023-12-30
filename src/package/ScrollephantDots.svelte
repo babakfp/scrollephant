@@ -32,16 +32,22 @@
 
 <ol>
     {#each $sections as section, i}
+        {@const isCurrentSection =
+            $sections[$activeSectionNumber - 1].id === section.id}
         <ScrollephantDot
-            isCurrent={$activeSectionNumber === i + 1}
+            isCurrent={isCurrentSection}
             on:click={() => handleClick(i)}
         >
             {#if useSubSectionsDots && section.subSections.length > 0}
                 <ol>
-                    {#each section.subSections as _, i2}
+                    {#each section.subSections as subSection, i2}
+                        {@const isCurrentSubSection =
+                            isCurrentSection &&
+                            section.subSections[
+                                section.activeSubSectionNumber - 1
+                            ].id === subSection.id}
                         <ScrollephantDot
-                            isCurrent={$activeSectionNumber === i + 1 &&
-                                section.activeSubSectionNumber === i2 + 1}
+                            isCurrent={isCurrentSubSection}
                             on:click={() => handleSubSections(i2, i)}
                         />
                     {/each}
