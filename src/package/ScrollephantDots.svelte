@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { getContext } from "svelte"
     import ScrollephantDot from "./ScrollephantDot.svelte"
     import ScrollephantTooltip from "./ScrollephantTooltip.svelte"
     import { sections, activeSectionNumber } from "./stores.js"
