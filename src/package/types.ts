@@ -8,7 +8,7 @@ export type Props = {
 }
 
 export type Section = {
-    id: number
+    id: string
     ref: HTMLElement
     label?: string
     autoHeight: boolean
@@ -21,7 +21,7 @@ export type Section = {
 export type Sections = Section[]
 
 export type SubSection = {
-    id: number
+    id: string
     ref: HTMLElement
     label: string
     autoHeight: boolean

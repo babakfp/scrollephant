@@ -10,7 +10,7 @@
     const subSections = setContext("subSections", writable<SubSections>([]))
 
     let element: HTMLElement
-    let id: number
+    const id = crypto.randomUUID()
 
     if (autoHeight && $movement === "fade") {
         console.warn(
@@ -27,7 +27,6 @@
 
     onMount(() => {
         sections.update(currentValue => {
-            id = $sections.length + 1
             const newSection = {
                 id,
                 ref: element,
@@ -46,14 +45,15 @@
         ?.translateY
     $: translateX = $sections.filter(section => section.id === id)[0]
         ?.translateX
+
+    $: isCurrent = $sections[$activeSectionNumber - 1]?.id === id
 </script>
 
 <div
     class="scrollephant-section"
-    data-scrollephant-current={$activeSectionNumber === id}
+    data-scrollephant-current={isCurrent}
     data-scrollephant-auto-height={autoHeight}
     data-scrollephant-have-subsection={$subSections.length > 0}
-    data-scrollephant-id={id}
     bind:this={element}
     style:--scrollephant-translate-y="-{$movement === "scroll"
         ? translateY

@@ -10,11 +10,10 @@
     const subSections: Writable<SubSections> = getContext("subSections")
 
     let element: HTMLElement
-    let id: number
+    const id = crypto.randomUUID()
 
     onMount(() => {
         subSections.update(currentValue => {
-            id = Number(`${$sections.length + 1}.${$subSections.length + 1}`)
             const newSubSection: SubSection = {
                 id,
                 ref: element,
@@ -24,12 +23,16 @@
             return [...currentValue, newSubSection]
         })
     })
+
+    $: isCurrent =
+        $subSections[
+            $sections[$activeSectionNumber - 1]?.activeSubSectionNumber - 1
+        ]?.id === id
 </script>
 
 <div
     class="scrollephant-subsection"
-    data-scrollephant-current={$activeSectionNumber === id}
-    data-scrollephant-id={id}
+    data-scrollephant-current={isCurrent}
     bind:this={element}
 >
     <slot />
