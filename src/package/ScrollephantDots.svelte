@@ -2,11 +2,7 @@
     import ScrollephantDot from "./ScrollephantDot.svelte"
     import ScrollephantTooltip from "./ScrollephantTooltip.svelte"
     import { sections, activeSectionNumber } from "./stores.js"
-    import {
-        setIsMovingToTrue,
-        setIsMovingToFalse,
-        resetSubSectionsToFirstPosition,
-    } from "./utils.js"
+    import { setIsMovingToTrue, setIsMovingToFalse } from "./utils.js"
 
     export let useSubSectionsDots = true
 
@@ -14,7 +10,6 @@
         if ($activeSectionNumber === i + 1) return
         setIsMovingToTrue()
         $activeSectionNumber = i + 1
-        resetSubSectionsToFirstPosition()
         setIsMovingToFalse()
     }
 
