@@ -137,6 +137,11 @@
 
     const isWheelingForward = (e: WheelEvent) => e.deltaY > 0
     const isWheelingBackward = (e: WheelEvent) => e.deltaY < 0
+
+    $: styleTranslateY = `-${$movement === "scroll" ? translateY : 0}px`
+    $: styleTranslateX = `${!$rtl ? "-" : ""}${
+        $movement === "scroll" ? translateX : 0
+    }px`
 </script>
 
 <svelte:window on:resize={onWindowResize} />
@@ -145,12 +150,8 @@
     class="scrollephant"
     data-scrollephant-movement={$movement}
     data-scrollephant-direction={$direction}
-    style:--scrollephant-translate-y="-{$movement === "scroll"
-        ? translateY
-        : 0}px"
-    style:--scrollephant-translate-x="{!$rtl ? "-" : ""}{$movement === "scroll"
-        ? translateX
-        : 0}px"
+    style:--scrollephant-translate-y={styleTranslateY}
+    style:--scrollephant-translate-x={styleTranslateX}
     on:wheel|preventDefault={handleMouseWheel}
     use:swipe
     on:swipe={handleSwipe}
