@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { onMount, setContext } from "svelte"
+    import { onMount, onDestroy, setContext } from "svelte"
     import { writable } from "svelte/store"
     import type { SubSections } from "./types.js"
     import { movement, rtl, sections, activeSectionNumber } from "./stores.js"
@@ -39,6 +39,12 @@
             }
             return [...currentValue, newSection]
         })
+    })
+
+    onDestroy(() => {
+        sections.update(_sections =>
+            _sections.filter(section => section.id !== id)
+        )
     })
 
     $: translateY = $sections.filter(section => section.id === id)[0]

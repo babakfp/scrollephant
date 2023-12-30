@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { onMount, getContext } from "svelte"
+    import { onMount, onDestroy, getContext } from "svelte"
     import { type Writable } from "svelte/store"
     import type { SubSection, SubSections } from "./types.js"
     import { sections, activeSectionNumber } from "./stores.js"
@@ -22,6 +22,12 @@
             }
             return [...currentValue, newSubSection]
         })
+    })
+
+    onDestroy(() => {
+        subSections.update(_subSections =>
+            _subSections.filter(subSection => subSection.id !== id)
+        )
     })
 
     $: isCurrent =
