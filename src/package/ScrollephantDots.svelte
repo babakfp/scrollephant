@@ -15,7 +15,10 @@
 
     function handleSubsections(i: number, sectionIndex: number) {
         // if ($activeSectionNumber === i + 1) return
-        if ($activeSectionNumber - 1 !== sectionIndex) {
+
+        const isSubsectinParentIsTheCurrentSection =
+            $activeSectionNumber - 1 === sectionIndex
+        if (!isSubsectinParentIsTheCurrentSection) {
             $activeSectionNumber = sectionIndex + 1
         }
 
