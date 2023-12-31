@@ -8,7 +8,7 @@
 
 <ScrollephantArrow
     class="scrollephant-arrow-next"
-    isDisabled={!($canMoveToNextSection || $loopDown)}
+    isHidden={!($canMoveToNextSection || $loopDown)}
     on:click={moveForward}
 >
     {#if $direction === "vertical"}

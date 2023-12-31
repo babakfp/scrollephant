@@ -1,14 +1,14 @@
 <script lang="ts">
     import { isMoving } from "./stores.js"
 
-    export let isDisabled: boolean
+    export let isHidden: boolean
     export let className = ""
     export { className as class }
 </script>
 
 <button
     class="scrollephant-arrow {className}"
-    data-scrollephant-arrow-hidden={isDisabled}
+    data-scrollephant-arrow-hidden={isHidden}
     data-scrollephant-arrow-disabled={$isMoving}
     on:click
 >
