@@ -17,21 +17,19 @@
     }
 
     onMount(() => {
-        subsections.update(currentValue => {
-            const newSubsection: Subsection = {
+        $subsections = [
+            ...$subsections,
+            {
                 id,
                 ref: element,
                 label,
                 autoHeight,
-            }
-            return [...currentValue, newSubsection]
-        })
+            },
+        ]
     })
 
     onDestroy(() => {
-        subsections.update(_subsections =>
-            _subsections.filter(subsection => subsection.id !== id)
-        )
+        $subsections = $subsections.filter(subsection => subsection.id !== id)
     })
 
     $: isCurrent =

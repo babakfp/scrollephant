@@ -20,8 +20,9 @@
     }
 
     onMount(() => {
-        sections.update(currentValue => {
-            const newSection = {
+        $sections = [
+            ...$sections,
+            {
                 id,
                 ref: element,
                 label,
@@ -30,15 +31,12 @@
                 translateY: 0,
                 translateX: 0,
                 activeSubsectionNumber: 1,
-            }
-            return [...currentValue, newSection]
-        })
+            },
+        ]
     })
 
     onDestroy(() => {
-        sections.update(_sections =>
-            _sections.filter(section => section.id !== id)
-        )
+        $sections = $sections.filter(section => section.id !== id)
     })
 
     $: translateY = $sections.filter(section => section.id === id)[0]
