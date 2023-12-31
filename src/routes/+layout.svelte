@@ -11,9 +11,7 @@
         font-size: 4rem;
     }
     :global(
-            .scrollephant-section:not(
-                    [data-scrollephant-section-has-subsections="true"]
-                )
+            .scrollephant-section[data-scrollephant-section-has-subsections="false"]
                 .scrollephant-section-inner
         ) {
         display: flex;

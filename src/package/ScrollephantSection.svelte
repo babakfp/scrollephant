@@ -52,7 +52,7 @@
 </div>
 
 <style>
-    .scrollephant-section:not([data-scrollephant-section-auto-height="true"]) {
+    .scrollephant-section[data-scrollephant-section-auto-height="false"] {
         height: 100vh;
         height: 100dvh;
     }
