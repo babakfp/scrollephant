@@ -44,13 +44,13 @@
     let translateY = 0
     let translateX = 0
 
-    $: if ($sections.length > 0) {
+    $: if (!!$sections.length) {
         const { y, x } = getSectionYX($currentSectionNumber)
         translateY = y
         translateX = x
     }
 
-    $: if ($sections.length > 0) {
+    $: if (!!$sections.length) {
         const { y, x } = getSubsectionYX(
             $sections[$currentSectionNumber - 1],
             $sections[$currentSectionNumber - 1]?.currentSubsectionNumber
@@ -60,7 +60,7 @@
     }
 
     function onWindowResize() {
-        if ($sections.length > 0) {
+        if (!!$sections.length) {
             const { y: ySection, x: xSection } = getSectionYX(
                 $currentSectionNumber
             )
@@ -123,7 +123,7 @@
         let y = 0
         let x = 0
 
-        if (section?.subsections.length > 0) {
+        if (!!section?.subsections.length) {
             for (let i = 0; i < currentSubsectionNumber - 1; i++) {
                 if ($direction === "vertical") {
                     x += section.subsections[i]?.ref.clientWidth

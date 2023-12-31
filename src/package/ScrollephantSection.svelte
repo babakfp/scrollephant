@@ -48,7 +48,7 @@
     class="scrollephant-section"
     data-scrollephant-is-current-section={isCurrent}
     data-scrollephant-section-auto-height={autoHeight}
-    data-scrollephant-section-has-subsections={$subsections.length > 0}
+    data-scrollephant-section-has-subsections={!!$subsections.length}
     bind:this={element}
     style:--scrollephant-translate-y="-{$movement === "scroll"
         ? translateY

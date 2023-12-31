@@ -125,7 +125,7 @@ export const moveToPrevSubsection = () => {
 export const moveForward = () => {
     if (
         get(scrollableSubsections) &&
-        get(sections)[get(currentSectionNumber) - 1].subsections.length > 0 &&
+        !!get(sections)[get(currentSectionNumber) - 1].subsections.length &&
         canMoveToNextSubsection()
     ) {
         setIsMovingToTrue()
@@ -139,7 +139,7 @@ export const moveForward = () => {
 export const moveBackward = () => {
     if (
         get(scrollableSubsections) &&
-        get(sections)[get(currentSectionNumber) - 1].subsections.length > 0 &&
+        !!get(sections)[get(currentSectionNumber) - 1].subsections.length &&
         canMoveToPrevSubsection()
     ) {
         setIsMovingToTrue()

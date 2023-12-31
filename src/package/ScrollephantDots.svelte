@@ -36,7 +36,7 @@
             isCurrent={isCurrentSection}
             on:click={() => handleClick(i)}
         >
-            {#if useSubsectionsDots && section.subsections.length > 0}
+            {#if useSubsectionsDots && !!section.subsections.length}
                 <ol>
                     {#each section.subsections as subsection, i2}
                         {@const isCurrentSubsection =
