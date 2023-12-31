@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount, onDestroy, getContext } from "svelte"
     import { type Writable } from "svelte/store"
-    import type { Subsection, Subsections } from "./types.js"
+    import type { Subsections } from "./types.js"
     import { sections, currentSectionNumber, movement } from "./stores.js"
 
     export let label = ""
