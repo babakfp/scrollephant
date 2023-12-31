@@ -4,7 +4,7 @@ export type Props = {
     loopUp: boolean
     loopDown: boolean
     restrictMovement: boolean
-    scrollableSubSections: boolean
+    scrollableSubsections: boolean
 }
 
 export type Section = {
@@ -12,19 +12,19 @@ export type Section = {
     ref: HTMLElement
     label?: string
     autoHeight: boolean
-    subSections: SubSections
+    subsections: Subsections
     translateY: number
     translateX: number
-    activeSubSectionNumber: number
+    activeSubsectionNumber: number
 }
 
 export type Sections = Section[]
 
-export type SubSection = {
+export type Subsection = {
     id: string
     ref: HTMLElement
     label: string
     autoHeight: boolean
 }
 
-export type SubSections = SubSection[]
+export type Subsections = Subsection[]

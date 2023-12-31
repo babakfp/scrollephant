@@ -1,38 +1,38 @@
 <script lang="ts">
     import { onMount, onDestroy, getContext } from "svelte"
     import { type Writable } from "svelte/store"
-    import type { SubSection, SubSections } from "./types.js"
+    import type { Subsection, Subsections } from "./types.js"
     import { sections, activeSectionNumber } from "./stores.js"
 
     export let label = ""
     export let autoHeight = false
 
-    const subSections: Writable<SubSections> = getContext("subSections")
+    const subsections: Writable<Subsections> = getContext("subsections")
 
     let element: HTMLElement
     const id = crypto.randomUUID()
 
     onMount(() => {
-        subSections.update(currentValue => {
-            const newSubSection: SubSection = {
+        subsections.update(currentValue => {
+            const newSubsection: Subsection = {
                 id,
                 ref: element,
                 label,
                 autoHeight,
             }
-            return [...currentValue, newSubSection]
+            return [...currentValue, newSubsection]
         })
     })
 
     onDestroy(() => {
-        subSections.update(_subSections =>
-            _subSections.filter(subSection => subSection.id !== id)
+        subsections.update(_subsections =>
+            _subsections.filter(subsection => subsection.id !== id)
         )
     })
 
     $: isCurrent =
-        $subSections[
-            $sections[$activeSectionNumber - 1]?.activeSubSectionNumber - 1
+        $subsections[
+            $sections[$activeSectionNumber - 1]?.activeSubsectionNumber - 1
         ]?.id === id
 </script>
 

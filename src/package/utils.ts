@@ -5,7 +5,7 @@ import {
     duration,
     sections,
     activeSectionNumber,
-    scrollableSubSections,
+    scrollableSubsections,
     canMoveToNextSection,
     loopDown,
     canMoveToPrevSection,
@@ -29,16 +29,16 @@ export const setIsMovingToFalse = () => {
 
 // ---
 
-export const moveToFirstSubSection = () => {
+export const moveToFirstSubsection = () => {
     sections.update(_sections => {
-        _sections[get(activeSectionNumber) - 1].activeSubSectionNumber = 1
+        _sections[get(activeSectionNumber) - 1].activeSubsectionNumber = 1
         return _sections
     })
 }
 
-export const moveToLastSubSection = () => {
+export const moveToLastSubsection = () => {
     sections.update(_sections => {
-        _sections[get(activeSectionNumber) - 1].activeSubSectionNumber =
+        _sections[get(activeSectionNumber) - 1].activeSubsectionNumber =
             get(sections).length
         return _sections
     })
@@ -46,10 +46,10 @@ export const moveToLastSubSection = () => {
 
 // ---
 
-export const resetSubSectionsToFirstPosition = () => {
+export const resetSubsectionsToFirstPosition = () => {
     sections.update(_sections =>
         _sections.map(section => {
-            section.activeSubSectionNumber = 1
+            section.activeSubsectionNumber = 1
             section.translateY = 0
             section.translateX = 0
             return section
@@ -57,10 +57,10 @@ export const resetSubSectionsToFirstPosition = () => {
     )
 }
 
-export const resetSubSectionsToLastPosition = () => {
+export const resetSubsectionsToLastPosition = () => {
     sections.update(_sections =>
         _sections.map(section => {
-            section.activeSubSectionNumber = section.subSections.length
+            section.activeSubsectionNumber = section.subsections.length
             section.translateY = 0
             section.translateX = 0
             return section
@@ -92,29 +92,29 @@ export const moveToLastSection = () => {
 
 // ---
 
-export const canMoveToNextSubSection = () => {
+export const canMoveToNextSubsection = () => {
     return (
-        get(sections)[get(activeSectionNumber) - 1].activeSubSectionNumber <
-        get(sections)[get(activeSectionNumber) - 1].subSections.length
+        get(sections)[get(activeSectionNumber) - 1].activeSubsectionNumber <
+        get(sections)[get(activeSectionNumber) - 1].subsections.length
     )
 }
 
-export const canMoveToPrevSubSection = () => {
+export const canMoveToPrevSubsection = () => {
     return (
-        get(sections)[get(activeSectionNumber) - 1].activeSubSectionNumber > 1
+        get(sections)[get(activeSectionNumber) - 1].activeSubsectionNumber > 1
     )
 }
 
-export const moveToNextSubSection = () => {
+export const moveToNextSubsection = () => {
     sections.update(_sections => {
-        _sections[get(activeSectionNumber) - 1].activeSubSectionNumber += 1
+        _sections[get(activeSectionNumber) - 1].activeSubsectionNumber += 1
         return _sections
     })
 }
 
-export const moveToPrevSubSection = () => {
+export const moveToPrevSubsection = () => {
     sections.update(_sections => {
-        _sections[get(activeSectionNumber) - 1].activeSubSectionNumber -= 1
+        _sections[get(activeSectionNumber) - 1].activeSubsectionNumber -= 1
         return _sections
     })
 }
@@ -123,12 +123,12 @@ export const moveToPrevSubSection = () => {
 
 export const moveForward = () => {
     if (
-        get(scrollableSubSections) &&
-        get(sections)[get(activeSectionNumber) - 1].subSections.length > 0 &&
-        canMoveToNextSubSection()
+        get(scrollableSubsections) &&
+        get(sections)[get(activeSectionNumber) - 1].subsections.length > 0 &&
+        canMoveToNextSubsection()
     ) {
         setIsMovingToTrue()
-        moveToNextSubSection()
+        moveToNextSubsection()
         setIsMovingToFalse()
     } else {
         moveSectionForward()
@@ -137,12 +137,12 @@ export const moveForward = () => {
 
 export const moveBackward = () => {
     if (
-        get(scrollableSubSections) &&
-        get(sections)[get(activeSectionNumber) - 1].subSections.length > 0 &&
-        canMoveToPrevSubSection()
+        get(scrollableSubsections) &&
+        get(sections)[get(activeSectionNumber) - 1].subsections.length > 0 &&
+        canMoveToPrevSubsection()
     ) {
         setIsMovingToTrue()
-        moveToPrevSubSection()
+        moveToPrevSubsection()
         setIsMovingToFalse()
     } else {
         moveSectionBackward()
@@ -157,7 +157,7 @@ export const moveSectionForward = () => {
     } else if (get(loopDown)) {
         setIsMovingToTrue()
         moveToFirstSection()
-        resetSubSectionsToFirstPosition()
+        resetSubsectionsToFirstPosition()
         setIsMovingToFalse()
     }
 }
@@ -170,7 +170,7 @@ export const moveSectionBackward = () => {
     } else if (get(loopUp)) {
         setIsMovingToTrue()
         moveToLastSection()
-        resetSubSectionsToLastPosition()
+        resetSubsectionsToLastPosition()
         setIsMovingToFalse()
     }
 }

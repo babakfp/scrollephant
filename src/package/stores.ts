@@ -6,7 +6,7 @@ export const direction: Writable<Props["direction"]> = writable("vertical")
 export const loopUp: Writable<Props["loopUp"]> = writable(false)
 export const loopDown: Writable<Props["loopDown"]> = writable(false)
 export const restrictMovement: Writable<Props["restrictMovement"]> = writable(true) // prettier-ignore
-export const scrollableSubSections: Writable<Props["scrollableSubSections"]> = writable(true) // prettier-ignore
+export const scrollableSubsections: Writable<Props["scrollableSubsections"]> = writable(true) // prettier-ignore
 
 export const rtl = writable(false)
 export const sections = writable<Sections>([])

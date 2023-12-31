@@ -8,7 +8,7 @@
         loopUp as _loopUp,
         loopDown as _loopDown,
         restrictMovement as _restrictMovement,
-        scrollableSubSections as _scrollableSubSections,
+        scrollableSubsections as _scrollableSubsections,
         rtl,
         sections,
         activeSectionNumber,
@@ -21,7 +21,7 @@
     export let loopUp = _loopUp
     export let loopDown = _loopDown
     export let restrictMovement = _restrictMovement
-    export let scrollableSubSections = _scrollableSubSections
+    export let scrollableSubsections = _scrollableSubsections
 
     // Added this code to get rid of this shit, lol!
     // Component has unused export property 'loopDown'. If it is for external reference only, please consider using `export const loopDown`svelte(unused-export-let)
@@ -31,7 +31,7 @@
     $_loopUp = $loopUp
     $_loopDown = $loopDown
     $_restrictMovement = $restrictMovement
-    $_scrollableSubSections = $scrollableSubSections
+    $_scrollableSubsections = $scrollableSubsections
 
     let element: HTMLElement
 
@@ -50,9 +50,9 @@
     }
 
     $: if ($sections.length > 0) {
-        const { y, x } = getSubSectionYX(
+        const { y, x } = getSubsectionYX(
             $sections[$activeSectionNumber - 1],
-            $sections[$activeSectionNumber - 1]?.activeSubSectionNumber
+            $sections[$activeSectionNumber - 1]?.activeSubsectionNumber
         )
         $sections[$activeSectionNumber - 1].translateY = y
         $sections[$activeSectionNumber - 1].translateX = x
@@ -65,12 +65,12 @@
             translateY = ySection
             translateX = xSection
 
-            const { y: ySubSection, x: xSubSection } = getSubSectionYX(
+            const { y: ySubsection, x: xSubsection } = getSubsectionYX(
                 $sections[$activeSectionNumber - 1],
-                $sections[$activeSectionNumber - 1]?.activeSubSectionNumber
+                $sections[$activeSectionNumber - 1]?.activeSubsectionNumber
             )
-            $sections[$activeSectionNumber - 1].translateY = ySubSection
-            $sections[$activeSectionNumber - 1].translateX = xSubSection
+            $sections[$activeSectionNumber - 1].translateY = ySubsection
+            $sections[$activeSectionNumber - 1].translateX = xSubsection
         }
     }
 
@@ -114,19 +114,19 @@
         return { y, x }
     }
 
-    function getSubSectionYX(section: Section, activeSubSectionNumber: number) {
+    function getSubsectionYX(section: Section, activeSubsectionNumber: number) {
         let y = 0
         let x = 0
 
-        if (section?.subSections.length > 0) {
-            for (let i = 0; i < activeSubSectionNumber - 1; i++) {
+        if (section?.subsections.length > 0) {
+            for (let i = 0; i < activeSubsectionNumber - 1; i++) {
                 if ($direction === "vertical") {
-                    x += section.subSections[i]?.ref.clientWidth
+                    x += section.subsections[i]?.ref.clientWidth
                 } else if ($direction === "horizontal") {
-                    if (section.subSections[i]?.autoHeight) {
-                        y += section.subSections[i]?.ref.clientHeight
+                    if (section.subsections[i]?.autoHeight) {
+                        y += section.subsections[i]?.ref.clientHeight
                     } else {
-                        y += section.subSections[i + 1]?.ref.clientHeight
+                        y += section.subsections[i + 1]?.ref.clientHeight
                     }
                 }
             }

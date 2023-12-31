@@ -4,7 +4,7 @@
         Scrollephant,
         ScrollephantWrapper,
         ScrollephantSection,
-        ScrollephantSubSection,
+        ScrollephantSubsection,
         ScrollephantNavigationsWrapper,
         ScrollephantArrowPrev,
         ScrollephantArrowNext,
@@ -17,15 +17,15 @@
         <ScrollephantSection label="Section 1">1</ScrollephantSection>
         <ScrollephantSection label="Section 2">
             <ScrollephantWrapper>
-                <ScrollephantSubSection label="Section 2.1">
+                <ScrollephantSubsection label="Section 2.1">
                     2.1
-                </ScrollephantSubSection>
-                <ScrollephantSubSection label="Section 2.2">
+                </ScrollephantSubsection>
+                <ScrollephantSubsection label="Section 2.2">
                     2.2
-                </ScrollephantSubSection>
-                <ScrollephantSubSection label="Section 2.3">
+                </ScrollephantSubsection>
+                <ScrollephantSubsection label="Section 2.3">
                     2.3
-                </ScrollephantSubSection>
+                </ScrollephantSubsection>
             </ScrollephantWrapper>
         </ScrollephantSection>
         <ScrollephantSection label="Section 3">3</ScrollephantSection>

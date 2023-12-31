@@ -4,7 +4,7 @@
     import { sections, activeSectionNumber } from "./stores.js"
     import { setIsMovingToTrue, setIsMovingToFalse } from "./utils.js"
 
-    export let useSubSectionsDots = true
+    export let useSubsectionsDots = true
 
     function handleClick(i: number) {
         if ($activeSectionNumber === i + 1) return
@@ -13,14 +13,14 @@
         setIsMovingToFalse()
     }
 
-    function handleSubSections(i: number, sectionIndex: number) {
+    function handleSubsections(i: number, sectionIndex: number) {
         // if ($activeSectionNumber === i + 1) return
         if ($activeSectionNumber - 1 !== sectionIndex) {
             $activeSectionNumber = sectionIndex + 1
         }
 
         setIsMovingToTrue()
-        $sections[$activeSectionNumber - 1].activeSubSectionNumber = i + 1
+        $sections[$activeSectionNumber - 1].activeSubsectionNumber = i + 1
         setIsMovingToFalse()
     }
 </script>
@@ -33,17 +33,17 @@
             isCurrent={isCurrentSection}
             on:click={() => handleClick(i)}
         >
-            {#if useSubSectionsDots && section.subSections.length > 0}
+            {#if useSubsectionsDots && section.subsections.length > 0}
                 <ol>
-                    {#each section.subSections as subSection, i2}
-                        {@const isCurrentSubSection =
+                    {#each section.subsections as subsection, i2}
+                        {@const isCurrentSubsection =
                             isCurrentSection &&
-                            section.subSections[
-                                section.activeSubSectionNumber - 1
-                            ].id === subSection.id}
+                            section.subsections[
+                                section.activeSubsectionNumber - 1
+                            ].id === subsection.id}
                         <ScrollephantDot
-                            isCurrent={isCurrentSubSection}
-                            on:click={() => handleSubSections(i2, i)}
+                            isCurrent={isCurrentSubsection}
+                            on:click={() => handleSubsections(i2, i)}
                         />
                     {/each}
                 </ol>

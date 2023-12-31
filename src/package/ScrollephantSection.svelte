@@ -1,13 +1,13 @@
 <script lang="ts">
     import { onMount, onDestroy, setContext } from "svelte"
     import { writable } from "svelte/store"
-    import type { SubSections } from "./types.js"
+    import type { Subsections } from "./types.js"
     import { movement, rtl, sections, activeSectionNumber } from "./stores.js"
 
     export let label = ""
     export let autoHeight = false
 
-    const subSections = setContext("subSections", writable<SubSections>([]))
+    const subsections = setContext("subsections", writable<Subsections>([]))
 
     let element: HTMLElement
     const id = crypto.randomUUID()
@@ -19,9 +19,9 @@
         autoHeight = false
     }
 
-    $: if ($movement === "fade" && $subSections.length > 0) {
+    $: if ($movement === "fade" && $subsections.length > 0) {
         throw new Error(
-            "Using sub-sections with the movement prop set to fade is not logically meaningful and should be avoided."
+            "Using subsections with the movement prop set to fade is not logically meaningful and should be avoided."
         )
     }
 
@@ -32,10 +32,10 @@
                 ref: element,
                 label,
                 autoHeight,
-                subSections: $subSections,
+                subsections: $subsections,
                 translateY: 0,
                 translateX: 0,
-                activeSubSectionNumber: 1,
+                activeSubsectionNumber: 1,
             }
             return [...currentValue, newSection]
         })
@@ -59,7 +59,7 @@
     class="scrollephant-section"
     data-scrollephant-current={isCurrent}
     data-scrollephant-auto-height={autoHeight}
-    data-scrollephant-has-subsection={$subSections.length > 0}
+    data-scrollephant-has-subsection={$subsections.length > 0}
     bind:this={element}
     style:--scrollephant-translate-y="-{$movement === "scroll"
         ? translateY
