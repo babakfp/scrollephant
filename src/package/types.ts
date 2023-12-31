@@ -23,7 +23,7 @@ export type Sections = Section[]
 export type Subsection = {
     id: string
     ref: HTMLElement
-    label: string
+    label?: string
     autoHeight: boolean
 }
 
