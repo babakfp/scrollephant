@@ -20,6 +20,17 @@
         autoHeight = false
     }
 
+    subsections.subscribe(_subsections => {
+        sections.update(_sections =>
+            _sections.map(section => {
+                if (section.id === id) {
+                    section.subsections = _subsections
+                }
+                return section
+            })
+        )
+    })
+
     onMount(() => {
         addSection(id, element, label, autoHeight, $subsections)
     })
