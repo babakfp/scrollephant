@@ -2,7 +2,7 @@
     import { onMount, onDestroy, getContext } from "svelte"
     import { type Writable } from "svelte/store"
     import type { Subsection, Subsections } from "./types.js"
-    import { sections, activeSectionNumber } from "./stores.js"
+    import { sections, activeSectionNumber, movement } from "./stores.js"
 
     export let label = ""
     export let autoHeight = false
@@ -11,6 +11,10 @@
 
     let element: HTMLElement
     const id = crypto.randomUUID()
+
+    $: if ($movement === "fade") {
+        throw new Error("Fading movement is not supported for subsections.")
+    }
 
     onMount(() => {
         subsections.update(currentValue => {

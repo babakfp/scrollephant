@@ -19,12 +19,6 @@
         autoHeight = false
     }
 
-    $: if ($movement === "fade" && $subsections.length > 0) {
-        throw new Error(
-            "Using subsections with the movement prop set to fade is not logically meaningful and should be avoided."
-        )
-    }
-
     onMount(() => {
         sections.update(currentValue => {
             const newSection = {
