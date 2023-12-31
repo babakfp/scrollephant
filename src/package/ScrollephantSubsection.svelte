@@ -40,7 +40,7 @@
 
 <div
     class="scrollephant-subsection"
-    data-scrollephant-current={isCurrent}
+    data-scrollephant-is-current-subsection={isCurrent}
     bind:this={element}
 >
     <slot />

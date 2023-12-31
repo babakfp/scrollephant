@@ -9,7 +9,8 @@
             var(--scrollephant-timing-function);
     }
 
-    :global([data-scrollephant-has-subsection="true"]) .scrollephant-wrapper {
+    :global([data-scrollephant-section-has-subsections="true"])
+        .scrollephant-wrapper {
         height: 100%;
     }
 
@@ -17,7 +18,7 @@
         > .scrollephant-wrapper,
     :global(
             .scrollephant[data-scrollephant-direction="horizontal"]
-                [data-scrollephant-has-subsection="true"]
+                [data-scrollephant-section-has-subsections="true"]
         )
         .scrollephant-wrapper {
         flex-direction: column;
@@ -28,7 +29,7 @@
         > .scrollephant-wrapper,
     :global(
             .scrollephant[data-scrollephant-direction="vertical"]
-                [data-scrollephant-has-subsection="true"]
+                [data-scrollephant-section-has-subsections="true"]
         )
         .scrollephant-wrapper {
         transform: translateX(var(--scrollephant-translate-x));

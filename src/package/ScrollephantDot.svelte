@@ -4,7 +4,7 @@
     export let isCurrent = false
 </script>
 
-<li class="scrollephant-dot" data-scrollephant-dot-current={isCurrent}>
+<li class="scrollephant-dot" data-scrollephant-is-current-dot={isCurrent}>
     <button on:click data-scrollephant-dot-disabled={$isMoving}>
         <div />
     </button>
@@ -45,11 +45,11 @@
         transform: scale(0.5);
     }
 
-    li[data-scrollephant-dot-current="true"] > button {
+    li[data-scrollephant-is-current-dot="true"] > button {
         cursor: default;
     }
 
-    li[data-scrollephant-dot-current="true"] > button div {
+    li[data-scrollephant-is-current-dot="true"] > button div {
         transform: scale(0.75);
     }
 
@@ -61,7 +61,7 @@
         padding-bottom: var(--dot-button-corner-padding);
     }
 
-    li[data-scrollephant-dot-current="false"]
+    li[data-scrollephant-is-current-dot="false"]
         [data-scrollephant-dot-disabled="true"] {
         opacity: 0.5;
         pointer-events: none;

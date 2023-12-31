@@ -35,9 +35,9 @@
 
 <div
     class="scrollephant-section"
-    data-scrollephant-current={isCurrent}
-    data-scrollephant-auto-height={autoHeight}
-    data-scrollephant-has-subsection={$subsections.length > 0}
+    data-scrollephant-is-current-section={isCurrent}
+    data-scrollephant-section-auto-height={autoHeight}
+    data-scrollephant-section-has-subsections={$subsections.length > 0}
     bind:this={element}
     style:--scrollephant-translate-y="-{$movement === "scroll"
         ? translateY
@@ -52,12 +52,12 @@
 </div>
 
 <style>
-    .scrollephant-section:not([data-scrollephant-auto-height="true"]) {
+    .scrollephant-section:not([data-scrollephant-section-auto-height="true"]) {
         height: 100vh;
         height: 100dvh;
     }
 
-    .scrollephant-section[data-scrollephant-auto-height="true"] {
+    .scrollephant-section[data-scrollephant-section-auto-height="true"] {
         max-height: 100vh;
         max-height: 100dvh;
     }
@@ -99,7 +99,7 @@
     }
 
     :global(.scrollephant[data-scrollephant-movement="fade"])
-        [data-scrollephant-current="true"] {
+        [data-scrollephant-is-current-section="true"] {
         opacity: 1;
         visibility: visible;
         pointer-events: all;
@@ -107,7 +107,7 @@
     }
 
     :global(.scrollephant[data-scrollephant-movement="fade"])
-        [data-scrollephant-current="true"]
+        [data-scrollephant-is-current-section="true"]
         .scrollephant-section-inner {
         opacity: 1;
         visibility: visible;

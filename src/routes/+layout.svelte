@@ -11,7 +11,9 @@
         font-size: 4rem;
     }
     :global(
-            .scrollephant-section:not([data-scrollephant-has-subsection="true"])
+            .scrollephant-section:not(
+                    [data-scrollephant-section-has-subsections="true"]
+                )
                 .scrollephant-section-inner
         ) {
         display: flex;
@@ -49,7 +51,9 @@
     :global(.scrollephant-subsection:nth-child(1)) {
         background: #7c3aed;
     }
-    :global(.scrollephant-section[data-scrollephant-has-subsection="true"]) {
+    :global(
+            .scrollephant-section[data-scrollephant-section-has-subsections="true"]
+        ) {
         background: unset;
     }
 </style>
