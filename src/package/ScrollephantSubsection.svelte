@@ -2,7 +2,7 @@
     import { onMount, onDestroy, getContext } from "svelte"
     import { type Writable } from "svelte/store"
     import type { Subsection, Subsections } from "./types.js"
-    import { sections, activeSectionNumber, movement } from "./stores.js"
+    import { sections, currentSectionNumber, movement } from "./stores.js"
 
     export let label = ""
     export let autoHeight = false
@@ -34,7 +34,7 @@
 
     $: isCurrent =
         $subsections[
-            $sections[$activeSectionNumber - 1]?.activeSubsectionNumber - 1
+            $sections[$currentSectionNumber - 1]?.currentSubsectionNumber - 1
         ]?.id === id
 </script>
 

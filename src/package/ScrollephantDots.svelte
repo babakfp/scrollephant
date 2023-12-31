@@ -1,29 +1,29 @@
 <script lang="ts">
     import ScrollephantDot from "./ScrollephantDot.svelte"
     import ScrollephantTooltip from "./ScrollephantTooltip.svelte"
-    import { sections, activeSectionNumber } from "./stores.js"
+    import { sections, currentSectionNumber } from "./stores.js"
     import { setIsMovingToTrue, setIsMovingToFalse } from "./utils.js"
 
     export let useSubsectionsDots = true
 
     function handleClick(i: number) {
-        if ($activeSectionNumber === i + 1) return
+        if ($currentSectionNumber === i + 1) return
         setIsMovingToTrue()
-        $activeSectionNumber = i + 1
+        $currentSectionNumber = i + 1
         setIsMovingToFalse()
     }
 
     function handleSubsections(i: number, sectionIndex: number) {
-        // if ($activeSectionNumber === i + 1) return
+        // if ($currentSectionNumber === i + 1) return
 
         const isSubsectinParentIsTheCurrentSection =
-            $activeSectionNumber - 1 === sectionIndex
+            $currentSectionNumber - 1 === sectionIndex
         if (!isSubsectinParentIsTheCurrentSection) {
-            $activeSectionNumber = sectionIndex + 1
+            $currentSectionNumber = sectionIndex + 1
         }
 
         setIsMovingToTrue()
-        $sections[$activeSectionNumber - 1].activeSubsectionNumber = i + 1
+        $sections[$currentSectionNumber - 1].currentSubsectionNumber = i + 1
         setIsMovingToFalse()
     }
 </script>
@@ -31,7 +31,7 @@
 <ol>
     {#each $sections as section, i}
         {@const isCurrentSection =
-            $sections[$activeSectionNumber - 1].id === section.id}
+            $sections[$currentSectionNumber - 1].id === section.id}
         <ScrollephantDot
             isCurrent={isCurrentSection}
             on:click={() => handleClick(i)}
@@ -42,7 +42,7 @@
                         {@const isCurrentSubsection =
                             isCurrentSection &&
                             section.subsections[
-                                section.activeSubsectionNumber - 1
+                                section.currentSubsectionNumber - 1
                             ].id === subsection.id}
                         <ScrollephantDot
                             isCurrent={isCurrentSubsection}

@@ -10,15 +10,15 @@ export const scrollableSubsections: Writable<Props["scrollableSubsections"]> = w
 
 export const rtl = writable(false)
 export const sections = writable<Sections>([])
-export const activeSectionNumber = writable(1)
+export const currentSectionNumber = writable(1)
 export const isMoving = writable(false)
 export const duration = writable<number>()
 export const canMoveToPrevSection = derived(
-    activeSectionNumber,
-    $activeSectionNumber => $activeSectionNumber > 1
+    currentSectionNumber,
+    $currentSectionNumber => $currentSectionNumber > 1
 )
 export const canMoveToNextSection = derived(
-    [activeSectionNumber, sections],
-    ([$activeSectionNumber, $sections]) =>
-        $activeSectionNumber < $sections.length
+    [currentSectionNumber, sections],
+    ([$currentSectionNumber, $sections]) =>
+        $currentSectionNumber < $sections.length
 )

@@ -2,7 +2,7 @@
     import { onMount, onDestroy, setContext } from "svelte"
     import { writable } from "svelte/store"
     import type { Subsections } from "./types.js"
-    import { movement, rtl, sections, activeSectionNumber } from "./stores.js"
+    import { movement, rtl, sections, currentSectionNumber } from "./stores.js"
 
     export let label = ""
     export let autoHeight = false
@@ -30,7 +30,7 @@
                 subsections: $subsections,
                 translateY: 0,
                 translateX: 0,
-                activeSubsectionNumber: 1,
+                currentSubsectionNumber: 1,
             },
         ]
     })
@@ -44,7 +44,7 @@
     $: translateX = $sections.filter(section => section.id === id)[0]
         ?.translateX
 
-    $: isCurrent = $sections[$activeSectionNumber - 1]?.id === id
+    $: isCurrent = $sections[$currentSectionNumber - 1]?.id === id
 </script>
 
 <div

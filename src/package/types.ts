@@ -15,7 +15,7 @@ export type Section = {
     subsections: Subsections
     translateY: number
     translateX: number
-    activeSubsectionNumber: number
+    currentSubsectionNumber: number
 }
 
 export type Sections = Section[]

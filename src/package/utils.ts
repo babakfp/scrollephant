@@ -4,7 +4,7 @@ import {
     isMoving,
     duration,
     sections,
-    activeSectionNumber,
+    currentSectionNumber,
     scrollableSubsections,
     canMoveToNextSection,
     loopDown,
@@ -31,14 +31,14 @@ export const setIsMovingToFalse = () => {
 
 export const moveToFirstSubsection = () => {
     sections.update(_sections => {
-        _sections[get(activeSectionNumber) - 1].activeSubsectionNumber = 1
+        _sections[get(currentSectionNumber) - 1].currentSubsectionNumber = 1
         return _sections
     })
 }
 
 export const moveToLastSubsection = () => {
     sections.update(_sections => {
-        _sections[get(activeSectionNumber) - 1].activeSubsectionNumber =
+        _sections[get(currentSectionNumber) - 1].currentSubsectionNumber =
             get(sections).length
         return _sections
     })
@@ -49,7 +49,7 @@ export const moveToLastSubsection = () => {
 export const resetSubsectionsToFirstPosition = () => {
     sections.update(_sections =>
         _sections.map(section => {
-            section.activeSubsectionNumber = 1
+            section.currentSubsectionNumber = 1
             section.translateY = 0
             section.translateX = 0
             return section
@@ -60,7 +60,7 @@ export const resetSubsectionsToFirstPosition = () => {
 export const resetSubsectionsToLastPosition = () => {
     sections.update(_sections =>
         _sections.map(section => {
-            section.activeSubsectionNumber = section.subsections.length
+            section.currentSubsectionNumber = section.subsections.length
             section.translateY = 0
             section.translateX = 0
             return section
@@ -71,50 +71,50 @@ export const resetSubsectionsToLastPosition = () => {
 // ---
 
 export const moveToNextSection = () => {
-    activeSectionNumber.update(
-        _activeSectionNumber => (_activeSectionNumber += 1)
+    currentSectionNumber.update(
+        _currentSectionNumber => (_currentSectionNumber += 1)
     )
 }
 
 export const moveToPrevSection = () => {
-    activeSectionNumber.update(
-        _activeSectionNumber => (_activeSectionNumber -= 1)
+    currentSectionNumber.update(
+        _currentSectionNumber => (_currentSectionNumber -= 1)
     )
 }
 
 export const moveToFirstSection = () => {
-    activeSectionNumber.set(1)
+    currentSectionNumber.set(1)
 }
 
 export const moveToLastSection = () => {
-    activeSectionNumber.set(get(sections).length)
+    currentSectionNumber.set(get(sections).length)
 }
 
 // ---
 
 export const canMoveToNextSubsection = () => {
     return (
-        get(sections)[get(activeSectionNumber) - 1].activeSubsectionNumber <
-        get(sections)[get(activeSectionNumber) - 1].subsections.length
+        get(sections)[get(currentSectionNumber) - 1].currentSubsectionNumber <
+        get(sections)[get(currentSectionNumber) - 1].subsections.length
     )
 }
 
 export const canMoveToPrevSubsection = () => {
     return (
-        get(sections)[get(activeSectionNumber) - 1].activeSubsectionNumber > 1
+        get(sections)[get(currentSectionNumber) - 1].currentSubsectionNumber > 1
     )
 }
 
 export const moveToNextSubsection = () => {
     sections.update(_sections => {
-        _sections[get(activeSectionNumber) - 1].activeSubsectionNumber += 1
+        _sections[get(currentSectionNumber) - 1].currentSubsectionNumber += 1
         return _sections
     })
 }
 
 export const moveToPrevSubsection = () => {
     sections.update(_sections => {
-        _sections[get(activeSectionNumber) - 1].activeSubsectionNumber -= 1
+        _sections[get(currentSectionNumber) - 1].currentSubsectionNumber -= 1
         return _sections
     })
 }
@@ -124,7 +124,7 @@ export const moveToPrevSubsection = () => {
 export const moveForward = () => {
     if (
         get(scrollableSubsections) &&
-        get(sections)[get(activeSectionNumber) - 1].subsections.length > 0 &&
+        get(sections)[get(currentSectionNumber) - 1].subsections.length > 0 &&
         canMoveToNextSubsection()
     ) {
         setIsMovingToTrue()
@@ -138,7 +138,7 @@ export const moveForward = () => {
 export const moveBackward = () => {
     if (
         get(scrollableSubsections) &&
-        get(sections)[get(activeSectionNumber) - 1].subsections.length > 0 &&
+        get(sections)[get(currentSectionNumber) - 1].subsections.length > 0 &&
         canMoveToPrevSubsection()
     ) {
         setIsMovingToTrue()

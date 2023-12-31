@@ -11,7 +11,7 @@
         scrollableSubsections as _scrollableSubsections,
         rtl,
         sections,
-        activeSectionNumber,
+        currentSectionNumber,
         isMoving,
     } from "./stores.js"
     import { moveForward, moveBackward, getDuration, getRTL } from "./utils.js"
@@ -45,33 +45,34 @@
     let translateX = 0
 
     $: if ($sections.length > 0) {
-        const { y, x } = getSectionYX($activeSectionNumber)
+        const { y, x } = getSectionYX($currentSectionNumber)
         translateY = y
         translateX = x
     }
 
     $: if ($sections.length > 0) {
         const { y, x } = getSubsectionYX(
-            $sections[$activeSectionNumber - 1],
-            $sections[$activeSectionNumber - 1]?.activeSubsectionNumber
+            $sections[$currentSectionNumber - 1],
+            $sections[$currentSectionNumber - 1]?.currentSubsectionNumber
         )
-        $sections[$activeSectionNumber - 1].translateY = y
-        $sections[$activeSectionNumber - 1].translateX = x
+        $sections[$currentSectionNumber - 1].translateY = y
+        $sections[$currentSectionNumber - 1].translateX = x
     }
 
     function onWindowResize() {
         if ($sections.length > 0) {
-            const { y: ySection, x: xSection } =
-                getSectionYX($activeSectionNumber)
+            const { y: ySection, x: xSection } = getSectionYX(
+                $currentSectionNumber
+            )
             translateY = ySection
             translateX = xSection
 
             const { y: ySubsection, x: xSubsection } = getSubsectionYX(
-                $sections[$activeSectionNumber - 1],
-                $sections[$activeSectionNumber - 1]?.activeSubsectionNumber
+                $sections[$currentSectionNumber - 1],
+                $sections[$currentSectionNumber - 1]?.currentSubsectionNumber
             )
-            $sections[$activeSectionNumber - 1].translateY = ySubsection
-            $sections[$activeSectionNumber - 1].translateX = xSubsection
+            $sections[$currentSectionNumber - 1].translateY = ySubsection
+            $sections[$currentSectionNumber - 1].translateX = xSubsection
         }
     }
 
@@ -96,11 +97,11 @@
         }
     }
 
-    function getSectionYX(activeSectionNumber: number) {
+    function getSectionYX(currentSectionNumber: number) {
         let y = 0
         let x = 0
 
-        for (let i = 0; i < activeSectionNumber - 1; i++) {
+        for (let i = 0; i < currentSectionNumber - 1; i++) {
             if ($direction === "vertical") {
                 if ($sections[i]?.autoHeight) {
                     y += $sections[i]?.ref.clientHeight
@@ -115,12 +116,15 @@
         return { y, x }
     }
 
-    function getSubsectionYX(section: Section, activeSubsectionNumber: number) {
+    function getSubsectionYX(
+        section: Section,
+        currentSubsectionNumber: number
+    ) {
         let y = 0
         let x = 0
 
         if (section?.subsections.length > 0) {
-            for (let i = 0; i < activeSubsectionNumber - 1; i++) {
+            for (let i = 0; i < currentSubsectionNumber - 1; i++) {
                 if ($direction === "vertical") {
                     x += section.subsections[i]?.ref.clientWidth
                 } else if ($direction === "horizontal") {
