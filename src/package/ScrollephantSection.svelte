@@ -3,6 +3,7 @@
     import { writable } from "svelte/store"
     import type { Subsections } from "./types.js"
     import { movement, rtl, sections, currentSectionNumber } from "./stores.js"
+    import { addSection, deleteSectionById } from "./utils.js"
 
     export let label = ""
     export let autoHeight = false
@@ -20,30 +21,15 @@
     }
 
     onMount(() => {
-        $sections = [
-            ...$sections,
-            {
-                id,
-                ref: element,
-                label,
-                autoHeight,
-                subsections: $subsections,
-                translateY: 0,
-                translateX: 0,
-                currentSubsectionNumber: 1,
-            },
-        ]
+        addSection(id, element, label, autoHeight, $subsections)
     })
 
     onDestroy(() => {
-        $sections = $sections.filter(section => section.id !== id)
+        deleteSectionById(id)
     })
 
-    $: translateY = $sections.filter(section => section.id === id)[0]
-        ?.translateY
-    $: translateX = $sections.filter(section => section.id === id)[0]
-        ?.translateX
-
+    $: translateY = $sections.find(section => section.id === id)?.translateY
+    $: translateX = $sections.find(section => section.id === id)?.translateX
     $: isCurrent = $sections[$currentSectionNumber - 1]?.id === id
 </script>
 

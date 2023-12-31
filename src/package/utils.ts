@@ -12,6 +12,7 @@ import {
     loopUp,
     rtl,
 } from "./stores.js"
+import type { Subsections } from "./types.js"
 
 export const setIsMovingToTrue = () => {
     if (get(restrictMovement)) {
@@ -191,4 +192,29 @@ export const getDuration = (element: HTMLElement) => {
                 .slice(0, -2)
         )
     )
+}
+
+export const addSection = (
+    id: string,
+    element: HTMLElement,
+    label: string,
+    autoHeight: boolean,
+    subsections: Subsections
+) => {
+    sections.update(_sections =>
+        _sections.concat({
+            id,
+            ref: element,
+            label,
+            autoHeight,
+            subsections: subsections,
+            translateY: 0,
+            translateX: 0,
+            currentSubsectionNumber: 1,
+        })
+    )
+}
+
+export const deleteSectionById = (id: string) => {
+    sections.update(_sections => _sections.filter(section => section.id !== id))
 }
