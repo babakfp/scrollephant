@@ -264,3 +264,18 @@ export const getSubsectionWrapperPositions = (
 
     return { y, x }
 }
+
+// ---
+
+const isWheelingForward = (e: WheelEvent) => e.deltaY > 0
+const isWheelingBackward = (e: WheelEvent) => e.deltaY < 0
+
+export const moveOnMouseWheel = (e: WheelEvent) => {
+    if (get(restrictMovement) && get(isMoving)) return
+
+    if (isWheelingForward(e)) {
+        moveForward()
+    } else if (isWheelingBackward(e)) {
+        moveBackward()
+    }
+}

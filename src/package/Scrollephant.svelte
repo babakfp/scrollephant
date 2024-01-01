@@ -1,7 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte"
     import { swipe, type SwipeEvent } from "./swipe.js"
-    import type { Section } from "./types.js"
     import {
         movement as _movement,
         direction as _direction,
@@ -21,6 +20,7 @@
         getRTL,
         getSectionWrapperPositions,
         getSubsectionWrapperPositions,
+        moveOnMouseWheel,
     } from "./utils.js"
 
     export let movement = _movement
@@ -94,19 +94,6 @@
         }
     }
 
-    function handleMouseWheel(e: WheelEvent) {
-        if ($restrictMovement && $isMoving) return
-
-        if (isWheelingForward(e)) {
-            moveForward()
-        } else if (isWheelingBackward(e)) {
-            moveBackward()
-        }
-    }
-
-    const isWheelingForward = (e: WheelEvent) => e.deltaY > 0
-    const isWheelingBackward = (e: WheelEvent) => e.deltaY < 0
-
     $: styleTranslateY = `-${$movement === "scroll" ? translateY : 0}px`
     $: styleTranslateX = `${!$rtl ? "-" : ""}${
         $movement === "scroll" ? translateX : 0
@@ -121,7 +108,7 @@
     data-scrollephant-direction={$direction}
     style:--scrollephant-translate-y={styleTranslateY}
     style:--scrollephant-translate-x={styleTranslateX}
-    on:wheel|preventDefault={handleMouseWheel}
+    on:wheel|preventDefault={moveOnMouseWheel}
     use:swipe
     on:swipe={handleSwipe}
     bind:this={element}
