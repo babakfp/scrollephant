@@ -45,7 +45,7 @@
     let translateX = 0
 
     $: if (!!$sections.length) {
-        const { y, x } = getSectionWrapperPositions($currentSectionNumber)
+        const { y, x } = getSectionWrapperPositions()
         translateY = y
         translateX = x
     }
@@ -61,9 +61,7 @@
 
     function onWindowResize() {
         if (!!$sections.length) {
-            const { y: ySection, x: xSection } = getSectionWrapperPositions(
-                $currentSectionNumber
-            )
+            const { y: ySection, x: xSection } = getSectionWrapperPositions()
             translateY = ySection
             translateX = xSection
 
@@ -99,11 +97,11 @@
         }
     }
 
-    function getSectionWrapperPositions(currentSectionNumber: number) {
+    function getSectionWrapperPositions() {
         let y = 0
         let x = 0
 
-        for (let i = 0; i < currentSectionNumber - 1; i++) {
+        for (let i = 0; i < $currentSectionNumber - 1; i++) {
             if ($direction === "vertical") {
                 if ($sections[i]?.autoHeight) {
                     y += $sections[i]?.ref.clientHeight
