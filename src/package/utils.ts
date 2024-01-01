@@ -32,16 +32,34 @@ export const setIsMovingToFalse = () => {
 
 export const moveToFirstSubsection = () => {
     sections.update(_sections => {
-        _sections[get(currentSectionNumber) - 1].currentSubsectionNumber = 1
-        return _sections
+        return _sections.map(section => {
+            if (section.isCurrent) {
+                section.subsections = section.subsections.map(
+                    (subsection, i) => {
+                        subsection.isCurrent = i === 0
+                        return subsection
+                    }
+                )
+            }
+            return section
+        })
     })
 }
 
 export const moveToLastSubsection = () => {
     sections.update(_sections => {
-        _sections[get(currentSectionNumber) - 1].currentSubsectionNumber =
-            get(sections).length
-        return _sections
+        return _sections.map(section => {
+            if (section.isCurrent) {
+                const subsectionsLastIndex = section.subsections.length - 1
+                section.subsections = section.subsections.map(
+                    (subsection, i) => {
+                        subsection.isCurrent = i === subsectionsLastIndex
+                        return subsection
+                    }
+                )
+            }
+            return section
+        })
     })
 }
 
