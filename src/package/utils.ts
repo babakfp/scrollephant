@@ -312,3 +312,7 @@ export const setSectionToCurrent = (id: string) => {
         })
     })
 }
+
+export const getCurrentSection = () => {
+    return get(sections).find(section => section.isCurrent === true)
+}
