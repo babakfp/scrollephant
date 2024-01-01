@@ -45,13 +45,13 @@
     let translateX = 0
 
     $: if (!!$sections.length) {
-        const { y, x } = getSectionYX($currentSectionNumber)
+        const { y, x } = getSectionWrapperPositions($currentSectionNumber)
         translateY = y
         translateX = x
     }
 
     $: if (!!$sections.length) {
-        const { y, x } = getSubsectionYX(
+        const { y, x } = getSubsectionWrapperPositions(
             $sections[$currentSectionNumber - 1],
             $sections[$currentSectionNumber - 1]?.currentSubsectionNumber
         )
@@ -61,16 +61,18 @@
 
     function onWindowResize() {
         if (!!$sections.length) {
-            const { y: ySection, x: xSection } = getSectionYX(
+            const { y: ySection, x: xSection } = getSectionWrapperPositions(
                 $currentSectionNumber
             )
             translateY = ySection
             translateX = xSection
 
-            const { y: ySubsection, x: xSubsection } = getSubsectionYX(
-                $sections[$currentSectionNumber - 1],
-                $sections[$currentSectionNumber - 1]?.currentSubsectionNumber
-            )
+            const { y: ySubsection, x: xSubsection } =
+                getSubsectionWrapperPositions(
+                    $sections[$currentSectionNumber - 1],
+                    $sections[$currentSectionNumber - 1]
+                        ?.currentSubsectionNumber
+                )
             $sections[$currentSectionNumber - 1].translateY = ySubsection
             $sections[$currentSectionNumber - 1].translateX = xSubsection
         }
@@ -97,7 +99,7 @@
         }
     }
 
-    function getSectionYX(currentSectionNumber: number) {
+    function getSectionWrapperPositions(currentSectionNumber: number) {
         let y = 0
         let x = 0
 
@@ -116,7 +118,7 @@
         return { y, x }
     }
 
-    function getSubsectionYX(
+    function getSubsectionWrapperPositions(
         section: Section,
         currentSubsectionNumber: number
     ) {
