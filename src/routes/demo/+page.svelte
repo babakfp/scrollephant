@@ -19,9 +19,11 @@
                 label: "Section 1",
                 textContent: "1",
                 autoHeight: false,
+                subsections: [],
             },
             {
                 label: "Section 2",
+                autoHeight: false,
                 subsections: [
                     {
                         label: "Section 2.1",
@@ -44,6 +46,7 @@
                 label: "Section 3",
                 textContent: "3",
                 autoHeight: false,
+                subsections: [],
             },
         ],
         arrowPrev: true,
@@ -57,15 +60,13 @@
     <ScrollephantWrapper>
         {#each $controls.sections as section}
             <ScrollephantSection
-                bind:label={section.label}
-                bind:autoHeight={section.autoHeight}
+                label={section.label}
+                autoHeight={section.autoHeight}
             >
                 {#if section.subsections}
                     <ScrollephantWrapper>
                         {#each section.subsections as subsection}
-                            <ScrollephantSubsection
-                                bind:label={subsection.label}
-                            >
+                            <ScrollephantSubsection label={subsection.label}>
                                 {subsection.textContent}
                             </ScrollephantSubsection>
                         {/each}

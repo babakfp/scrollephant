@@ -8,11 +8,26 @@
         loopDown,
         restrictMovement,
         scrollableSubsections,
+        sections,
     } from "../../package/stores.js"
 
     export let controls: Writable<ControlsType>
 
     let isControlsOpen = false
+
+    controls.subscribe(_controls => {
+        $sections = $sections.map((section, i) => {
+            section.label = _controls.sections[i].label
+            section.autoHeight = _controls.sections[i].autoHeight
+            section.subsections = section.subsections.map((subsection, i2) => {
+                section.label = _controls.sections[i].subsections[i2].label
+                section.autoHeight =
+                    _controls.sections[i].subsections[i2].autoHeight
+                return subsection
+            })
+            return section
+        })
+    })
 </script>
 
 <div class="controls-wrapper">
@@ -130,6 +145,7 @@
                                     label: "",
                                     autoHeight: false,
                                     textContent: "",
+                                    subsections: [],
                                 }
                                 if (!section?.subsections) {
                                     section.subsections = [newSubsection]
