@@ -10,7 +10,6 @@
         scrollableSubsections as _scrollableSubsections,
         rtl,
         sections,
-        currentSectionNumber,
         isMoving,
     } from "./stores.js"
     import {
@@ -19,8 +18,8 @@
         getDuration,
         getRTL,
         getSectionWrapperPositions,
-        getSubsectionWrapperPositions,
         moveOnMouseWheel,
+        setSubsectionWrapperPositions,
     } from "./utils.js"
 
     export let movement = _movement
@@ -75,15 +74,6 @@
         const { y, x } = getSectionWrapperPositions()
         translateY = y
         translateX = x
-    }
-
-    function setSubsectionWrapperPositions() {
-        const { y, x } = getSubsectionWrapperPositions(
-            $sections[$currentSectionNumber - 1],
-            $sections[$currentSectionNumber - 1]?.currentSubsectionNumber
-        )
-        $sections[$currentSectionNumber - 1].translateY = y
-        $sections[$currentSectionNumber - 1].translateX = x
     }
 
     $: styleTranslateY = `-${$movement === "scroll" ? translateY : 0}px`
