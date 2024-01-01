@@ -2,7 +2,8 @@
     import { onMount, onDestroy, getContext } from "svelte"
     import { type Writable } from "svelte/store"
     import type { Subsections } from "./types.js"
-    import { sections, movement } from "./stores.js"
+    import { movement } from "./stores.js"
+    import { isCurrentSubsectionOfCurrentSection } from "./utils.js"
 
     export let label = ""
     export let autoHeight = false
@@ -32,10 +33,11 @@
         $subsections = $subsections.filter(subsection => subsection.id !== id)
     })
 
-    $: isCurrent =
-        $subsections[
-            $sections[$currentSectionNumber - 1]?.currentSubsectionNumber - 1
-        ]?.id === id
+    let isCurrent = false
+
+    $: if ($subsections) {
+        isCurrent = isCurrentSubsectionOfCurrentSection(id)
+    }
 </script>
 
 <div
