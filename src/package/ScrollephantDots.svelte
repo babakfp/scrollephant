@@ -18,11 +18,9 @@
         setIsMovingToFalse()
     }
 
-    function handleSubsections(i: number, sectionIndex: number) {
-        const isSubsectinParentIsTheCurrentSection =
-            $currentSectionNumber - 1 === sectionIndex
-        if (!isSubsectinParentIsTheCurrentSection) {
-            $currentSectionNumber = sectionIndex + 1
+    function moveToSubsection(i: number, sectionId: string) {
+        if (!isSectionCurrent(sectionId)) {
+            setSectionToCurrent(sectionId)
         }
 
         setIsMovingToTrue()
@@ -47,7 +45,7 @@
                             ].id === subsection.id}
                         <ScrollephantDot
                             isCurrent={isCurrentSubsection}
-                            on:click={() => handleSubsections(i2, i)}
+                            on:click={() => moveToSubsection(i2, section.id)}
                         />
                     {/each}
                 </ol>
