@@ -53,14 +53,6 @@
     })
 </script>
 
-<svelte:head>
-    <script
-        rel="preload"
-        as="script"
-        src="https://cdn.tailwindcss.com"
-    ></script>
-</svelte:head>
-
 <Scrollephant>
     <ScrollephantWrapper>
         {#each $controls.sections as section}
