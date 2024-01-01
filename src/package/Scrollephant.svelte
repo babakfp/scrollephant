@@ -52,18 +52,17 @@
     let translateX = 0
 
     $: if (!!$sections.length) {
-        const { y, x } = getSectionWrapperPositions()
-        translateY = y
-        translateX = x
-    }
+        const { y: sectionY, x: sectionX } = getSectionWrapperPositions()
+        translateY = sectionY
+        translateX = sectionX
 
-    $: if (!!$sections.length) {
-        const { y, x } = getSubsectionWrapperPositions(
-            $sections[$currentSectionNumber - 1],
-            $sections[$currentSectionNumber - 1]?.currentSubsectionNumber
-        )
-        $sections[$currentSectionNumber - 1].translateY = y
-        $sections[$currentSectionNumber - 1].translateX = x
+        const { y: subsectionY, x: subsectionX } =
+            getSubsectionWrapperPositions(
+                $sections[$currentSectionNumber - 1],
+                $sections[$currentSectionNumber - 1]?.currentSubsectionNumber
+            )
+        $sections[$currentSectionNumber - 1].translateY = subsectionY
+        $sections[$currentSectionNumber - 1].translateX = subsectionX
     }
 
     function onWindowResize() {
