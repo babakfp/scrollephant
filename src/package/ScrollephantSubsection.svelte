@@ -25,6 +25,7 @@
                 ref: element,
                 label,
                 autoHeight,
+                isCurrent: false,
             },
         ]
     })
