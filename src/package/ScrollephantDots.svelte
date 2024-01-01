@@ -2,14 +2,19 @@
     import ScrollephantDot from "./ScrollephantDot.svelte"
     import ScrollephantTooltip from "./ScrollephantTooltip.svelte"
     import { sections } from "./stores.js"
-    import { setIsMovingToTrue, setIsMovingToFalse } from "./utils.js"
+    import {
+        setIsMovingToTrue,
+        setIsMovingToFalse,
+        getSectionById,
+        setSectionToCurrentById,
+    } from "./utils.js"
 
     export let useSubsectionsDots = true
 
-    function handleClick(i: number) {
-        if ($currentSectionNumber === i + 1) return
+    function moveToSection(id: string) {
+        if (getSectionById(id)?.isCurrent) return
         setIsMovingToTrue()
-        $currentSectionNumber = i + 1
+        setSectionToCurrentById(id)
         setIsMovingToFalse()
     }
 
@@ -34,7 +39,7 @@
             $sections[$currentSectionNumber - 1].id === section.id}
         <ScrollephantDot
             isCurrent={isCurrentSection}
-            on:click={() => handleClick(i)}
+            on:click={() => moveToSection(section.id)}
         >
             {#if useSubsectionsDots && !!section.subsections.length}
                 <ol>

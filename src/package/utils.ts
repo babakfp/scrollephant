@@ -299,3 +299,12 @@ export const moveOnMouseWheel = (e: WheelEvent) => {
 export const getSectionById = (id: string) => {
     return get(sections).find(section => section.id === id)
 }
+
+export const setSectionToCurrentById = (id: string) => {
+    sections.update(_sections => {
+        return _sections.map(section => {
+            section.isCurrent = section.id === id
+            return section
+        })
+    })
+}
