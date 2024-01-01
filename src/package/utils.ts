@@ -50,7 +50,10 @@ export const moveToLastSubsection = () => {
 export const resetSubsectionsToFirstPosition = () => {
     sections.update(_sections =>
         _sections.map(section => {
-            section.currentSubsectionNumber = 1
+            section.subsections = section.subsections.map((subsection, i) => {
+                subsection.isCurrent = i === 0
+                return subsection
+            })
             section.translateY = 0
             section.translateX = 0
             return section
@@ -61,7 +64,11 @@ export const resetSubsectionsToFirstPosition = () => {
 export const resetSubsectionsToLastPosition = () => {
     sections.update(_sections =>
         _sections.map(section => {
-            section.currentSubsectionNumber = section.subsections.length
+            const subsectionsLastIndex = section.subsections.length - 1
+            section.subsections = section.subsections.map((subsection, i) => {
+                subsection.isCurrent = i === subsectionsLastIndex
+                return subsection
+            })
             section.translateY = 0
             section.translateX = 0
             return section
@@ -378,4 +385,16 @@ export const getCurrentSubsectionOfCurrentSection = (id: string) => {
  */
 export const isCurrentSubsectionOfCurrentSection = (id: string) => {
     return !!getCurrentSubsectionOfCurrentSection(id)
+}
+
+const getCurrentSectionIndex = () => {
+    for (const [index, section] of Object.entries(get(sections))) {
+        if (section.isCurrent) {
+            return Number(index)
+        }
+    }
+}
+
+const getSectionByIndex = (i: number) => {
+    return get(sections).at(i)
 }
