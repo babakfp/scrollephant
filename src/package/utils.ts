@@ -401,6 +401,7 @@ export const moveOnMouseWheel = (e: WheelEvent) => {
 
 /**
  * TODO: I think we can remove this on Svelte 5.
+ * @param sections
  * @param id - Section ID.
  */
 export const getSectionByIdReactive = (
