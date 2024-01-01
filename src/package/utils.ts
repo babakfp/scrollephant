@@ -402,7 +402,7 @@ export const moveOnMouseWheel = (e: WheelEvent) => {
 /**
  * @param id - Section ID.
  */
-export const getSection = (id: string) => {
+export const getSectionById = (id: string) => {
     return get(sections).find(section => section.id === id)
 }
 
@@ -410,7 +410,7 @@ export const getSection = (id: string) => {
  * @param id - Section ID.
  */
 export const isSectionCurrent = (id: string) => {
-    return getSection(id)?.isCurrent
+    return getSectionById(id)?.isCurrent
 }
 
 /**
@@ -431,7 +431,7 @@ export const getCurrentSection = () => {
 
 export const getSubsection = (subsectionId: string, sectionId?: string) => {
     if (sectionId) {
-        const section = getSection(sectionId)
+        const section = getSectionById(sectionId)
         if (section) {
             for (const subsection of section.subsections) {
                 if (subsection.id === subsectionId) {
