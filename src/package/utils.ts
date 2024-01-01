@@ -419,6 +419,18 @@ export const getSectionById = (id: string) => {
 }
 
 /**
+ * TODO: I think we can remove this on Svelte 5.
+ * @param sections
+ * @param id - Section ID.
+ */
+export const isSectionCurrentReactive = (
+    sections: Writable<Sections>,
+    id: string
+) => {
+    return getSectionByIdReactive(sections, id)?.isCurrent
+}
+
+/**
  * @param id - Section ID.
  */
 export const isSectionCurrent = (id: string) => {
