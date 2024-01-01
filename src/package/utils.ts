@@ -326,6 +326,27 @@ export const getCurrentSection = () => {
     return get(sections).find(section => section.isCurrent === true)
 }
 
+export const getSubsection = (subsectionId: string, sectionId?: string) => {
+    if (sectionId) {
+        const section = getSection(sectionId)
+        if (section) {
+            for (const subsection of section.subsections) {
+                if (subsection.id === subsectionId) {
+                    return subsection
+                }
+            }
+        }
+    } else {
+        for (const section of get(sections)) {
+            for (const subsection of section.subsections) {
+                if (subsection.id === subsectionId) {
+                    return subsection
+                }
+            }
+        }
+    }
+}
+
 /**
  * @param id - Subsection ID.
  */
@@ -341,4 +362,20 @@ export const setSubsectionOfCurrentSectionToCurrent = (id: string) => {
             return section
         })
     })
+}
+
+/**
+ * @param id - Subsection ID.
+ */
+export const getCurrentSubsectionOfCurrentSection = (id: string) => {
+    return getCurrentSection()?.subsections.find(
+        subsection => subsection.id === id
+    )
+}
+
+/**
+ * @param id - Subsection ID.
+ */
+export const isCurrentSubsectionOfCurrentSection = (id: string) => {
+    return !!getCurrentSubsectionOfCurrentSection(id)
 }
