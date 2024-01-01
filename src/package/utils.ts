@@ -423,7 +423,7 @@ export const getSectionById = (id: string) => {
  * @param sections
  * @param id - Section ID.
  */
-export const isSectionCurrentReactive = (
+export const isSectionCurrentByIdReactive = (
     sections: Writable<Sections>,
     id: string
 ) => {
@@ -433,8 +433,8 @@ export const isSectionCurrentReactive = (
 /**
  * @param id - Section ID.
  */
-export const isSectionCurrent = (id: string) => {
-    return isSectionCurrentReactive(sections, id)
+export const isSectionCurrentById = (id: string) => {
+    return isSectionCurrentByIdReactive(sections, id)
 }
 
 /**

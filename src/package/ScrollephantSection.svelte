@@ -3,7 +3,11 @@
     import { writable } from "svelte/store"
     import type { Subsections } from "./types.js"
     import { movement, rtl, sections } from "./stores.js"
-    import { addSection, deleteSectionById, isSectionCurrent } from "./utils.js"
+    import {
+        addSection,
+        deleteSectionById,
+        isSectionCurrentById,
+    } from "./utils.js"
 
     export let label = ""
     export let autoHeight = false
@@ -45,7 +49,7 @@
 
 <div
     class="scrollephant-section"
-    data-scrollephant-is-current-section={isSectionCurrent(id)}
+    data-scrollephant-is-current-section={isSectionCurrentById(id)}
     data-scrollephant-section-auto-height={autoHeight}
     data-scrollephant-section-has-subsections={!!$subsections.length}
     bind:this={element}

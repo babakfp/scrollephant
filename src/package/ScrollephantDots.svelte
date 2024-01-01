@@ -6,7 +6,7 @@
         setIsMovingToTrue,
         setIsMovingToFalse,
         setSectionToCurrent,
-        isSectionCurrent,
+        isSectionCurrentById,
         setSubsectionOfCurrentSectionToCurrent,
         isCurrentSubsectionOfCurrentSection,
     } from "./utils.js"
@@ -14,14 +14,14 @@
     export let useSubsectionsDots = true
 
     function moveToSection(id: string) {
-        if (isSectionCurrent(id)) return
+        if (isSectionCurrentById(id)) return
         setIsMovingToTrue()
         setSectionToCurrent(id)
         setIsMovingToFalse()
     }
 
     function moveToSubsection(subsectionId: string, sectionId: string) {
-        if (!isSectionCurrent(sectionId)) {
+        if (!isSectionCurrentById(sectionId)) {
             setSectionToCurrent(sectionId)
         }
 
@@ -34,7 +34,7 @@
 <ol>
     {#each $sections as section, i}
         <ScrollephantDot
-            isCurrent={isSectionCurrent(section.id)}
+            isCurrent={isSectionCurrentById(section.id)}
             on:click={() => moveToSection(section.id)}
         >
             {#if useSubsectionsDots && !!section.subsections.length}
