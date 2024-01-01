@@ -296,14 +296,23 @@ export const moveOnMouseWheel = (e: WheelEvent) => {
 
 // ---
 
+/**
+ * @param id - Section ID.
+ */
 export const getSection = (id: string) => {
     return get(sections).find(section => section.id === id)
 }
 
+/**
+ * @param id - Section ID.
+ */
 export const isSectionCurrent = (id: string) => {
     return getSection(id)?.isCurrent
 }
 
+/**
+ * @param id - Section ID.
+ */
 export const setSectionToCurrent = (id: string) => {
     sections.update(_sections => {
         return _sections.map(section => {
@@ -317,6 +326,9 @@ export const getCurrentSection = () => {
     return get(sections).find(section => section.isCurrent === true)
 }
 
+/**
+ * @param id - Subsection ID.
+ */
 export const setSubsectionOfCurrentSectionToCurrent = (id: string) => {
     sections.update(_sections => {
         return _sections.map(section => {
