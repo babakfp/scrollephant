@@ -146,16 +146,31 @@ export const moveToLastSection = () => {
 // ---
 
 export const canMoveToNextSubsection = () => {
-    return (
-        get(sections)[get(currentSectionNumber) - 1].currentSubsectionNumber <
-        get(sections)[get(currentSectionNumber) - 1].subsections.length
-    )
+    const subsections = getCurrentSection()?.subsections
+    if (subsections) {
+        for (const [i, subsection] of Object.entries(subsections)) {
+            if (subsection.isCurrent) {
+                if (Number(i) < subsections.length - 1) {
+                    return true
+                }
+            }
+        }
+    }
+    return false
 }
 
 export const canMoveToPrevSubsection = () => {
-    return (
-        get(sections)[get(currentSectionNumber) - 1].currentSubsectionNumber > 1
-    )
+    const subsections = getCurrentSection()?.subsections
+    if (subsections) {
+        for (const [i, subsection] of Object.entries(subsections)) {
+            if (subsection.isCurrent) {
+                if (Number(i) > subsections.length - 1) {
+                    return true
+                }
+            }
+        }
+    }
+    return false
 }
 
 export const moveToNextSubsection = () => {
