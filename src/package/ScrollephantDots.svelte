@@ -5,16 +5,16 @@
     import {
         setIsMovingToTrue,
         setIsMovingToFalse,
-        setSectionToCurrentById,
-        isSectionCurrentById,
+        setSectionToCurrent,
+        isSectionCurrent,
     } from "./utils.js"
 
     export let useSubsectionsDots = true
 
     function moveToSection(id: string) {
-        if (isSectionCurrentById(id)) return
+        if (isSectionCurrent(id)) return
         setIsMovingToTrue()
-        setSectionToCurrentById(id)
+        setSectionToCurrent(id)
         setIsMovingToFalse()
     }
 
