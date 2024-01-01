@@ -51,17 +51,7 @@
     let translateY = 0
     let translateX = 0
 
-    $: if (!!$sections.length) {
-        setSectionWrapperPositions()
-        setSubsectionWrapperPositions()
-    }
-
-    function onWindowResize() {
-        if (!!$sections.length) {
-            setSectionWrapperPositions()
-            setSubsectionWrapperPositions()
-        }
-    }
+    $: setWrapperPositions()
 
     function handleSwipe(e: SwipeEvent) {
         if ($restrictMovement && $isMoving) return
@@ -71,6 +61,13 @@
             moveForward()
         } else {
             moveBackward()
+        }
+    }
+
+    function setWrapperPositions() {
+        if (!!$sections.length) {
+            setSectionWrapperPositions()
+            setSubsectionWrapperPositions()
         }
     }
 
@@ -96,7 +93,7 @@
     }px`
 </script>
 
-<svelte:window on:resize={onWindowResize} />
+<svelte:window on:resize={setWrapperPositions} />
 
 <div
     class="scrollephant"
