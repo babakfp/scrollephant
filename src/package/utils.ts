@@ -277,7 +277,7 @@ export const addSection = (
             subsections: subsections,
             translateY: 0,
             translateX: 0,
-            currentSubsectionNumber: 1,
+            isCurrent: false,
         })
     )
 }
