@@ -316,3 +316,17 @@ export const setSectionToCurrent = (id: string) => {
 export const getCurrentSection = () => {
     return get(sections).find(section => section.isCurrent === true)
 }
+
+export const setSubsectionOfCurrentSectionToCurrent = (id: string) => {
+    sections.update(_sections => {
+        return _sections.map(section => {
+            if (section.isCurrent) {
+                section.subsections = section.subsections.map(subsection => {
+                    subsection.isCurrent = subsection.id === id
+                    return subsection
+                })
+            }
+            return section
+        })
+    })
+}
