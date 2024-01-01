@@ -4,7 +4,6 @@ import {
     isMoving,
     duration,
     sections,
-    currentSectionNumber,
     scrollableSubsections,
     canMoveToNextSection,
     loopDown,
@@ -293,4 +292,10 @@ export const moveOnMouseWheel = (e: WheelEvent) => {
     } else if (isWheelingBackward(e)) {
         moveBackward()
     }
+}
+
+// ---
+
+export const getSectionById = (id: string) => {
+    return get(sections).find(section => section.id === id)
 }

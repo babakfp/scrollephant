@@ -10,7 +10,6 @@ export const scrollableSubsections: Writable<Props["scrollableSubsections"]> = w
 
 export const rtl = writable(false)
 export const sections = writable<Sections>([])
-export const currentSectionNumber = writable(1)
 export const isMoving = writable(false)
 export const duration = writable<number>()
 export const canMoveToPrevSection = derived(

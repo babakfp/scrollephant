@@ -2,8 +2,8 @@
     import { onMount, onDestroy, setContext } from "svelte"
     import { writable } from "svelte/store"
     import type { Subsections } from "./types.js"
-    import { movement, rtl, sections, currentSectionNumber } from "./stores.js"
-    import { addSection, deleteSectionById } from "./utils.js"
+    import { movement, rtl, sections } from "./stores.js"
+    import { addSection, deleteSectionById, getSectionById } from "./utils.js"
 
     export let label = ""
     export let autoHeight = false
@@ -41,12 +41,11 @@
 
     $: translateY = $sections.find(section => section.id === id)?.translateY
     $: translateX = $sections.find(section => section.id === id)?.translateX
-    $: isCurrent = $sections[$currentSectionNumber - 1]?.id === id
 </script>
 
 <div
     class="scrollephant-section"
-    data-scrollephant-is-current-section={isCurrent}
+    data-scrollephant-is-current-section={getSectionById(id)?.isCurrent}
     data-scrollephant-section-auto-height={autoHeight}
     data-scrollephant-section-has-subsections={!!$subsections.length}
     bind:this={element}

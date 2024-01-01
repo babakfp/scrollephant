@@ -1,7 +1,7 @@
 <script lang="ts">
     import ScrollephantDot from "./ScrollephantDot.svelte"
     import ScrollephantTooltip from "./ScrollephantTooltip.svelte"
-    import { sections, currentSectionNumber } from "./stores.js"
+    import { sections } from "./stores.js"
     import { setIsMovingToTrue, setIsMovingToFalse } from "./utils.js"
 
     export let useSubsectionsDots = true

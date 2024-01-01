@@ -16,6 +16,7 @@ export type Section = {
     translateY: number
     translateX: number
     currentSubsectionNumber: number
+    isCurrent: boolean
 }
 
 export type Sections = Section[]
