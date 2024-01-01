@@ -434,7 +434,7 @@ export const isSectionCurrentReactive = (
  * @param id - Section ID.
  */
 export const isSectionCurrent = (id: string) => {
-    return getSectionById(id)?.isCurrent
+    return isSectionCurrentReactive(sections, id)
 }
 
 /**
