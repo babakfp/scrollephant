@@ -58,17 +58,22 @@
         rel="preload"
         as="script"
         src="https://cdn.tailwindcss.com"
-    />
+    ></script>
 </svelte:head>
 
 <Scrollephant>
     <ScrollephantWrapper>
         {#each $controls.sections as section}
-            <ScrollephantSection bind:label={section.label} bind:autoHeight={section.autoHeight}>
+            <ScrollephantSection
+                bind:label={section.label}
+                bind:autoHeight={section.autoHeight}
+            >
                 {#if section.subsections}
                     <ScrollephantWrapper>
                         {#each section.subsections as subsection}
-                            <ScrollephantSubsection bind:label={subsection.label}>
+                            <ScrollephantSubsection
+                                bind:label={subsection.label}
+                            >
                                 {subsection.textContent}
                             </ScrollephantSubsection>
                         {/each}
