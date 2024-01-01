@@ -52,33 +52,14 @@
     let translateX = 0
 
     $: if (!!$sections.length) {
-        const { y: sectionY, x: sectionX } = getSectionWrapperPositions()
-        translateY = sectionY
-        translateX = sectionX
-
-        const { y: subsectionY, x: subsectionX } =
-            getSubsectionWrapperPositions(
-                $sections[$currentSectionNumber - 1],
-                $sections[$currentSectionNumber - 1]?.currentSubsectionNumber
-            )
-        $sections[$currentSectionNumber - 1].translateY = subsectionY
-        $sections[$currentSectionNumber - 1].translateX = subsectionX
+        setSectionWrapperPositions()
+        setSubsectionWrapperPositions()
     }
 
     function onWindowResize() {
         if (!!$sections.length) {
-            const { y: sectionY, x: sectionX } = getSectionWrapperPositions()
-            translateY = sectionY
-            translateX = sectionX
-
-            const { y: subsectionY, x: subsectionX } =
-                getSubsectionWrapperPositions(
-                    $sections[$currentSectionNumber - 1],
-                    $sections[$currentSectionNumber - 1]
-                        ?.currentSubsectionNumber
-                )
-            $sections[$currentSectionNumber - 1].translateY = subsectionY
-            $sections[$currentSectionNumber - 1].translateX = subsectionX
+            setSectionWrapperPositions()
+            setSubsectionWrapperPositions()
         }
     }
 
@@ -91,6 +72,22 @@
         } else {
             moveBackward()
         }
+    }
+
+    function setSectionWrapperPositions() {
+        const { y: sectionY, x: sectionX } = getSectionWrapperPositions()
+        translateY = sectionY
+        translateX = sectionX
+    }
+
+    function setSubsectionWrapperPositions() {
+        const { y: subsectionY, x: subsectionX } =
+            getSubsectionWrapperPositions(
+                $sections[$currentSectionNumber - 1],
+                $sections[$currentSectionNumber - 1]?.currentSubsectionNumber
+            )
+        $sections[$currentSectionNumber - 1].translateY = subsectionY
+        $sections[$currentSectionNumber - 1].translateX = subsectionX
     }
 
     $: styleTranslateY = `-${$movement === "scroll" ? translateY : 0}px`
