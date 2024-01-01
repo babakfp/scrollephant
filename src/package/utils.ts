@@ -11,8 +11,9 @@ import {
     canMoveToPrevSection,
     loopUp,
     rtl,
+    direction,
 } from "./stores.js"
-import type { Subsections } from "./types.js"
+import type { Section, Subsections } from "./types.js"
 
 export const setIsMovingToTrue = () => {
     if (get(restrictMovement)) {
@@ -217,4 +218,49 @@ export const addSection = (
 
 export const deleteSectionById = (id: string) => {
     sections.update(_sections => _sections.filter(section => section.id !== id))
+}
+
+// ---
+
+export const getSectionWrapperPositions = () => {
+    let y = 0
+    let x = 0
+
+    for (let i = 0; i < get(currentSectionNumber) - 1; i++) {
+        if (get(direction) === "vertical") {
+            if (get(sections)[i]?.autoHeight) {
+                y += get(sections)[i]?.ref.clientHeight
+            } else {
+                y += get(sections)[i + 1]?.ref.clientHeight
+            }
+        } else if (get(direction) === "horizontal") {
+            x += get(sections)[i]?.ref.clientWidth
+        }
+    }
+
+    return { y, x }
+}
+
+export const getSubsectionWrapperPositions = (
+    section: Section,
+    currentSubsectionNumber: number
+) => {
+    let y = 0
+    let x = 0
+
+    if (!!section?.subsections.length) {
+        for (let i = 0; i < currentSubsectionNumber - 1; i++) {
+            if (get(direction) === "vertical") {
+                x += section.subsections[i]?.ref.clientWidth
+            } else if (get(direction) === "horizontal") {
+                if (section.subsections[i]?.autoHeight) {
+                    y += section.subsections[i]?.ref.clientHeight
+                } else {
+                    y += section.subsections[i + 1]?.ref.clientHeight
+                }
+            }
+        }
+    }
+
+    return { y, x }
 }

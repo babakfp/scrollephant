@@ -14,7 +14,14 @@
         currentSectionNumber,
         isMoving,
     } from "./stores.js"
-    import { moveForward, moveBackward, getDuration, getRTL } from "./utils.js"
+    import {
+        moveForward,
+        moveBackward,
+        getDuration,
+        getRTL,
+        getSectionWrapperPositions,
+        getSubsectionWrapperPositions,
+    } from "./utils.js"
 
     export let movement = _movement
     export let direction = _direction
@@ -95,49 +102,6 @@
         } else if (isWheelingBackward(e)) {
             moveBackward()
         }
-    }
-
-    function getSectionWrapperPositions() {
-        let y = 0
-        let x = 0
-
-        for (let i = 0; i < $currentSectionNumber - 1; i++) {
-            if ($direction === "vertical") {
-                if ($sections[i]?.autoHeight) {
-                    y += $sections[i]?.ref.clientHeight
-                } else {
-                    y += $sections[i + 1]?.ref.clientHeight
-                }
-            } else if ($direction === "horizontal") {
-                x += $sections[i]?.ref.clientWidth
-            }
-        }
-
-        return { y, x }
-    }
-
-    function getSubsectionWrapperPositions(
-        section: Section,
-        currentSubsectionNumber: number
-    ) {
-        let y = 0
-        let x = 0
-
-        if (!!section?.subsections.length) {
-            for (let i = 0; i < currentSubsectionNumber - 1; i++) {
-                if ($direction === "vertical") {
-                    x += section.subsections[i]?.ref.clientWidth
-                } else if ($direction === "horizontal") {
-                    if (section.subsections[i]?.autoHeight) {
-                        y += section.subsections[i]?.ref.clientHeight
-                    } else {
-                        y += section.subsections[i + 1]?.ref.clientHeight
-                    }
-                }
-            }
-        }
-
-        return { y, x }
     }
 
     const isWheelingForward = (e: WheelEvent) => e.deltaY > 0
