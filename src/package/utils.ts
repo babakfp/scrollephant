@@ -129,11 +129,18 @@ export const moveToPrevSection = () => {
 }
 
 export const moveToFirstSection = () => {
-    currentSectionNumber.set(1)
+    const id = getSectionByIndex(0)?.id
+    if (id) {
+        setSectionToCurrent(id)
+    }
 }
 
 export const moveToLastSection = () => {
-    currentSectionNumber.set(get(sections).length)
+    const sectionsLastIndex = get(sections).length - 1
+    const id = getSectionByIndex(sectionsLastIndex)?.id
+    if (id) {
+        setSectionToCurrent(id)
+    }
 }
 
 // ---
