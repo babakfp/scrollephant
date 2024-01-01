@@ -1,4 +1,4 @@
-import { get } from "svelte/store"
+import { get, type Writable } from "svelte/store"
 import {
     restrictMovement,
     isMoving,
@@ -12,7 +12,7 @@ import {
     rtl,
     direction,
 } from "./stores.js"
-import type { Section, Subsections } from "./types.js"
+import type { Section, Sections, Subsections } from "./types.js"
 
 export const setIsMovingToTrue = () => {
     if (get(restrictMovement)) {
@@ -402,8 +402,18 @@ export const moveOnMouseWheel = (e: WheelEvent) => {
 /**
  * @param id - Section ID.
  */
-export const getSectionById = (id: string) => {
+export const getSectionByIdReactive = (
+    sections: Writable<Sections>,
+    id: string
+) => {
     return get(sections).find(section => section.id === id)
+}
+
+/**
+ * @param id - Section ID.
+ */
+export const getSectionById = (id: string) => {
+    return getSectionByIdReactive(sections, id)
 }
 
 /**
