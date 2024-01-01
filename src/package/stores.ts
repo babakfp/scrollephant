@@ -13,11 +13,13 @@ export const sections = writable<Sections>([])
 export const isMoving = writable(false)
 export const duration = writable<number>()
 export const canMoveToPrevSection = derived(
-    currentSectionNumber,
-    $currentSectionNumber => $currentSectionNumber > 1
+    duration,
+    // $currentSectionNumber => $currentSectionNumber > 1
+    () => false
 )
 export const canMoveToNextSection = derived(
-    [currentSectionNumber, sections],
-    ([$currentSectionNumber, $sections]) =>
-        $currentSectionNumber < $sections.length
+    [duration, sections],
+    // ([$currentSectionNumber, $sections]) =>
+    //     $currentSectionNumber < $sections.length
+    () => false
 )

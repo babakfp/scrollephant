@@ -174,17 +174,52 @@ export const canMoveToPrevSubsection = () => {
 }
 
 export const moveToNextSubsection = () => {
-    sections.update(_sections => {
-        _sections[get(currentSectionNumber) - 1].currentSubsectionNumber += 1
-        return _sections
-    })
+    let currentSubsectionIndex: number
+    sections.update(_sections =>
+        _sections.map(section => {
+            if (section.isCurrent) {
+                section.subsections = section.subsections.map(
+                    (subsection, i) => {
+                        if (subsection.isCurrent) {
+                            subsection.isCurrent = false
+                            currentSubsectionIndex = i
+                        } else if (currentSubsectionIndex) {
+                            subsection.isCurrent = true
+                        }
+
+                        return subsection
+                    }
+                )
+            }
+            return section
+        })
+    )
 }
 
 export const moveToPrevSubsection = () => {
-    sections.update(_sections => {
-        _sections[get(currentSectionNumber) - 1].currentSubsectionNumber -= 1
-        return _sections
-    })
+    // let currentSubsectionIndex: number
+    // sections.update(_sections =>
+    //     _sections.map(section => {
+    //         if (section.isCurrent) {
+    //             section.subsections = section.subsections.map(
+    //                 (subsection, i) => {
+    //                     if (subsection.isCurrent) {
+    //                         subsection.isCurrent = false
+    //                         currentSubsectionIndex = i
+    //                     } else if (currentSubsectionIndex) {
+    //                         subsection.isCurrent = true
+    //                     }
+    //                     return subsection
+    //                 }
+    //             )
+    //         }
+    //         return section
+    //     })
+    // )
+    // sections.update(_sections => {
+    //     _sections[get(currentSectionNumber) - 1].currentSubsectionNumber -= 1
+    //     return _sections
+    // })
 }
 
 // ---
@@ -192,7 +227,7 @@ export const moveToPrevSubsection = () => {
 export const moveForward = () => {
     if (
         get(scrollableSubsections) &&
-        !!get(sections)[get(currentSectionNumber) - 1].subsections.length &&
+        !!getCurrentSection()?.subsections.length &&
         canMoveToNextSubsection()
     ) {
         setIsMovingToTrue()
@@ -206,7 +241,7 @@ export const moveForward = () => {
 export const moveBackward = () => {
     if (
         get(scrollableSubsections) &&
-        !!get(sections)[get(currentSectionNumber) - 1].subsections.length &&
+        !!getCurrentSection()?.subsections.length &&
         canMoveToPrevSubsection()
     ) {
         setIsMovingToTrue()
@@ -292,7 +327,8 @@ export const getSectionWrapperPositions = () => {
     let y = 0
     let x = 0
 
-    for (let i = 0; i < get(currentSectionNumber) - 1; i++) {
+    const currentSectionIndex = getCurrentSectionIndex()
+    for (let i = 0; i < (currentSectionIndex ? currentSectionIndex : 0); i++) {
         if (get(direction) === "vertical") {
             if (get(sections)[i]?.autoHeight) {
                 y += get(sections)[i]?.ref.clientHeight
@@ -314,36 +350,36 @@ const getSubsectionWrapperPositions = (
     let y = 0
     let x = 0
 
-    if (!!section?.subsections.length) {
-        for (let i = 0; i < currentSubsectionNumber - 1; i++) {
-            if (get(direction) === "vertical") {
-                x += section.subsections[i]?.ref.clientWidth
-            } else if (get(direction) === "horizontal") {
-                if (section.subsections[i]?.autoHeight) {
-                    y += section.subsections[i]?.ref.clientHeight
-                } else {
-                    y += section.subsections[i + 1]?.ref.clientHeight
-                }
-            }
-        }
-    }
+    // if (!!section?.subsections.length) {
+    //     for (let i = 0; i < currentSubsectionNumber - 1; i++) {
+    //         if (get(direction) === "vertical") {
+    //             x += section.subsections[i]?.ref.clientWidth
+    //         } else if (get(direction) === "horizontal") {
+    //             if (section.subsections[i]?.autoHeight) {
+    //                 y += section.subsections[i]?.ref.clientHeight
+    //             } else {
+    //                 y += section.subsections[i + 1]?.ref.clientHeight
+    //             }
+    //         }
+    //     }
+    // }
 
     return { y, x }
 }
 
 export const setSubsectionWrapperPositions = () => {
     const { y, x } = getSubsectionWrapperPositions(
-        get(sections)[get(currentSectionNumber) - 1],
-        get(sections)[get(currentSectionNumber) - 1]?.currentSubsectionNumber
+        getCurrentSection()!,
+        getCurrentSubsectionIndexOfCurrentSection()!
     )
-    sections.update(_sections => {
-        _sections[get(currentSectionNumber) - 1].translateY = y
-        return _sections
-    })
-    sections.update(_sections => {
-        _sections[get(currentSectionNumber) - 1].translateX = x
-        return _sections
-    })
+    // sections.update(_sections => {
+    //     _sections[get(currentSectionNumber) - 1].translateY = y
+    //     return _sections
+    // })
+    // sections.update(_sections => {
+    //     _sections[get(currentSectionNumber) - 1].translateX = x
+    //     return _sections
+    // })
 }
 
 // ---
@@ -438,6 +474,22 @@ export const getCurrentSubsectionOfCurrentSection = (id: string) => {
     return getCurrentSection()?.subsections.find(
         subsection => subsection.id === id
     )
+}
+
+/**
+ * @param id - Subsection ID.
+ */
+export const getCurrentSubsectionIndexOfCurrentSection = () => {
+    const currentSection = getCurrentSection()
+    if (currentSection) {
+        for (const [i, subsection] of Object.entries(
+            currentSection.subsections
+        )) {
+            if (subsection.isCurrent) {
+                return Number(i)
+            }
+        }
+    }
 }
 
 /**
