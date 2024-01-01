@@ -52,7 +52,7 @@
 
     $: setWrapperPositions()
 
-    function handleSwipe(e: SwipeEvent) {
+    function moveOnSwipe(e: SwipeEvent) {
         if ($restrictMovement && $isMoving) return
 
         // TODO: I think `"left"` may be problematic on RTL.
@@ -92,7 +92,7 @@
     style:--scrollephant-translate-x={styleTranslateX}
     on:wheel|preventDefault={moveOnMouseWheel}
     use:swipe
-    on:swipe={handleSwipe}
+    on:swipe={moveOnSwipe}
     bind:this={element}
 >
     <slot />
