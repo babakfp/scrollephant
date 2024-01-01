@@ -79,14 +79,34 @@ export const resetSubsectionsToLastPosition = () => {
 // ---
 
 export const moveToNextSection = () => {
-    currentSectionNumber.update(
-        _currentSectionNumber => (_currentSectionNumber += 1)
+    let currentSectionIndex: number
+    sections.update(_sections =>
+        _sections.map((section, i) => {
+            if (section.isCurrent) {
+                section.isCurrent = false
+                currentSectionIndex = i
+            }
+            if (currentSectionIndex + 1 === i) {
+                section.isCurrent = true
+            }
+            return section
+        })
     )
 }
 
 export const moveToPrevSection = () => {
-    currentSectionNumber.update(
-        _currentSectionNumber => (_currentSectionNumber -= 1)
+    let currentSectionIndex: number
+    sections.update(_sections =>
+        _sections.map((section, i) => {
+            if (section.isCurrent) {
+                section.isCurrent = false
+                currentSectionIndex = i
+            }
+            if (currentSectionIndex - 1 === i) {
+                section.isCurrent = true
+            }
+            return section
+        })
     )
 }
 
