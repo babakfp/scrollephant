@@ -300,6 +300,10 @@ export const getSectionById = (id: string) => {
     return get(sections).find(section => section.id === id)
 }
 
+export const isSectionCurrentById = (id: string) => {
+    return getSectionById(id)?.isCurrent
+}
+
 export const setSectionToCurrentById = (id: string) => {
     sections.update(_sections => {
         return _sections.map(section => {
