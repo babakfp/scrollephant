@@ -417,6 +417,10 @@ export const isSectionCurrentById = (id: string, _sections?: Sections) => {
     return !!getSectionById(id)?.isCurrent
 }
 
+export const getCurrentSection = () => {
+    return get(sections).find(section => section.isCurrent === true)
+}
+
 export const updateSections = (
     fallback: (section: Section, i: number) => Section
 ) => {
@@ -433,10 +437,6 @@ export const setSectionToCurrentById = (id: string) => {
         section.isCurrent = section.id === id
         return section
     })
-}
-
-export const getCurrentSection = () => {
-    return get(sections).find(section => section.isCurrent === true)
 }
 
 export const getSubsection = (subsectionId: string, sectionId?: string) => {
