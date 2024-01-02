@@ -24,7 +24,6 @@
         if (!isSectionCurrentById(sectionId)) {
             setSectionToCurrentById(sectionId)
         }
-
         setIsMovingToTrue()
         setSubsectionOfCurrentSectionToCurrent(subsectionId)
         setIsMovingToFalse()
