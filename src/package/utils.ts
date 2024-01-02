@@ -412,13 +412,6 @@ export const getSectionByIdReactive = (
 }
 
 /**
- * @param id - Section ID.
- */
-export const getSectionById = (id: string) => {
-    return getSectionByIdReactive(sections, id)
-}
-
-/**
  * TODO: I think we can remove this on Svelte 5.
  * @param sections
  * @param id - Section ID.
@@ -428,13 +421,6 @@ export const isSectionCurrentByIdReactive = (
     id: string
 ) => {
     return getSectionByIdReactive(sections, id)?.isCurrent
-}
-
-/**
- * @param id - Section ID.
- */
-export const isSectionCurrentById = (id: string) => {
-    return isSectionCurrentByIdReactive(sections, id)
 }
 
 /**
