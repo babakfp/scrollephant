@@ -511,13 +511,7 @@ export const getCurrentSubsectionOfCurrentSection = () => {
 export const getCurrentSubsectionIndexOfCurrentSection = () => {
     const currentSection = getCurrentSection()
     if (currentSection) {
-        for (const [i, subsection] of Object.entries(
-            currentSection.subsections
-        )) {
-            if (subsection.isCurrent) {
-                return Number(i)
-            }
-        }
+        return getCurrentSubsectionIndex(currentSection.subsections)
     }
 }
 
