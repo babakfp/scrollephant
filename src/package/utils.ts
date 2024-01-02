@@ -345,7 +345,7 @@ const getSubsectionWrapperPositions = (
 
     return { y, x }
 }
-
+f
 export const setSubsectionWrapperPositions = () => {
     const { y, x } = getSubsectionWrapperPositions(
         getCurrentSection()!,
@@ -518,9 +518,6 @@ export const isSubsectionCurrentOfCurrentSectionById = (
     return subsections ? isSubsectionCurrentById(subsections, id) : false
 }
 
-/**
- * @param id - Subsection ID.
- */
 export const getCurrentSubsectionIndexOfCurrentSection = () => {
     const currentSection = getCurrentSection()
     if (currentSection) {
