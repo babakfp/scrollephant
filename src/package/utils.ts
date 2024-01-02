@@ -467,9 +467,9 @@ export const setSubsectionOfCurrentSectionToCurrentById = (id: string) => {
 /**
  * @param id - Subsection ID.
  */
-export const getCurrentSubsectionOfCurrentSection = (id: string) => {
+export const getCurrentSubsectionOfCurrentSection = () => {
     return getCurrentSection()?.subsections.find(
-        subsection => subsection.id === id
+        subsection => subsection.isCurrent
     )
 }
 
