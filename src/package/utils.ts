@@ -455,17 +455,13 @@ export const getSubsection = (subsectionId: string, sectionId?: string) => {
  * @param id - Subsection ID.
  */
 export const setSubsectionOfCurrentSectionToCurrent = (id: string) => {
-    sections.update(_sections => {
-        return _sections.map(section => {
-            if (section.isCurrent) {
-                section.subsections = section.subsections.map(subsection => {
-                    subsection.isCurrent = subsection.id === id
-                    return subsection
-                })
-            }
-            return section
-        })
-    })
+    updateCurrentSection(section => ({
+        ...section,
+        subsections: section.subsections.map(subsection => ({
+            ...subsection,
+            isCurrent: subsection.id === id,
+        })),
+    }))
 }
 
 /**
