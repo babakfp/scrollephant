@@ -440,10 +440,7 @@ export const updateSections = (
  * @param id - Section ID.
  */
 export const setSectionToCurrentById = (id: string) => {
-    updateSections(section => {
-        section.isCurrent = section.id === id
-        return section
-    })
+    updateSections(section => ({ ...section, isCurrent: section.id === id }))
 }
 
 // ---
