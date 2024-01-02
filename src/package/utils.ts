@@ -239,8 +239,6 @@ export const moveSectionForward = () => {
 }
 
 export const moveSectionBackward = () => {
-    console.log(`get(canMoveToPrevSection)`, get(canMoveToPrevSection))
-    //
     if (get(canMoveToPrevSection)) {
         setIsMovingToTrue()
         moveToPrevSection()
