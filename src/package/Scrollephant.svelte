@@ -21,6 +21,7 @@
         moveOnMouseWheel,
         setSubsectionWrapperPositions,
     } from "./utils.js"
+    import type { Sections } from "./types.js"
 
     export let movement = _movement
     export let direction = _direction
@@ -47,7 +48,7 @@
         getDuration(element)
     })
 
-    $: setWrapperPositions()
+    $: setWrapperPositions($sections)
 
     function moveOnSwipe(e: SwipeEvent) {
         if ($restrictMovement && $isMoving) return
@@ -60,7 +61,11 @@
         }
     }
 
-    function setWrapperPositions() {
+    /**
+     * TODO: Remove `_sections` and use runes.
+     * @param _sections - Add this to make it reactive.
+     */
+    function setWrapperPositions(_sections?: Sections) {
         if (!!$sections.length) {
             setSubsectionWrapperPositions()
         }
@@ -74,7 +79,11 @@
     }px`
 </script>
 
-<svelte:window on:resize={setWrapperPositions} />
+<svelte:window
+    on:resize={() => {
+        setWrapperPositions($sections)
+    }}
+/>
 
 <div
     class="scrollephant"

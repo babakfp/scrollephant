@@ -10,6 +10,7 @@ import {
     canMoveToPrevSection,
     loopUp,
     rtl,
+    direction,
 } from "./stores.js"
 import type { Section, Sections, Subsections } from "./types.js"
 
@@ -322,43 +323,38 @@ export const deleteSectionById = (id: string) => {
 
 // ---
 
-const getSubsectionWrapperPositions = (
-    section: Section,
-    currentSubsectionNumber: number
-) => {
+const getSubsectionWrapperPositions = () => {
     let y = 0
     let x = 0
 
-    // if (!!section?.subsections.length) {
-    //     for (let i = 0; i < currentSubsectionNumber - 1; i++) {
-    //         if (get(direction) === "vertical") {
-    //             x += section.subsections[i]?.ref.clientWidth
-    //         } else if (get(direction) === "horizontal") {
-    //             if (section.subsections[i]?.autoHeight) {
-    //                 y += section.subsections[i]?.ref.clientHeight
-    //             } else {
-    //                 y += section.subsections[i + 1]?.ref.clientHeight
-    //             }
-    //         }
-    //     }
-    // }
+    const section = getCurrentSection()
+    const subsections = section?.subsections
+
+    if (!!subsections?.length) {
+        for (let i = 0; i < getCurrentSubsectionIndex(subsections)!; i++) {
+            const subsection = subsections[i]
+            if (get(direction) === "vertical") {
+                x += subsection.ref.clientWidth
+            } else if (get(direction) === "horizontal") {
+                if (subsection.autoHeight) {
+                    y += subsection.ref.clientHeight
+                } else {
+                    y += subsections[i + 1]?.ref.clientHeight
+                }
+            }
+        }
+    }
 
     return { y, x }
 }
-f
+
 export const setSubsectionWrapperPositions = () => {
-    const { y, x } = getSubsectionWrapperPositions(
-        getCurrentSection()!,
-        getCurrentSubsectionIndexOfCurrentSection()!
-    )
-    // sections.update(_sections => {
-    //     _sections[get(currentSectionNumber) - 1].translateY = y
-    //     return _sections
-    // })
-    // sections.update(_sections => {
-    //     _sections[get(currentSectionNumber) - 1].translateX = x
-    //     return _sections
-    // })
+    const { y, x } = getSubsectionWrapperPositions()
+    updateCurrentSection(section => ({
+        ...section,
+        translateY: y,
+        translateX: x,
+    }))
 }
 
 // ---
