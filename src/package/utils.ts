@@ -95,17 +95,15 @@ export const moveToNextSection = () => {
 }
 
 export const moveToPrevSection = () => {
-    let prevSectionIndex: number
-    updateCurrentSection((section, i) => {
-        section.isCurrent = false
-        prevSectionIndex = i - 1
-        return section
-    })
-    updateSections((section, i) => {
-        if (prevSectionIndex === i) {
-            section.isCurrent = true
+    sections.update(_sections => {
+        for (let i = 0; i < _sections.length; i++) {
+            if (_sections[i].isCurrent) {
+                _sections[i].isCurrent = false
+                _sections[i - 1].isCurrent = true
+            }
         }
-        return section
+
+        return _sections
     })
 }
 
