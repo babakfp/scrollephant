@@ -31,101 +31,81 @@ export const setIsMovingToFalse = () => {
 // ---
 
 export const moveToFirstSubsection = () => {
-    sections.update(_sections => {
-        return _sections.map(section => {
-            if (section.isCurrent) {
-                section.subsections = section.subsections.map(
-                    (subsection, i) => {
-                        subsection.isCurrent = i === 0
-                        return subsection
-                    }
-                )
-            }
-            return section
+    updateCurrentSection(section => {
+        section.subsections = section.subsections.map((subsection, i) => {
+            subsection.isCurrent = i === 0
+            return subsection
         })
+        return section
     })
 }
 
 export const moveToLastSubsection = () => {
-    sections.update(_sections => {
-        return _sections.map(section => {
-            if (section.isCurrent) {
-                const subsectionsLastIndex = section.subsections.length - 1
-                section.subsections = section.subsections.map(
-                    (subsection, i) => {
-                        subsection.isCurrent = i === subsectionsLastIndex
-                        return subsection
-                    }
-                )
-            }
-            return section
+    updateCurrentSection(section => {
+        const subsectionsLastIndex = section.subsections.length - 1
+        section.subsections = section.subsections.map((subsection, i) => {
+            subsection.isCurrent = i === subsectionsLastIndex
+            return subsection
         })
+        return section
     })
 }
 
 // ---
 
 export const resetSubsectionsToFirstPosition = () => {
-    sections.update(_sections =>
-        _sections.map(section => {
-            section.subsections = section.subsections.map((subsection, i) => {
-                subsection.isCurrent = i === 0
-                return subsection
-            })
-            section.translateY = 0
-            section.translateX = 0
-            return section
-        })
-    )
+    updateSections(section => ({
+        ...section,
+        translateY: 0,
+        translateX: 0,
+        subsections: section.subsections.map((subsection, i) => ({
+            ...subsection,
+            isCurrent: i === 0,
+        })),
+    }))
 }
 
 export const resetSubsectionsToLastPosition = () => {
-    sections.update(_sections =>
-        _sections.map(section => {
-            const subsectionsLastIndex = section.subsections.length - 1
-            section.subsections = section.subsections.map((subsection, i) => {
-                subsection.isCurrent = i === subsectionsLastIndex
-                return subsection
-            })
-            section.translateY = 0
-            section.translateX = 0
-            return section
+    updateSections(section => {
+        const subsectionsLastIndex = section.subsections.length - 1
+        section.subsections = section.subsections.map((subsection, i) => {
+            subsection.isCurrent = i === subsectionsLastIndex
+            return subsection
         })
-    )
+        section.translateY = 0
+        section.translateX = 0
+        return section
+    })
 }
 
 // ---
 
 export const moveToNextSection = () => {
     let currentSectionIndex: number
-    sections.update(_sections =>
-        _sections.map((section, i) => {
-            if (section.isCurrent) {
-                section.isCurrent = false
-                currentSectionIndex = i
-            }
-            if (currentSectionIndex + 1 === i) {
-                section.isCurrent = true
-            }
-            return section
-        })
-    )
+    updateSections((section, i) => {
+        if (section.isCurrent) {
+            section.isCurrent = false
+            currentSectionIndex = i
+        }
+        if (currentSectionIndex + 1 === i) {
+            section.isCurrent = true
+        }
+        return section
+    })
 }
 
 export const moveToPrevSection = () => {
     let currentSectionIndex: number
-    sections.update(_sections =>
-        _sections.map((section, i) => {
-            if (section.isCurrent) {
-                section.isCurrent = false
-                currentSectionIndex = i
-            }
-            if (currentSectionIndex - 1 === i) {
-                section.isCurrent = true
-            }
-            return section
-        })
-    )
+    updateSections((section, i) => {
+        if (section.isCurrent) {
+            section.isCurrent = false
+            currentSectionIndex = i
+        }
+        if (currentSectionIndex - 1 === i) {
+            section.isCurrent = true
+        }
+        return section
+    })
 }
 
 export const moveToFirstSection = () => {
@@ -175,51 +155,44 @@ export const canMoveToPrevSubsection = () => {
 
 export const moveToNextSubsection = () => {
     let currentSubsectionIndex: number
-    sections.update(_sections =>
-        _sections.map(section => {
-            if (section.isCurrent) {
-                section.subsections = section.subsections.map(
-                    (subsection, i) => {
-                        if (subsection.isCurrent) {
-                            subsection.isCurrent = false
-                            currentSubsectionIndex = i
-                        } else if (currentSubsectionIndex) {
-                            subsection.isCurrent = true
-                        }
-
-                        return subsection
-                    }
-                )
+    updateCurrentSection(section => {
+        section.subsections = section.subsections.map((subsection, i) => {
+            if (subsection.isCurrent) {
+                subsection.isCurrent = false
+                currentSubsectionIndex = i
+            } else if (currentSubsectionIndex) {
+                subsection.isCurrent = true
             }
-            return section
+            return subsection
         })
-    )
+        return section
+    })
 }
 
 export const moveToPrevSubsection = () => {
-    // let currentSubsectionIndex: number
-    // sections.update(_sections =>
-    //     _sections.map(section => {
-    //         if (section.isCurrent) {
-    //             section.subsections = section.subsections.map(
-    //                 (subsection, i) => {
-    //                     if (subsection.isCurrent) {
-    //                         subsection.isCurrent = false
-    //                         currentSubsectionIndex = i
-    //                     } else if (currentSubsectionIndex) {
-    //                         subsection.isCurrent = true
-    //                     }
-    //                     return subsection
-    //                 }
-    //             )
-    //         }
-    //         return section
-    //     })
-    // )
-    // sections.update(_sections => {
-    //     _sections[get(currentSectionNumber) - 1].currentSubsectionNumber -= 1
-    //     return _sections
-    // })
+    let currentSubsectionIndex: number
+    updateCurrentSection(section => {
+        section.subsections = section.subsections.map((subsection, i) => {
+            if (subsection.isCurrent) {
+                subsection.isCurrent = false
+                currentSubsectionIndex = i
+            } else if (currentSubsectionIndex) {
+                updateCurrentSection(section => {
+                    section.subsections = section.subsections.map(
+                        (subsection, i) => {
+                            if (currentSubsectionIndex === i) {
+                                subsection.isCurrent = true
+                            }
+                            return subsection
+                        }
+                    )
+                    return section
+                })
+            }
+            return subsection
+        })
+        return section
+    })
 }
 
 // ---
