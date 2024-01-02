@@ -25,7 +25,7 @@
                 ref: element,
                 label,
                 autoHeight,
-                isCurrent: false,
+                isCurrent: $subsections.length === 0 ? true : false,
             },
         ]
     })
