@@ -95,13 +95,14 @@ export const moveToNextSection = () => {
 }
 
 export const moveToPrevSection = () => {
-    let currentSectionIndex: number
+    let prevSectionIndex: number
+    updateCurrentSection((section, i) => {
+        section.isCurrent = false
+        prevSectionIndex = i - 1
+        return section
+    })
     updateSections((section, i) => {
-        if (section.isCurrent) {
-            section.isCurrent = false
-            currentSectionIndex = i
-        }
-        if (currentSectionIndex - 1 === i) {
+        if (prevSectionIndex === i) {
             section.isCurrent = true
         }
         return section
@@ -239,6 +240,8 @@ export const moveSectionForward = () => {
 }
 
 export const moveSectionBackward = () => {
+    console.log(`get(canMoveToPrevSection)`, get(canMoveToPrevSection))
+    //
     if (get(canMoveToPrevSection)) {
         setIsMovingToTrue()
         moveToPrevSection()
@@ -385,9 +388,11 @@ export const updateSections = (
 }
 
 export const updateCurrentSection = (
-    fallback: (section: Section) => Section
+    fallback: (section: Section, i: number) => Section
 ) => {
-    updateSections(section => (section.isCurrent ? fallback(section) : section))
+    updateSections((section, i) =>
+        section.isCurrent ? fallback(section, i) : section
+    )
 }
 
 /**
