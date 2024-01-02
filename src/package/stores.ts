@@ -13,6 +13,7 @@ export const rtl = writable(false)
 export const sections = writable<Sections>([])
 export const isMoving = writable(false)
 export const duration = writable<number>()
+
 export const canMoveToPrevSection = derived(
     sections,
     _$sections => getCurrentSectionIndex()! > 0
