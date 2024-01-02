@@ -39,7 +39,8 @@
                     {#each section.subsections as subsection}
                         <ScrollephantDot
                             isCurrent={isSubsectionIsCurrentOfCurrentSectionById(
-                                subsection.id
+                                subsection.id,
+                                $sections
                             )}
                             on:click={() =>
                                 moveToSubsection(section.id, subsection.id)}
