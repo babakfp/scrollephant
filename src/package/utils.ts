@@ -10,7 +10,6 @@ import {
     canMoveToPrevSection,
     loopUp,
     rtl,
-    direction,
 } from "./stores.js"
 import type { Section, Sections, Subsections } from "./types.js"
 
