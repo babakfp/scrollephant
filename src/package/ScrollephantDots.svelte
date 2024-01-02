@@ -7,7 +7,7 @@
         setIsMovingToFalse,
         setSectionToCurrentById,
         isSectionCurrentById,
-        setSubsectionOfCurrentSectionToCurrent,
+        setSubsectionOfCurrentSectionToCurrentById,
         isCurrentSubsectionOfCurrentSection,
     } from "./utils.js"
 
@@ -23,7 +23,7 @@
     const moveToSubsection = (sectionId: string, subsectionId: string) => {
         setIsMovingToTrue()
         if (!isSectionCurrentById(sectionId)) setSectionToCurrentById(sectionId)
-        setSubsectionOfCurrentSectionToCurrent(subsectionId)
+        setSubsectionOfCurrentSectionToCurrentById(subsectionId)
         setIsMovingToFalse()
     }
 </script>
