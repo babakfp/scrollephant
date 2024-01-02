@@ -400,7 +400,7 @@ export const moveOnMouseWheel = (e: WheelEvent) => {
 // ---
 
 /**
- * TODO(Svelte 5): Remove `_sections` and use runes.
+ * TODO: Remove `_sections` and use runes.
  * @param id - Section ID.
  * @param _sections - Add this to make it reactive.
  */
@@ -409,7 +409,7 @@ export const getSectionById = (id: string, _sections?: Sections) => {
 }
 
 /**
- * TODO(Svelte 5): Remove `_sections` and use runes.
+ * TODO: Remove `_sections` and use runes.
  * @param id - Section ID.
  * @param _sections - Add this to make it reactive.
  */
