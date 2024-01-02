@@ -21,10 +21,8 @@
     }
 
     function moveToSubsection(sectionId: string, subsectionId: string) {
-        if (!isSectionCurrentById(sectionId)) {
-            setSectionToCurrentById(sectionId)
-        }
         setIsMovingToTrue()
+        if (!isSectionCurrentById(sectionId)) setSectionToCurrentById(sectionId)
         setSubsectionOfCurrentSectionToCurrent(subsectionId)
         setIsMovingToFalse()
     }
