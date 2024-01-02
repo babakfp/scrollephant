@@ -418,7 +418,7 @@ export const isSectionCurrentById = (id: string, _sections?: Sections) => {
 }
 
 export const getCurrentSection = () => {
-    return get(sections).find(section => section.isCurrent === true)
+    return get(sections).find(section => section.isCurrent)
 }
 
 export const updateSections = (
