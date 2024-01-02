@@ -327,8 +327,7 @@ export const getSectionWrapperPositions = () => {
     let y = 0
     let x = 0
 
-    const currentSectionIndex = getCurrentSectionIndex()
-    for (let i = 0; i < (currentSectionIndex ? currentSectionIndex : 0); i++) {
+    for (let i = 0; i < getCurrentSectionIndex()!; i++) {
         if (get(direction) === "vertical") {
             if (get(sections)[i]?.autoHeight) {
                 y += get(sections)[i]?.ref.clientHeight
