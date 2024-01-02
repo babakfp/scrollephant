@@ -492,6 +492,6 @@ export const getCurrentSubsectionIndexOfCurrentSection = () => {
 /**
  * @param id - Subsection ID.
  */
-export const isCurrentSubsectionOfCurrentSection = (id: string) => {
+export const isSubsectionIsCurrentOfCurrentSectionById = (id: string) => {
     return !!getCurrentSubsectionOfCurrentSection(id)
 }

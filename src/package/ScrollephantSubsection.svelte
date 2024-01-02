@@ -3,7 +3,7 @@
     import { type Writable } from "svelte/store"
     import type { Subsections } from "./types.js"
     import { movement } from "./stores.js"
-    import { isCurrentSubsectionOfCurrentSection } from "./utils.js"
+    import { isSubsectionIsCurrentOfCurrentSectionById } from "./utils.js"
 
     export let label = ""
     export let autoHeight = false
@@ -37,7 +37,7 @@
     let isCurrent = false
 
     $: if ($subsections) {
-        isCurrent = isCurrentSubsectionOfCurrentSection(id)
+        isCurrent = isSubsectionIsCurrentOfCurrentSectionById(id)
     }
 </script>
 

@@ -8,7 +8,7 @@
         setSectionToCurrentById,
         isSectionCurrentById,
         setSubsectionOfCurrentSectionToCurrentById,
-        isCurrentSubsectionOfCurrentSection,
+        isSubsectionIsCurrentOfCurrentSectionById,
     } from "./utils.js"
 
     export let useSubsectionsDots = true
@@ -38,7 +38,7 @@
                 <ol>
                     {#each section.subsections as subsection}
                         <ScrollephantDot
-                            isCurrent={isCurrentSubsectionOfCurrentSection(
+                            isCurrent={isSubsectionIsCurrentOfCurrentSectionById(
                                 subsection.id
                             )}
                             on:click={() =>
