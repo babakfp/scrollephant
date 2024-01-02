@@ -417,15 +417,21 @@ export const isSectionCurrentById = (id: string, _sections?: Sections) => {
     return !!getSectionById(id)?.isCurrent
 }
 
+export const updateSections = (
+    fallback: (section: Section, i: number) => Section
+) => {
+    sections.update(_sections =>
+        _sections.map((section, i) => fallback(section, i))
+    )
+}
+
 /**
  * @param id - Section ID.
  */
 export const setSectionToCurrent = (id: string) => {
-    sections.update(_sections => {
-        return _sections.map(section => {
-            section.isCurrent = section.id === id
-            return section
-        })
+    updateSections(section => {
+        section.isCurrent = section.id === id
+        return section
     })
 }
 
