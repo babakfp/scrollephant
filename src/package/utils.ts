@@ -399,6 +399,8 @@ export const moveOnMouseWheel = (e: WheelEvent) => {
 
 // ---
 
+const getSectionByIndex = (i: number) => get(sections).at(i)
+
 /**
  * TODO: Remove `_sections` and use runes.
  * @param id - Section ID.
@@ -517,8 +519,4 @@ const getCurrentSectionIndex = () => {
             return Number(index)
         }
     }
-}
-
-const getSectionByIndex = (i: number) => {
-    return get(sections).at(i)
 }
