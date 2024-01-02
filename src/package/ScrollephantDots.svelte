@@ -13,14 +13,14 @@
 
     export let useSubsectionsDots = true
 
-    function moveToSection(id: string) {
+    const moveToSection = (id: string) => {
         if (isSectionCurrentById(id)) return
         setIsMovingToTrue()
         setSectionToCurrentById(id)
         setIsMovingToFalse()
     }
 
-    function moveToSubsection(sectionId: string, subsectionId: string) {
+    const moveToSubsection = (sectionId: string, subsectionId: string) => {
         setIsMovingToTrue()
         if (!isSectionCurrentById(sectionId)) setSectionToCurrentById(sectionId)
         setSubsectionOfCurrentSectionToCurrent(subsectionId)
