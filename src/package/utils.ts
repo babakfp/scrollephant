@@ -171,27 +171,17 @@ export const moveToNextSubsection = () => {
 }
 
 export const moveToPrevSubsection = () => {
-    let currentSubsectionIndex: number
     updateCurrentSection(section => {
-        section.subsections = section.subsections.map((subsection, i) => {
-            if (subsection.isCurrent) {
-                subsection.isCurrent = false
-                currentSubsectionIndex = i
-            } else if (currentSubsectionIndex) {
-                updateCurrentSection(section => {
-                    section.subsections = section.subsections.map(
-                        (subsection, i) => {
-                            if (currentSubsectionIndex === i) {
-                                subsection.isCurrent = true
-                            }
-                            return subsection
-                        }
-                    )
-                    return section
-                })
-            }
-            return subsection
-        })
+        const currentIndex = section.subsections.findIndex(
+            section => section.isCurrent
+        )
+        if (currentIndex <= 0) {
+            throw new Error(
+                "Cannot move to previous subsection: Current subsection not found or already at the first subsection."
+            )
+        }
+        section.subsections[currentIndex].isCurrent = false
+        section.subsections[currentIndex - 1].isCurrent = true
         return section
     })
 }
