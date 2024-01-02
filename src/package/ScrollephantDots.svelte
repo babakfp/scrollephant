@@ -5,7 +5,7 @@
     import {
         setIsMovingToTrue,
         setIsMovingToFalse,
-        setSectionToCurrent,
+        setSectionToCurrentById,
         isSectionCurrentById,
         setSubsectionOfCurrentSectionToCurrent,
         isCurrentSubsectionOfCurrentSection,
@@ -16,13 +16,13 @@
     function moveToSection(id: string) {
         if (isSectionCurrentById(id)) return
         setIsMovingToTrue()
-        setSectionToCurrent(id)
+        setSectionToCurrentById(id)
         setIsMovingToFalse()
     }
 
     function moveToSubsection(subsectionId: string, sectionId: string) {
         if (!isSectionCurrentById(sectionId)) {
-            setSectionToCurrent(sectionId)
+            setSectionToCurrentById(sectionId)
         }
 
         setIsMovingToTrue()

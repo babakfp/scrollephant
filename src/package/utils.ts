@@ -131,7 +131,7 @@ export const moveToPrevSection = () => {
 export const moveToFirstSection = () => {
     const id = getSectionByIndex(0)?.id
     if (id) {
-        setSectionToCurrent(id)
+        setSectionToCurrentById(id)
     }
 }
 
@@ -139,7 +139,7 @@ export const moveToLastSection = () => {
     const sectionsLastIndex = get(sections).length - 1
     const id = getSectionByIndex(sectionsLastIndex)?.id
     if (id) {
-        setSectionToCurrent(id)
+        setSectionToCurrentById(id)
     }
 }
 
@@ -428,7 +428,7 @@ export const updateSections = (
 /**
  * @param id - Section ID.
  */
-export const setSectionToCurrent = (id: string) => {
+export const setSectionToCurrentById = (id: string) => {
     updateSections(section => {
         section.isCurrent = section.id === id
         return section
