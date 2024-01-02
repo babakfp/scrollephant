@@ -424,11 +424,8 @@ export const getCurrentSection = () => {
 }
 
 export const getCurrentSectionIndex = () => {
-    for (const [index, section] of Object.entries(get(sections))) {
-        if (section.isCurrent) {
-            return Number(index)
-        }
-    }
+    const currentIndex = get(sections).findIndex(section => section.isCurrent)
+    return currentIndex !== -1 ? currentIndex : undefined
 }
 
 export const updateSections = (
