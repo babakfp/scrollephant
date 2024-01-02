@@ -1,5 +1,6 @@
 import { writable, type Writable, derived } from "svelte/store"
 import type { Props, Sections } from "./types.js"
+import { getCurrentSectionIndex } from "./utils.js"
 
 export const movement: Writable<Props["movement"]> = writable("scroll")
 export const direction: Writable<Props["direction"]> = writable("vertical")
@@ -13,13 +14,10 @@ export const sections = writable<Sections>([])
 export const isMoving = writable(false)
 export const duration = writable<number>()
 export const canMoveToPrevSection = derived(
-    duration,
-    // $currentSectionNumber => $currentSectionNumber > 1
-    () => false
+    sections,
+    _$sections => getCurrentSectionIndex()! > 0
 )
 export const canMoveToNextSection = derived(
-    [duration, sections],
-    // ([$currentSectionNumber, $sections]) =>
-    //     $currentSectionNumber < $sections.length
-    () => false
+    sections,
+    $sections => getCurrentSectionIndex()! < $sections.length - 1
 )
