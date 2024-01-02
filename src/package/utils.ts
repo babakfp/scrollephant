@@ -436,6 +436,12 @@ export const updateSections = (
     )
 }
 
+export const updateCurrentSection = (
+    fallback: (section: Section) => Section
+) => {
+    updateSections(section => (section.isCurrent ? fallback(section) : section))
+}
+
 /**
  * @param id - Section ID.
  */
