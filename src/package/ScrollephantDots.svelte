@@ -20,7 +20,7 @@
         setIsMovingToFalse()
     }
 
-    function moveToSubsection(subsectionId: string, sectionId: string) {
+    function moveToSubsection(sectionId: string, subsectionId: string) {
         if (!isSectionCurrentById(sectionId)) {
             setSectionToCurrentById(sectionId)
         }
@@ -44,7 +44,7 @@
                                 subsection.id
                             )}
                             on:click={() =>
-                                moveToSubsection(subsection.id, section.id)}
+                                moveToSubsection(section.id, subsection.id)}
                         />
                     {/each}
                 </ol>
