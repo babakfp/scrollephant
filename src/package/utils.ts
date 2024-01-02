@@ -414,7 +414,7 @@ export const getSectionById = (id: string, _sections?: Sections) => {
  * @param _sections - Add this to make it reactive.
  */
 export const isSectionCurrentById = (id: string, _sections?: Sections) => {
-    return getSectionById(id)?.isCurrent
+    return !!getSectionById(id)?.isCurrent
 }
 
 /**
