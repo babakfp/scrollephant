@@ -144,7 +144,7 @@ export const canMoveToPrevSubsection = () => {
     if (subsections) {
         for (const [i, subsection] of Object.entries(subsections)) {
             if (subsection.isCurrent) {
-                if (Number(i) > subsections.length - 1) {
+                if (Number(i) > 0) {
                     return true
                 }
             }
