@@ -423,6 +423,14 @@ export const getCurrentSection = () => {
     return get(sections).find(section => section.isCurrent)
 }
 
+export const getCurrentSectionIndex = () => {
+    for (const [index, section] of Object.entries(get(sections))) {
+        if (section.isCurrent) {
+            return Number(index)
+        }
+    }
+}
+
 export const updateSections = (
     fallback: (section: Section, i: number) => Section
 ) => {
@@ -511,12 +519,4 @@ export const getCurrentSubsectionIndexOfCurrentSection = () => {
  */
 export const isCurrentSubsectionOfCurrentSection = (id: string) => {
     return !!getCurrentSubsectionOfCurrentSection(id)
-}
-
-const getCurrentSectionIndex = () => {
-    for (const [index, section] of Object.entries(get(sections))) {
-        if (section.isCurrent) {
-            return Number(index)
-        }
-    }
 }
