@@ -285,7 +285,7 @@ export const addSection = (
             subsections: subsections,
             translateY: 0,
             translateX: 0,
-            isCurrent: false,
+            isCurrent: _sections.length === 0 ? true : false,
         })
     )
 }
