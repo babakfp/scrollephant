@@ -441,6 +441,16 @@ export const getSubsectionById = (subsections: Subsections, id: string) => {
     return subsections.find(subsection => subsection.id === id)
 }
 
+/**
+ * @param id - Section ID.
+ */
+export const isSubsectionCurrentById = (
+    subsections: Subsections,
+    id: string
+) => {
+    return !!getSubsectionById(subsections, id)?.isCurrent
+}
+
 export const getSubsection = (subsectionId: string, sectionId?: string) => {
     if (sectionId) {
         const section = getSectionById(sectionId)
