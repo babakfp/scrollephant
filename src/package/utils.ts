@@ -400,27 +400,21 @@ export const moveOnMouseWheel = (e: WheelEvent) => {
 // ---
 
 /**
- * TODO: I think we can remove this on Svelte 5.
- * @param sections
+ * TODO(Svelte 5): Remove `_sections` and use runes.
  * @param id - Section ID.
+ * @param _sections - Add this to make it reactive.
  */
-export const getSectionByIdReactive = (
-    sections: Writable<Sections>,
-    id: string
-) => {
+export const getSectionById = (id: string, _sections?: Sections) => {
     return get(sections).find(section => section.id === id)
 }
 
 /**
- * TODO: I think we can remove this on Svelte 5.
- * @param sections
+ * TODO(Svelte 5): Remove `_sections` and use runes.
  * @param id - Section ID.
+ * @param _sections - Add this to make it reactive.
  */
-export const isSectionCurrentByIdReactive = (
-    sections: Writable<Sections>,
-    id: string
-) => {
-    return getSectionByIdReactive(sections, id)?.isCurrent
+export const isSectionCurrentById = (id: string, _sections?: Sections) => {
+    return getSectionById(id)?.isCurrent
 }
 
 /**
