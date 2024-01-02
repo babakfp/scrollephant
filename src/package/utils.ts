@@ -1,4 +1,4 @@
-import { get, type Writable } from "svelte/store"
+import { get } from "svelte/store"
 import {
     restrictMovement,
     isMoving,
