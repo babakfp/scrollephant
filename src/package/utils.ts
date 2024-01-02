@@ -455,6 +455,13 @@ export const getCurrentSubsection = (subsections: Subsections) => {
     return subsections.find(subsection => subsection.isCurrent)
 }
 
+export const getCurrentSubsectionIndex = (subsections: Subsections) => {
+    const currentIndex = subsections.findIndex(
+        subsection => subsection.isCurrent
+    )
+    return currentIndex !== -1 ? currentIndex : undefined
+}
+
 export const getSubsection = (subsectionId: string, sectionId?: string) => {
     if (sectionId) {
         const section = getSectionById(sectionId)
