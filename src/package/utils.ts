@@ -323,26 +323,6 @@ export const deleteSectionById = (id: string) => {
 
 // ---
 
-export const getSectionWrapperPositions = () => {
-    let y = 0
-    let x = 0
-
-    for (let i = 0; i < getCurrentSectionIndex()!; i++) {
-        const section = get(sections)[i]
-        if (get(direction) === "vertical") {
-            if (section.autoHeight) {
-                y += section.ref.clientHeight
-            } else {
-                y += get(sections)[i + 1]?.ref.clientHeight
-            }
-        } else if (get(direction) === "horizontal") {
-            x += section.ref.clientWidth
-        }
-    }
-
-    return { y, x }
-}
-
 const getSubsectionWrapperPositions = (
     section: Section,
     currentSubsectionNumber: number

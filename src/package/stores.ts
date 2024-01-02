@@ -22,3 +22,26 @@ export const canMoveToNextSection = derived(
     sections,
     $sections => getCurrentSectionIndex()! < $sections.length - 1
 )
+
+export const sectionWrapperPositions = derived(
+    [sections, direction],
+    ([$sections, $direction]) => {
+        let y = 0
+        let x = 0
+
+        for (let i = 0; i < getCurrentSectionIndex()!; i++) {
+            const section = $sections[i]
+            if ($direction === "vertical") {
+                if (section.autoHeight) {
+                    y += section.ref.clientHeight
+                } else {
+                    y += $sections[i + 1]?.ref.clientHeight
+                }
+            } else if ($direction === "horizontal") {
+                x += section.ref.clientWidth
+            }
+        }
+
+        return { y, x }
+    }
+)

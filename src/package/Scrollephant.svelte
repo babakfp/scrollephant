@@ -11,13 +11,13 @@
         rtl,
         sections,
         isMoving,
+        sectionWrapperPositions,
     } from "./stores.js"
     import {
         moveForward,
         moveBackward,
         getDuration,
         getRTL,
-        getSectionWrapperPositions,
         moveOnMouseWheel,
         setSubsectionWrapperPositions,
     } from "./utils.js"
@@ -47,9 +47,6 @@
         getDuration(element)
     })
 
-    let translateY = 0
-    let translateX = 0
-
     $: setWrapperPositions()
 
     function moveOnSwipe(e: SwipeEvent) {
@@ -65,20 +62,15 @@
 
     function setWrapperPositions() {
         if (!!$sections.length) {
-            setSectionWrapperPositions()
             setSubsectionWrapperPositions()
         }
     }
 
-    function setSectionWrapperPositions() {
-        const { y, x } = getSectionWrapperPositions()
-        translateY = y
-        translateX = x
-    }
-
-    $: styleTranslateY = `-${$movement === "scroll" ? translateY : 0}px`
+    $: styleTranslateY = `-${
+        $movement === "scroll" ? $sectionWrapperPositions.y : 0
+    }px`
     $: styleTranslateX = `${!$rtl ? "-" : ""}${
-        $movement === "scroll" ? translateX : 0
+        $movement === "scroll" ? $sectionWrapperPositions.x : 0
     }px`
 </script>
 
