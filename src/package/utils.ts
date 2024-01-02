@@ -506,6 +506,19 @@ export const getCurrentSubsectionOfCurrentSection = () => {
 }
 
 /**
+ * TODO: Remove `_sections` and use runes.
+ * @param id - Subsection ID.
+ * @param _sections - Add this to make it reactive.
+ */
+export const isSubsectionCurrentOfCurrentSectionById = (
+    id: string,
+    _sections?: Sections
+) => {
+    const subsections = getCurrentSection()?.subsections
+    return subsections ? isSubsectionCurrentById(subsections, id) : false
+}
+
+/**
  * @param id - Subsection ID.
  */
 export const getCurrentSubsectionIndexOfCurrentSection = () => {
@@ -513,16 +526,4 @@ export const getCurrentSubsectionIndexOfCurrentSection = () => {
     if (currentSection) {
         return getCurrentSubsectionIndex(currentSection.subsections)
     }
-}
-
-/**
- * TODO: Remove `_sections` and use runes.
- * @param id - Subsection ID.
- * @param _sections - Add this to make it reactive.
- */
-export const isSubsectionIsCurrentOfCurrentSectionById = (
-    id: string,
-    _sections?: Sections
-) => {
-    return !!getCurrentSubsectionOfCurrentSection(id)
 }

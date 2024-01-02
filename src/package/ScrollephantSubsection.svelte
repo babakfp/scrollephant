@@ -3,7 +3,7 @@
     import { type Writable } from "svelte/store"
     import type { Subsections } from "./types.js"
     import { movement } from "./stores.js"
-    import { isSubsectionIsCurrentOfCurrentSectionById } from "./utils.js"
+    import { isSubsectionCurrentById } from "./utils.js"
 
     export let label = ""
     export let autoHeight = false
@@ -33,17 +33,14 @@
     onDestroy(() => {
         $subsections = $subsections.filter(subsection => subsection.id !== id)
     })
-
-    let isCurrent = false
-
-    $: if ($subsections) {
-        isCurrent = isSubsectionIsCurrentOfCurrentSectionById(id)
-    }
 </script>
 
 <div
     class="scrollephant-subsection"
-    data-scrollephant-is-current-subsection={isCurrent}
+    data-scrollephant-is-current-subsection={isSubsectionCurrentById(
+        $subsections,
+        id
+    )}
     bind:this={element}
 >
     <slot />
