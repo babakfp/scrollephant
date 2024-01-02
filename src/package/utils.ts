@@ -430,6 +430,10 @@ export const setSectionToCurrentById = (id: string) => {
 
 // ---
 
+export const getSubsectionByIndex = (subsections: Subsections, i: number) => {
+    return subsections.at(i)
+}
+
 export const getSubsection = (subsectionId: string, sectionId?: string) => {
     if (sectionId) {
         const section = getSectionById(sectionId)
