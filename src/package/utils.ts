@@ -96,13 +96,14 @@ export const moveToNextSection = () => {
 
 export const moveToPrevSection = () => {
     sections.update(_sections => {
-        for (let i = 0; i < _sections.length; i++) {
-            if (_sections[i].isCurrent) {
-                _sections[i].isCurrent = false
-                _sections[i - 1].isCurrent = true
-            }
+        const currentIndex = _sections.findIndex(section => section.isCurrent)
+        if (currentIndex <= 0) {
+            throw new Error(
+                "Cannot move to previous section: Current section not found or already at the first section."
+            )
         }
-
+        _sections[currentIndex].isCurrent = false
+        _sections[currentIndex - 1].isCurrent = true
         return _sections
     })
 }
