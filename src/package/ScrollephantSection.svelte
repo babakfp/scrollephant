@@ -49,7 +49,7 @@
 
 <div
     class="scrollephant-section"
-    data-scrollephant-is-current-section={isSectionCurrentById(id)}
+    data-scrollephant-is-current-section={isSectionCurrentById(id, $sections)}
     data-scrollephant-section-auto-height={autoHeight}
     data-scrollephant-section-has-subsections={!!$subsections.length}
     bind:this={element}

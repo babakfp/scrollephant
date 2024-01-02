@@ -32,9 +32,9 @@
 </script>
 
 <ol>
-    {#each $sections as section, i}
+    {#each $sections as section}
         <ScrollephantDot
-            isCurrent={isSectionCurrentById(section.id)}
+            isCurrent={isSectionCurrentById(section.id, $sections)}
             on:click={() => moveToSection(section.id)}
         >
             {#if useSubsectionsDots && !!section.subsections.length}
