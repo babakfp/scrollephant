@@ -6,6 +6,7 @@
     import {
         addSection,
         deleteSectionById,
+        getSectionById,
         isSectionCurrentById,
         updateSectionById,
     } from "./utils.js"
@@ -26,6 +27,8 @@
     const id = crypto.randomUUID()
 
     subsections.subscribe(_subsections => {
+        // NOTE: If this section is not yet available, it means we are still getting subsections.
+        if (!getSectionById(id)) return
         updateSectionById(id, section => ({
             ...section,
             subsections: _subsections,
