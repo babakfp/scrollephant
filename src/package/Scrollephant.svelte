@@ -81,7 +81,7 @@
 
 <svelte:window
     on:resize={() => {
-        setWrapperPositions($sections)
+        setWrapperPositions()
     }}
 />
 
