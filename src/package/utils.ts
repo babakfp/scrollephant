@@ -312,7 +312,8 @@ const getSubsectionWrapperPositions = () => {
     return { y, x }
 }
 
-export const setSubsectionWrapperPositions = () => {
+export const setSubsectionWrapperPositions = (_sections?: Sections) => {
+    if (!get(sections).length) return
     const { y, x } = getSubsectionWrapperPositions()
     updateCurrentSection(section => ({
         ...section,
