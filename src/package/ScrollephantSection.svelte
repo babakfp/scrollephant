@@ -12,17 +12,17 @@
     export let label = ""
     export let autoHeight = false
 
+    if (autoHeight && $movement === "fade") {
+        console.warn(
+            "Using the autoHeight prop in conjunction with the movement prop set to fade is not logically meaningful and should be avoided.",
+        )
+        autoHeight = false
+    }
+
     const subsections = setContext("subsections", writable<Subsections>([]))
 
     let element: HTMLElement
     const id = crypto.randomUUID()
-
-    if (autoHeight && $movement === "fade") {
-        console.warn(
-            "Using the autoHeight prop in conjunction with the movement prop set to fade is not logically meaningful and should be avoided."
-        )
-        autoHeight = false
-    }
 
     subsections.subscribe(_subsections => {
         sections.update(_sections =>
@@ -31,7 +31,7 @@
                     section.subsections = _subsections
                 }
                 return section
-            })
+            }),
         )
     })
 
