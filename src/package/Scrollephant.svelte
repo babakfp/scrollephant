@@ -68,11 +68,7 @@
     }px`
 </script>
 
-<svelte:window
-    on:resize={() => {
-        setSubsectionWrapperPositions()
-    }}
-/>
+<svelte:window on:resize={() => setSubsectionWrapperPositions()} />
 
 <div
     class="scrollephant"
