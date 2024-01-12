@@ -7,6 +7,7 @@
         addSection,
         deleteSectionById,
         isSectionCurrentById,
+        updateSectionById,
     } from "./utils.js"
 
     export let label = ""
@@ -25,14 +26,10 @@
     const id = crypto.randomUUID()
 
     subsections.subscribe(_subsections => {
-        sections.update(_sections =>
-            _sections.map(section => {
-                if (section.id === id) {
-                    section.subsections = _subsections
-                }
-                return section
-            }),
-        )
+        updateSectionById(id, section => ({
+            ...section,
+            subsections: _subsections,
+        }))
     })
 
     onMount(() => {

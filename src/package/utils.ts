@@ -381,6 +381,13 @@ export const updateSections = (
     )
 }
 
+export const updateSectionById = (
+    id: string,
+    callback: (section: Section) => Section
+) => {
+    updateSections(section => (section.id === id ? callback(section) : section))
+}
+
 export const updateCurrentSection = (
     callback: (section: Section, i: number) => Section
 ) => {
