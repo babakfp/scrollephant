@@ -19,7 +19,7 @@
         getDuration,
         getRTL,
         moveOnMouseWheel,
-        setSubsectionWrapperPositions,
+        updateCurrentSectionTranslatePositions,
     } from "./utils.js"
 
     export let movement = _movement
@@ -47,7 +47,7 @@
         getDuration(element)
     })
 
-    $: setSubsectionWrapperPositions($sections)
+    $: updateCurrentSectionTranslatePositions($sections)
 
     function moveOnSwipe(e: SwipeEvent) {
         if ($restrictMovement && $isMoving) return
@@ -68,7 +68,7 @@
     }px`
 </script>
 
-<svelte:window on:resize={() => setSubsectionWrapperPositions()} />
+<svelte:window on:resize={() => updateCurrentSectionTranslatePositions()} />
 
 <div
     class="scrollephant"

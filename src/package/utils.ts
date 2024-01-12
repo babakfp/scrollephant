@@ -287,39 +287,44 @@ export const deleteSectionById = (id: string) => {
 
 // ---
 
-const getSubsectionWrapperPositions = () => {
-    let y = 0
-    let x = 0
-
+export const updateCurrentSectionTranslatePositions = (
+    _sections?: Sections
+) => {
     const section = getCurrentSection()
-    const subsections = section?.subsections
+    if (!section) return
 
-    if (!!subsections?.length) {
-        for (let i = 0; i < getCurrentSubsectionIndex(subsections)!; i++) {
-            const subsection = subsections[i]
+    let translateY = 0
+    let translateX = 0
+
+    if (section.subsections.length) {
+        for (
+            let i = 0;
+            i < getCurrentSubsectionIndex(section.subsections)!;
+            i++
+        ) {
+            const subsection = section.subsections[i]
             if (get(direction) === "vertical") {
-                x += subsection.ref.clientWidth
+                translateX += subsection.ref.clientWidth
             } else if (get(direction) === "horizontal") {
                 if (subsection.autoHeight) {
-                    y += subsection.ref.clientHeight
+                    translateY += subsection.ref.clientHeight
                 } else {
-                    y += subsections[i + 1]?.ref.clientHeight
+                    translateY += section.subsections[i + 1]?.ref.clientHeight
                 }
             }
         }
     }
 
-    return { y, x }
-}
-
-export const setSubsectionWrapperPositions = (_sections?: Sections) => {
-    if (!get(sections).length) return
-    const { y, x } = getSubsectionWrapperPositions()
-    updateCurrentSection(section => ({
-        ...section,
-        translateY: y,
-        translateX: x,
-    }))
+    if (
+        section.translateY !== translateY ||
+        section.translateX !== translateX
+    ) {
+        updateCurrentSection(section => ({
+            ...section,
+            translateY,
+            translateX,
+        }))
+    }
 }
 
 // ---
