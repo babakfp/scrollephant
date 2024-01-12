@@ -374,18 +374,18 @@ export const getCurrentSectionIndex = () => {
 }
 
 export const updateSections = (
-    fallback: (section: Section, i: number) => Section
+    callback: (section: Section, i: number) => Section
 ) => {
     sections.update(_sections =>
-        _sections.map((section, i) => fallback(section, i))
+        _sections.map((section, i) => callback(section, i))
     )
 }
 
 export const updateCurrentSection = (
-    fallback: (section: Section, i: number) => Section
+    callback: (section: Section, i: number) => Section
 ) => {
     updateSections((section, i) =>
-        section.isCurrent ? fallback(section, i) : section
+        section.isCurrent ? callback(section, i) : section
     )
 }
 
