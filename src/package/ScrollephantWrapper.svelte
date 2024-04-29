@@ -15,7 +15,7 @@
     }
 
     :global(.scrollephant[data-scrollephant-direction="vertical"])
-        > .scrollephant-wrapper,
+        .scrollephant-wrapper:first-child,
     :global(
             .scrollephant[data-scrollephant-direction="horizontal"]
                 [data-scrollephant-section-has-subsections="true"]
@@ -26,7 +26,7 @@
     }
 
     :global(.scrollephant[data-scrollephant-direction="horizontal"])
-        > .scrollephant-wrapper,
+        .scrollephant-wrapper:first-child,
     :global(
             .scrollephant[data-scrollephant-direction="vertical"]
                 [data-scrollephant-section-has-subsections="true"]
