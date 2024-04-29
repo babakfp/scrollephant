@@ -3,4 +3,4 @@
 /.svelte-kit/
 /dist/
 vite.config.ts.timestamp-*
-pnpm-lock.yaml
+/pnpm-lock.yaml

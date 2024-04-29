@@ -2,7 +2,7 @@
 
 <style>
     :global(body) {
-        font-family: JetBrains Mono;
+        font-family: Geist Mono;
     }
 
     :global(.scrollephant-section-inner) {

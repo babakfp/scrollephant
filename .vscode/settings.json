@@ -1,9 +1,0 @@
-{
-    "editor.formatOnSave": true,
-    "files.exclude": {
-        "**/pnpm-lock.yaml": true
-    },
-    "search.exclude": {
-        "**/pnpm-lock.yaml": true
-    }
-}
