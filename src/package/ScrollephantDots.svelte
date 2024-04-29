@@ -1,52 +1,49 @@
 <script lang="ts">
     import ScrollephantDot from "./ScrollephantDot.svelte"
     import ScrollephantTooltip from "./ScrollephantTooltip.svelte"
-    import { sections, currentSectionNumber } from "./stores.js"
-    import { setIsMovingToTrue, setIsMovingToFalse } from "./utils.js"
+    import { sections } from "./stores.js"
+    import {
+        setIsMovingToTrue,
+        setIsMovingToFalse,
+        setSectionToCurrentById,
+        isSectionCurrentById,
+        setSubsectionOfCurrentSectionToCurrentById,
+        isSubsectionCurrentOfCurrentSectionById,
+    } from "./utils.js"
 
     export let useSubsectionsDots = true
 
-    function handleClick(i: number) {
-        if ($currentSectionNumber === i + 1) return
+    const moveToSection = (id: string) => {
+        if (isSectionCurrentById(id)) return
         setIsMovingToTrue()
-        $currentSectionNumber = i + 1
+        setSectionToCurrentById(id)
         setIsMovingToFalse()
     }
 
-    function handleSubsections(i: number, sectionIndex: number) {
-        // if ($currentSectionNumber === i + 1) return
-
-        const isSubsectinParentIsTheCurrentSection =
-            $currentSectionNumber - 1 === sectionIndex
-        if (!isSubsectinParentIsTheCurrentSection) {
-            $currentSectionNumber = sectionIndex + 1
-        }
-
+    const moveToSubsection = (sectionId: string, subsectionId: string) => {
         setIsMovingToTrue()
-        $sections[$currentSectionNumber - 1].currentSubsectionNumber = i + 1
+        if (!isSectionCurrentById(sectionId)) setSectionToCurrentById(sectionId)
+        setSubsectionOfCurrentSectionToCurrentById(subsectionId)
         setIsMovingToFalse()
     }
 </script>
 
 <ol>
-    {#each $sections as section, i}
-        {@const isCurrentSection =
-            $sections[$currentSectionNumber - 1].id === section.id}
+    {#each $sections as section}
         <ScrollephantDot
-            isCurrent={isCurrentSection}
-            on:click={() => handleClick(i)}
+            isCurrent={isSectionCurrentById(section.id, $sections)}
+            on:click={() => moveToSection(section.id)}
         >
             {#if useSubsectionsDots && !!section.subsections.length}
                 <ol>
-                    {#each section.subsections as subsection, i2}
-                        {@const isCurrentSubsection =
-                            isCurrentSection &&
-                            section.subsections[
-                                section.currentSubsectionNumber - 1
-                            ].id === subsection.id}
+                    {#each section.subsections as subsection}
                         <ScrollephantDot
-                            isCurrent={isCurrentSubsection}
-                            on:click={() => handleSubsections(i2, i)}
+                            isCurrent={isSubsectionCurrentOfCurrentSectionById(
+                                subsection.id,
+                                $sections
+                            )}
+                            on:click={() =>
+                                moveToSubsection(section.id, subsection.id)}
                         />
                     {/each}
                 </ol>

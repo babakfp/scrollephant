@@ -2,7 +2,8 @@
     import { onMount, onDestroy, getContext } from "svelte"
     import { type Writable } from "svelte/store"
     import type { Subsections } from "./types.js"
-    import { sections, currentSectionNumber, movement } from "./stores.js"
+    import { movement } from "./stores.js"
+    import { isSubsectionCurrentById } from "./utils.js"
 
     export let label = ""
     export let autoHeight = false
@@ -24,6 +25,7 @@
                 ref: element,
                 label,
                 autoHeight,
+                isCurrent: $subsections.length === 0 ? true : false,
             },
         ]
     })
@@ -31,16 +33,14 @@
     onDestroy(() => {
         $subsections = $subsections.filter(subsection => subsection.id !== id)
     })
-
-    $: isCurrent =
-        $subsections[
-            $sections[$currentSectionNumber - 1]?.currentSubsectionNumber - 1
-        ]?.id === id
 </script>
 
 <div
     class="scrollephant-subsection"
-    data-scrollephant-is-current-subsection={isCurrent}
+    data-scrollephant-is-current-subsection={isSubsectionCurrentById(
+        $subsections,
+        id
+    )}
     bind:this={element}
 >
     <slot />

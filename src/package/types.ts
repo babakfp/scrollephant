@@ -15,7 +15,7 @@ export type Section = {
     subsections: Subsections
     translateY: number
     translateX: number
-    currentSubsectionNumber: number
+    isCurrent: boolean
 }
 
 export type Sections = Section[]
@@ -25,6 +25,7 @@ export type Subsection = {
     ref: HTMLElement
     label?: string
     autoHeight: boolean
+    isCurrent: boolean
 }
 
 export type Subsections = Subsection[]

@@ -2,33 +2,37 @@
     import { onMount, onDestroy, setContext } from "svelte"
     import { writable } from "svelte/store"
     import type { Subsections } from "./types.js"
-    import { movement, rtl, sections, currentSectionNumber } from "./stores.js"
-    import { addSection, deleteSectionById } from "./utils.js"
+    import { movement, rtl, sections } from "./stores.js"
+    import {
+        addSection,
+        deleteSectionById,
+        getSectionById,
+        isSectionCurrentById,
+        updateSectionById,
+    } from "./utils.js"
 
     export let label = ""
     export let autoHeight = false
+
+    if (autoHeight && $movement === "fade") {
+        console.warn(
+            "Using the autoHeight prop in conjunction with the movement prop set to fade is not logically meaningful and should be avoided.",
+        )
+        autoHeight = false
+    }
 
     const subsections = setContext("subsections", writable<Subsections>([]))
 
     let element: HTMLElement
     const id = crypto.randomUUID()
 
-    if (autoHeight && $movement === "fade") {
-        console.warn(
-            "Using the autoHeight prop in conjunction with the movement prop set to fade is not logically meaningful and should be avoided."
-        )
-        autoHeight = false
-    }
-
     subsections.subscribe(_subsections => {
-        sections.update(_sections =>
-            _sections.map(section => {
-                if (section.id === id) {
-                    section.subsections = _subsections
-                }
-                return section
-            })
-        )
+        // NOTE: If this section is not yet available, it means we are still getting subsections.
+        if (!getSectionById(id)) return
+        updateSectionById(id, section => ({
+            ...section,
+            subsections: _subsections,
+        }))
     })
 
     onMount(() => {
@@ -41,12 +45,11 @@
 
     $: translateY = $sections.find(section => section.id === id)?.translateY
     $: translateX = $sections.find(section => section.id === id)?.translateX
-    $: isCurrent = $sections[$currentSectionNumber - 1]?.id === id
 </script>
 
 <div
     class="scrollephant-section"
-    data-scrollephant-is-current-section={isCurrent}
+    data-scrollephant-is-current-section={isSectionCurrentById(id, $sections)}
     data-scrollephant-section-auto-height={autoHeight}
     data-scrollephant-section-has-subsections={!!$subsections.length}
     bind:this={element}
