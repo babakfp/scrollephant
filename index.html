@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            body {
+                font-family: Geist Mono;
+            }
+
+            .scrollephant-section-inner {
+                align-items: center;
+                color: white;
+                font-size: 4rem;
+            }
+
+            .scrollephant-section:not(
+                    [data-scrollephant-have-subsection="true"]
+                )
+                .scrollephant-section-inner {
+                display: flex;
+                justify-content: center;
+            }
+            .scrollephant-subsection {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .scrollephant-section {
+                background: #52525b;
+            }
+            .scrollephant-section:nth-child(1),
+            .scrollephant-subsection:nth-child(6) {
+                background: #ff5f45;
+            }
+            .scrollephant-section:nth-child(2),
+            .scrollephant-subsection:nth-child(5) {
+                background: #0798ec;
+            }
+            .scrollephant-section:nth-child(3),
+            .scrollephant-subsection:nth-child(4) {
+                background: #fec401;
+            }
+            .scrollephant-section:nth-child(4),
+            .scrollephant-subsection:nth-child(3) {
+                background: #65a30d;
+            }
+            .scrollephant-section:nth-child(5),
+            .scrollephant-subsection:nth-child(2) {
+                background: #0891b2;
+            }
+            .scrollephant-section:nth-child(6),
+            .scrollephant-subsection:nth-child(1) {
+                background: #7c3aed;
+            }
+
+            .scrollephant-section[data-scrollephant-have-subsection="true"] {
+                background: unset;
+            }
+        </style>
+    </head>
+    <body>
+        <scrollephant-root>
+            <scrollephant-wrapper>
+                <scrollephant-section label="Section 1">1</scrollephant-section>
+                <scrollephant-section label="Section 2">2</scrollephant-section>
+                <scrollephant-section label="Section 3">3</scrollephant-section>
+            </scrollephant-wrapper>
+
+            <scrollephant-navigations-wrapper>
+                <scrollephant-arrow-prev> </scrollephant-arrow-prev>
+                <scrollephant-dots> </scrollephant-dots>
+                <scrollephant-arrow-next> </scrollephant-arrow-next>
+            </scrollephant-navigations-wrapper>
+        </scrollephant-root>
+
+        <script type="module" src="src/package/web-components.js"></script>
+    </body>
+</html>

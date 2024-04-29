@@ -4,3 +4,4 @@
 /dist/
 vite.config.ts.timestamp-*
 /pnpm-lock.yaml
+/web-components-dist/
